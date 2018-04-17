@@ -1,7 +1,7 @@
 package application.model;
 
 public class Deltager {
-	String name;
+	private String name;
 
 	public Deltager() {
 		// TODO Auto-generated constructor stub
