@@ -1,5 +1,6 @@
 package application.model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Deltager {
@@ -56,9 +57,10 @@ public class Deltager {
 		return tlfnr;
 	}
 
-	public Tilmelding opretTilmelding() {
+	public Tilmelding opretTilmelding(Konference konference, LocalDate ankomstdato, LocalDate afrejsedato,
+			boolean foredragsholder) {
 		// TODO færdiggør denne når du har Tilmelding-Klassen
-		Tilmelding tilmelding = new Tilmelding(this);
+		Tilmelding tilmelding = new Tilmelding(this, konference, ankomstdato, adresse, afrejsedato, foredragsholder);
 		this.tilmeldinger.add(tilmelding);
 		return tilmelding;
 	}
