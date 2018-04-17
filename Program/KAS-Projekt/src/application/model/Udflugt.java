@@ -17,6 +17,10 @@ public class Udflugt {
 		this.frokost = frokost;
 	}
 
+	public boolean isFrokost() {
+		return frokost;
+	}
+
 	public double getPris() {
 		return this.pris;
 	}

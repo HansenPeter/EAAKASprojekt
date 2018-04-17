@@ -7,7 +7,7 @@ public class Ledsager {
 	private ArrayList<Udflugt> udflugter;
 
 	public Ledsager(String navn) {
-		this.navn = navn;
+		this.setNavn(navn);
 		this.udflugter = new ArrayList<>();
 	}
 
@@ -20,6 +20,14 @@ public class Ledsager {
 			}
 		}
 		return samletPris;
+	}
+
+	public String getNavn() {
+		return navn;
+	}
+
+	public void setNavn(String navn) {
+		this.navn = navn;
 	}
 
 }

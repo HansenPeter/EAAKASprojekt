@@ -13,7 +13,8 @@ public class Deltager {
 	private long firmatlfnr;
 	private ArrayList<Tilmelding> tilmeldinger;
 
-	public Deltager() {
+	public Deltager(String navn, String firmanavn, String adresse, String by, String land, long tlfnr,
+			long firmatlfnr) {
 		// TODO Auto-generated constructor stub
 		this.navn = navn;
 		this.firmanavn = firmanavn;
@@ -65,7 +66,7 @@ public class Deltager {
 		return tilmelding;
 	}
 
-	private void fjernTilmelding(Tilmelding tilmelding) {
+	public void fjernTilmelding(Tilmelding tilmelding) {
 		// TODO Auto-generated method stub
 		this.tilmeldinger.remove(tilmelding);
 	}

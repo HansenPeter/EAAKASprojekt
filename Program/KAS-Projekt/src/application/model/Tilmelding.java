@@ -8,21 +8,17 @@ public class Tilmelding {
 	private LocalDate ankomstdato;
 	private LocalDate afrejsedato;
 	private Ledsager ledsager;
-	private boolean dobbel;
-	private Beboelse valgtBeboelse;
 	private Booking booking;
-	private boolean fordragsholder;
+	private boolean foredragsholder;
 
 	public Tilmelding(Deltager deltager, Konference konference, LocalDate ankomstdato, String ledsagernavn,
-			LocalDate afrejsedato, Boolean fordragsholder) {
+			LocalDate afrejsedato, Boolean foredragsholder) {
 		this.deltager = deltager;
 		this.konference = konference;
 		this.ankomstdato = ankomstdato;
 		this.afrejsedato = afrejsedato;
 		this.ledsager = createLedsager(ledsagernavn);
-		this.dobbel = isDouble();
-		this.booking = null;// createBooking();
-		this.fordragsholder = fordragsholder;
+		this.foredragsholder = foredragsholder;
 	}
 
 	public Booking getBooking() {
@@ -57,16 +53,16 @@ public class Tilmelding {
 		this.ankomstdato = ankomstdato;
 	}
 
-	public void setBooking(Booking booking) {
-		this.booking = booking;
-	}
-
 	public void setDeltager(Deltager deltager) {
 		this.deltager = deltager;
 	}
 
-	public void setFordragsholder(boolean fordragsholder) {
-		this.fordragsholder = fordragsholder;
+	public void setForedragsholder(boolean foredragsholder) {
+		this.foredragsholder = foredragsholder;
+	}
+
+	public boolean isForedragsholder() {
+		return foredragsholder;
 	}
 
 	public void setKonference(Konference konference) {
@@ -94,16 +90,8 @@ public class Tilmelding {
 		}
 	}
 
-	// public ArrayList<Beboelse> getBoboelseAlt
-	// {
-	// ArrayList<Beboelse> bL = new
-	// ArrayList<Beboelse>(this.konference.getBeboelse());
-	// return bL;
-	// }
-
-	/**
-	 * public Booking createBooking(boolean badvalgt, boolean wifiValgt, boolean
-	 * madValgt, Beboelse beboelse) { Booking b = new Booking(this.) }
-	 **/
+	public void setBooking(Beboelse beboelse) {
+		this.booking = new Booking(this.isDouble(), beboelse);
+	}
 
 }

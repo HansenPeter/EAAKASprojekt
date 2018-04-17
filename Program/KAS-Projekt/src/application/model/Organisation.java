@@ -23,4 +23,12 @@ public class Organisation {
 	public void removeKonferance(Konference konference) {
 		this.konferencer.remove(konference);
 	}
+
+	public ArrayList<Konference> getKonferencer() {
+		return konferencer;
+	}
+
+	public String getNavn() {
+		return navn;
+	}
 }
