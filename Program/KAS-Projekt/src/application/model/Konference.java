@@ -111,4 +111,8 @@ public class Konference {
 
 	}
 
+	public Organisation getOrganisation() {
+		return organisation;
+	}
+
 }
