@@ -5,20 +5,20 @@ import java.util.ArrayList;
 public class Beboelse {
 	private ArrayList<Booking> bookings;
 	private ArrayList<Service> services;
-	private double prisEnkeltVærelse;
-	private double prisDobbeltVærelse;
-	private int ledigeEnkeltVærelser;
-	private int ledigeDobbeltVærelser;
+	private double prisEnkeltVaerelse;
+	private double prisDobbeltVaerelse;
+	private int ledigeEnkeltVaerelser;
+	private int ledigeDobbeltVaerelser;
 
-	public Beboelse(double prisEnkeltværelse, double prisDobbeltVærelse, int ledigeEnkeltVærelser,
-			int ledigeDobbeltVærelser) {
+	public Beboelse(double prisEnkeltvaerelse, double prisDobbeltVaerelse, int ledigeEnkeltVaerelser,
+			int ledigeDobbeltVaerelser) {
 		// TODO Auto-generated constructor stub
 		this.bookings = new ArrayList<Booking>();
 		this.services = new ArrayList<Service>();
-		this.prisEnkeltVærelse = prisEnkeltværelse;
-		this.prisDobbeltVærelse = prisDobbeltVærelse;
-		this.ledigeEnkeltVærelser = ledigeDobbeltVærelser;
-		this.ledigeDobbeltVærelser = ledigeDobbeltVærelser;
+		this.prisEnkeltVaerelse = prisEnkeltvaerelse;
+		this.prisDobbeltVaerelse = prisDobbeltVaerelse;
+		this.ledigeEnkeltVaerelser = ledigeDobbeltVaerelser;
+		this.ledigeDobbeltVaerelser = ledigeDobbeltVaerelser;
 	}
 
 	public ArrayList<Booking> getBookings() {
@@ -29,19 +29,19 @@ public class Beboelse {
 		return new ArrayList<>(services);
 	}
 
-	public int getLedigeEnkeltVærelser() {
-		return ledigeEnkeltVærelser;
+	public int getLedigeEnkeltVaerelser() {
+		return ledigeEnkeltVaerelser;
 	}
 
-	public int getLedigeDobbeltVærelser() {
-		return ledigeDobbeltVærelser;
+	public int getLedigeDobbeltVaerelser() {
+		return ledigeDobbeltVaerelser;
 	}
 
 	public double getPris(Booking booking) {
 		if (booking.isDoubleRoom()) {
-			return prisDobbeltVærelse;
+			return prisDobbeltVaerelse;
 		} else {
-			return prisEnkeltVærelse;
+			return prisEnkeltVaerelse;
 		}
 	}
 
