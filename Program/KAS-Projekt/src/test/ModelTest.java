@@ -16,10 +16,9 @@ class ModelTest {
 	static double dyrt = 100.0;
 	private static Organisation o1 = new Organisation("navn");
 	private static Konference k1 = o1.createKonferance(LocalDate.now(), "Odense", "Miljø", "Olie",dyrt );
-	
 	private static Deltager d1 = new Deltager("navn", "vej", "by", "landsbay", 0);
 	private static Tilmelding t1 = d1.opretTilmelding(k1, LocalDate.now(), LocalDate.now(), true);
-	private static Tilmelding t2 = d1.opretTilmelding(k1, LocalDate.now(), LocalDate.now(), true);
+	private static Tilmelding t2 = d1.opretTilmelding(k1, LocalDate.now(), LocalDate.now(), false);
 	private static Ledsager l1 = t2.createLedsager("Morten");
 	private static Beboelse b1 = new Beboelse("bullShit Hotel", 100.0, 150.0);
 	private static Service s1 = b1.createService("TV", "se tv - jeps", dyrt/2);
@@ -83,7 +82,7 @@ class ModelTest {
 		
 		l1.addUdflugt(u1);
 		l1.addUdflugt(u2);
-		double expectedPris = 750;
+		double expectedPris = 850;
 		assertEquals(expectedPris, t2.beregnSamletPris());
 		
 		

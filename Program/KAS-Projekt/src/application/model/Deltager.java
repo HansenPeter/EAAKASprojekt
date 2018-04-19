@@ -16,6 +16,7 @@ public class Deltager {
 	public Deltager(String navn, String firmanavn, String adresse, String by, String land, long tlfnr,
 			long firmatlfnr) {
 		// TODO Auto-generated constructor stub
+
 		this.navn = navn;
 		this.firmanavn = firmanavn;
 		this.adresse = adresse;
@@ -25,6 +26,7 @@ public class Deltager {
 		this.firmatlfnr = firmatlfnr;
 		this.tilmeldinger = new ArrayList<Tilmelding>();
 	}
+	
 	public Deltager(String navn, String adresse, String by, String land, long tlfnr) {
 		this.navn = navn;
 		this.adresse = adresse;
@@ -78,4 +80,10 @@ public class Deltager {
 		// TODO Auto-generated method stub
 		this.tilmeldinger.remove(tilmelding);
 	}
+
+
+	
+	
+	
+	
 }
