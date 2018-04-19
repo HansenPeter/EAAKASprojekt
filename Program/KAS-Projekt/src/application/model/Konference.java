@@ -14,7 +14,7 @@ public class Konference {
 	private ArrayList<Tilmelding> tilmeldinger;
 	private double pris;
 
-	public Konference(LocalDate dato, String lokation, String navn, String tema, Organisation organisation,
+	Konference(LocalDate dato, String lokation, String navn, String tema, Organisation organisation,
 			double pris) {
 		this.dato = dato;
 		this.lokation = lokation;
@@ -110,6 +110,7 @@ public class Konference {
 		return u;
 
 	}
+	
 
 	public Organisation getOrganisation() {
 		return organisation;

@@ -6,19 +6,19 @@ public class Ledsager {
 	private String navn;
 	private ArrayList<Udflugt> udflugter;
 
-	public Ledsager(String navn) {
+	Ledsager(String navn) {
 		this.setNavn(navn);
 		this.udflugter = new ArrayList<>();
 	}
 
 	public double beregnPris() {
 		double samletPris = 0;
-		if (this.udflugter.size() > 0) {
+		
 			for (Udflugt udflugt : this.udflugter) {
 				samletPris += udflugt.getPris();
 
 			}
-		}
+		
 		return samletPris;
 	}
 
@@ -28,6 +28,11 @@ public class Ledsager {
 
 	public void setNavn(String navn) {
 		this.navn = navn;
+	}
+	
+	public void addUdflugt(Udflugt udflugt) {
+		this.udflugter.add(udflugt);
+		udflugt.addLedsager(this);
 	}
 
 }

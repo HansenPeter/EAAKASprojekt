@@ -3,22 +3,24 @@ package application.model;
 import java.util.ArrayList;
 
 public class Beboelse {
+	private String name;
 	private ArrayList<Booking> bookings;
 	private ArrayList<Service> services;
 	private double prisEnkeltVaerelse;
 	private double prisDobbeltVaerelse;
-	private int ledigeEnkeltVaerelser;
-	private int ledigeDobbeltVaerelser;
 
-	public Beboelse(double prisEnkeltvaerelse, double prisDobbeltVaerelse, int ledigeEnkeltVaerelser,
-			int ledigeDobbeltVaerelser) {
-		// TODO Auto-generated constructor stub
+
+	public Beboelse(String name, double prisEnkeltvaerelse, double prisDobbeltVaerelse) {
+		this.name = name;
 		this.bookings = new ArrayList<Booking>();
 		this.services = new ArrayList<Service>();
 		this.prisEnkeltVaerelse = prisEnkeltvaerelse;
 		this.prisDobbeltVaerelse = prisDobbeltVaerelse;
-		this.ledigeEnkeltVaerelser = ledigeDobbeltVaerelser;
-		this.ledigeDobbeltVaerelser = ledigeDobbeltVaerelser;
+		
+	}
+
+	public String getName() {
+		return name;
 	}
 
 	public ArrayList<Booking> getBookings() {
@@ -29,13 +31,7 @@ public class Beboelse {
 		return new ArrayList<>(services);
 	}
 
-	public int getLedigeEnkeltVaerelser() {
-		return ledigeEnkeltVaerelser;
-	}
 
-	public int getLedigeDobbeltVaerelser() {
-		return ledigeDobbeltVaerelser;
-	}
 
 	public double getPris(Booking booking) {
 		if (booking.isDoubleRoom()) {

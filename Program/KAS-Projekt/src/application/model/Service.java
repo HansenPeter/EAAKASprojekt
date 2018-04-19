@@ -5,7 +5,7 @@ public class Service {
 	private String serviceBeskrivelse;
 	private double servicePris;
 
-	public Service(String serviceNavn, String serviceBeskrivelse, double servicePris) {
+	Service(String serviceNavn, String serviceBeskrivelse, double servicePris) {
 		// TODO Auto-generated constructor stub
 		this.serviceNavn = serviceNavn;
 		this.serviceBeskrivelse = serviceBeskrivelse;

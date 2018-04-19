@@ -8,9 +8,9 @@ public class Udflugt {
 	private LocalDate dato;
 	private double pris;
 	private boolean frokost;
-	private ArrayList<Ledsager> ledsagere;
+	private ArrayList<Ledsager> ledsagere = new ArrayList<>();
 
-	public Udflugt(String lokation, LocalDate dato, double pris, boolean frokost) {
+	Udflugt(String lokation, LocalDate dato, double pris, boolean frokost) {
 		this.lokation = lokation;
 		this.dato = dato;
 		this.pris = pris;
@@ -53,8 +53,9 @@ public class Udflugt {
 		this.lokation = lokation;
 	}
 
-	public void addLedsager(Ledsager ledsager) {
+	void addLedsager(Ledsager ledsager) {
 		this.ledsagere.add(ledsager);
+		
 
 	}
 }

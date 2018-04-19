@@ -25,6 +25,14 @@ public class Deltager {
 		this.firmatlfnr = firmatlfnr;
 		this.tilmeldinger = new ArrayList<Tilmelding>();
 	}
+	public Deltager(String navn, String adresse, String by, String land, long tlfnr) {
+		this.navn = navn;
+		this.adresse = adresse;
+		this.by = by;
+		this.land = land;
+		this.tlfnr = tlfnr;
+		this.tilmeldinger = new ArrayList<Tilmelding>();
+	}
 
 	public String getNavn() {
 		return navn;
@@ -61,7 +69,7 @@ public class Deltager {
 	public Tilmelding opretTilmelding(Konference konference, LocalDate ankomstdato, LocalDate afrejsedato,
 			boolean foredragsholder) {
 		// TODO færdiggør denne når du har Tilmelding-Klassen
-		Tilmelding tilmelding = new Tilmelding(this, konference, ankomstdato, adresse, afrejsedato, foredragsholder);
+		Tilmelding tilmelding = new Tilmelding(this, konference, ankomstdato, afrejsedato, foredragsholder);
 		this.tilmeldinger.add(tilmelding);
 		return tilmelding;
 	}

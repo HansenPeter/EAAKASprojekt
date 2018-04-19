@@ -1,6 +1,7 @@
 package application.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Tilmelding {
 	private Deltager deltager;
@@ -11,13 +12,13 @@ public class Tilmelding {
 	private Booking booking;
 	private boolean foredragsholder;
 
-	public Tilmelding(Deltager deltager, Konference konference, LocalDate ankomstdato, String ledsagernavn,
+	Tilmelding(Deltager deltager, Konference konference, LocalDate ankomstdato, 
 			LocalDate afrejsedato, Boolean foredragsholder) {
 		this.deltager = deltager;
 		this.konference = konference;
 		this.ankomstdato = ankomstdato;
 		this.afrejsedato = afrejsedato;
-		this.ledsager = createLedsager(ledsagernavn);
+		
 		this.foredragsholder = foredragsholder;
 	}
 
@@ -81,6 +82,11 @@ public class Tilmelding {
 		Ledsager l = new Ledsager(navn);
 		return l;
 	}
+	
+	public Booking createBooking(ArrayList<Service> services, Beboelse beboelse) {
+		Booking booking = new Booking(isDouble(), beboelse, services);
+		return booking;
+	}
 
 	public boolean isDouble() {
 		if (this.ledsager != null) {
@@ -90,8 +96,10 @@ public class Tilmelding {
 		}
 	}
 
-	public void setBooking(Beboelse beboelse) {
-		this.booking = new Booking(this.isDouble(), beboelse);
+	public void setBooking(Booking booking) {
+		this.booking = booking;
 	}
+
+	
 
 }
