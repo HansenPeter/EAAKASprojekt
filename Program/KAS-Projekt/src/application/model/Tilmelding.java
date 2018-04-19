@@ -75,7 +75,16 @@ public class Tilmelding {
 	}
 
 	public double beregnSamletPris() {
-		double samletPris = this.booking.beregnPris() + this.ledsager.beregnPris();
+		double samletPris = 0;
+		
+		if(booking != null) {
+			samletPris += this.booking.beregnPris();
+		}
+		
+		if (ledsager != null) {
+			samletPris += this.ledsager.beregnPris();
+		}
+		
 		
 		if(!this.isForedragsholder()) {
 			samletPris += this.konference.getPris();

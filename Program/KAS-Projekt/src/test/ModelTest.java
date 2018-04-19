@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 class ModelTest {
 	static double dyrt = 100.0;
 	private static Organisation o1 = new Organisation("navn");
-	private static Konference k1 = o1.createKonferance(LocalDate.now(), "Odense", "Miljø", "Olie",dyrt );
+	private static Konference k1 = o1.createKonference(LocalDate.now(), "Odense", "Miljø", "Olie",dyrt );
 	private static Deltager d1 = new Deltager("navn", "vej", "by", "landsbay", 0);
 	private static Tilmelding t1 = d1.opretTilmelding(k1, LocalDate.now(), LocalDate.now(), true);
 	private static Tilmelding t2 = d1.opretTilmelding(k1, LocalDate.now(), LocalDate.now(), false);
@@ -63,32 +63,32 @@ class ModelTest {
 		expectedPris = 300 + 50 + 100;
 		assertEquals(expectedPris, singleBook.beregnPris());
 		
-		
-	}
-	
-	@Test
-	void tilmeldingBeregnSamletPris() {
-		ArrayList<Service> ss1 = new ArrayList<>(); 
-	 
-		t2.setLedsager(l1);
-		Booking doubleBook = t2.createBooking(ss1, b1);
-		t2.setBooking(doubleBook);
-	
-		doubleBook.addService(s1);
-		doubleBook.addService(s2);
-		
-		Udflugt u1 = k1.createUdflugt("Her", LocalDate.now(), dyrt*2, false);
-		Udflugt u2 = k1.createUdflugt("Der", LocalDate.now(), dyrt/2, true);
-		
-		l1.addUdflugt(u1);
-		l1.addUdflugt(u2);
-		double expectedPris = 850;
-		assertEquals(expectedPris, t2.beregnSamletPris());
-		
-		
-	}
-	
-	
-	
-
+		                                                                            
+	}                                                                               
+	                                                                                
+	@Test                                                                           
+	void tilmeldingBeregnSamletPris() {                                             
+		ArrayList<Service> ss1 = new ArrayList<>();                                 
+	                                                                                
+		t2.setLedsager(l1);                                                         
+		Booking doubleBook = t2.createBooking(ss1, b1);                             
+		t2.setBooking(doubleBook);                                                  
+	                                                                                
+		doubleBook.addService(s1);                                                  
+		doubleBook.addService(s2);                                                  
+		                                                                            
+		Udflugt u1 = k1.createUdflugt("Her", LocalDate.now(), dyrt*2, false);       
+		Udflugt u2 = k1.createUdflugt("Der", LocalDate.now(), dyrt/2, true);        
+		                                                                            
+		l1.addUdflugt(u1);                                                          
+		l1.addUdflugt(u2);                                                          
+		double expectedPris = 850;                                                  
+		assertEquals(expectedPris, t2.beregnSamletPris());                          
+		                                                                            
+		                                                                            
+	}                                                                               
+	                                                                                
+	                                                                                
+	                                                                                
+                                                                                    
 }

@@ -11,16 +11,21 @@ public class Organisation {
 		this.navn = navn;
 		this.konferencer = new ArrayList<>();
 	}
+	
 
-	public Konference createKonferance(LocalDate dato, String lokation, String navn, String tema, double pris) {
+	public Konference createKonference(LocalDate dato, String lokation, String navn, String tema, double pris) {
 		Konference k = new Konference(dato, lokation, navn, tema, this, pris);
-		this.konferencer.add(k);
+		
 		return k;
 		// LocalDate dato, String lokation, String navn, String tema, Organisation
 		// organisation, double pris) {
 	}
+	
+	public void addKonference(Konference konference) {
+		this.konferencer.add(konference);
+	}
 
-	public void removeKonferance(Konference konference) {
+	public void removeKonference(Konference konference) {
 		this.konferencer.remove(konference);
 	}
 

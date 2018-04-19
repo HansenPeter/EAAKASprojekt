@@ -68,7 +68,7 @@ public class Storage {
 		return new ArrayList<>(konferences);
 	}
 
-	public static void addKonferense(Konference konference) {
+	public static void addKonference(Konference konference) {
 		konferences.add(konference);
 	}
 

@@ -51,5 +51,13 @@ public class Beboelse {
 	public void removeService(Service service) {
 		this.services.remove(service);
 	}
+	
+	public void addBooking(Booking booking) {
+		this.bookings.add(booking);
+	}
+	
+	public void removeBooking(Booking booking) {
+		this.bookings.remove(booking);
+	}
 
 }

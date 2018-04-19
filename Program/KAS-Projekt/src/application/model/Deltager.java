@@ -72,8 +72,11 @@ public class Deltager {
 			boolean foredragsholder) {
 		// TODO færdiggør denne når du har Tilmelding-Klassen
 		Tilmelding tilmelding = new Tilmelding(this, konference, ankomstdato, afrejsedato, foredragsholder);
-		this.tilmeldinger.add(tilmelding);
 		return tilmelding;
+	}
+	
+	public void addTilmelding(Tilmelding tilmelding) {
+		this.tilmeldinger.add(tilmelding);
 	}
 
 	public void fjernTilmelding(Tilmelding tilmelding) {
