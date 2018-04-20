@@ -105,6 +105,7 @@ public class Tilmelding {
 	
 	public Booking createBooking(ArrayList<Service> services, Beboelse beboelse) {
 		Booking booking = new Booking(isDouble(), beboelse, services);
+		this.booking = booking;
 		return booking;
 	}
 	

@@ -16,8 +16,6 @@ public class Deltager {
 
 	public Deltager(String navn, String firmanavn, String adresse, String by, String land, String tlfnr,
 			String firmatlfnr) {
-		// TODO Auto-generated constructor stub
-
 		this.navn = navn;
 		this.firmanavn = firmanavn;
 		this.adresse = adresse;
@@ -69,9 +67,8 @@ public class Deltager {
 		return tlfnr;
 	}
 
-	public Tilmelding opretTilmelding(Konference konference, LocalDate ankomstdato, LocalDate afrejsedato,
+	public Tilmelding createTilmelding(Konference konference, LocalDate ankomstdato, LocalDate afrejsedato,
 			boolean foredragsholder) {
-		// TODO færdiggør denne når du har Tilmelding-Klassen
 		Tilmelding tilmelding = new Tilmelding(this, konference, ankomstdato, afrejsedato, foredragsholder);
 		return tilmelding;
 	}
@@ -81,7 +78,6 @@ public class Deltager {
 	}
 
 	public void fjernTilmelding(Tilmelding tilmelding) {
-		// TODO Auto-generated method stub
 		this.tilmeldinger.remove(tilmelding);
 	}
 

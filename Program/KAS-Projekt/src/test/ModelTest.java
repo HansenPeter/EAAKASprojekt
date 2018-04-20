@@ -22,8 +22,8 @@ class ModelTest {
 	private static Organisation o1 = new Organisation("navn");
 	private static Konference k1 = o1.createKonference(LocalDate.now(), LocalDate.now().plusDays(2), "Odense", "Miljï¿½", "Olie", dyrt);
 	private static Deltager d1 = new Deltager("navn", "vej", "by", "landsbay", "0");
-	private static Tilmelding t1 = d1.opretTilmelding(k1, LocalDate.now(), LocalDate.now(), true);
-	private static Tilmelding t2 = d1.opretTilmelding(k1, LocalDate.now(), LocalDate.now(), false);
+	private static Tilmelding t1 = d1.createTilmelding(k1, LocalDate.now(), LocalDate.now(), true);
+	private static Tilmelding t2 = d1.createTilmelding(k1, LocalDate.now(), LocalDate.now(), false);
 	private static Ledsager l1 = t2.createLedsager("Morten");
 	private static Beboelse b1 = new Beboelse("bullShit Hotel", 100.0, 150.0);
 	private static Service s1 = b1.createService("TV", "se tv - jeps", dyrt / 2);
@@ -111,11 +111,11 @@ class ModelTest {
 		Udflugt egeskov = havOgHimmel.createUdflugt("På Egeskov", LocalDate.parse("2018-05-19"), 75, false);
 		Udflugt trapholtMuseum = havOgHimmel.createUdflugt("Kolding", LocalDate.of(2018, 05, 20), 200, true);
 		
-		Tilmelding tFinn = finnMadsen.opretTilmelding(havOgHimmel, startDato, slutDato, false);
-		Tilmelding tNiels = nielsPetersen.opretTilmelding(havOgHimmel, startDato, slutDato, false);
+		Tilmelding tFinn = finnMadsen.createTilmelding(havOgHimmel, startDato, slutDato, false);
+		Tilmelding tNiels = nielsPetersen.createTilmelding(havOgHimmel, startDato, slutDato, false);
 		tNiels.createBooking(denHvideSvane);
 		
-		Tilmelding tPeter = peterSommer.opretTilmelding(havOgHimmel, startDato, slutDato, false);
+		Tilmelding tPeter = peterSommer.createTilmelding(havOgHimmel, startDato, slutDato, false);
 		Ledsager mieSommer = tPeter.createLedsager("Mie Sommer");
 		mieSommer.addUdflugt(trapholtMuseum);
 		mieSommer.addUdflugt(egeskov);
@@ -123,7 +123,7 @@ class ModelTest {
 		Booking bookingtPeter = tPeter.createBooking( denHvideSvane);
 		bookingtPeter.addService(swanFi);
 		
-		Tilmelding tLone = loneJensen.opretTilmelding(havOgHimmel, startDato, slutDato, true);
+		Tilmelding tLone = loneJensen.createTilmelding(havOgHimmel, startDato, slutDato, true);
 		Ledsager janMadsen = tLone.createLedsager("Jan Madsen");
 		janMadsen.addUdflugt(byrundturIOdense);
 		janMadsen.addUdflugt(egeskov);

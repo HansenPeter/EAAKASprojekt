@@ -103,7 +103,7 @@ public class Konference {
 		this.tilmeldinger.add(tilmelding);
 	}
 
-	public void removeTilmding(Tilmelding tilmelding) {
+	public void removeTilmelding(Tilmelding tilmelding) {
 		this.tilmeldinger.remove(tilmelding);
 	}
 
