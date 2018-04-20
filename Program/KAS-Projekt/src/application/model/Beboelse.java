@@ -42,6 +42,7 @@ public class Beboelse {
 	}
 
 	public Service createService(String serviceNavn, String serviceBeskrivelse, double servicePris) {
+		// TODO Auto-generated method stub
 		Service service = new Service(serviceNavn, serviceBeskrivelse, servicePris);
 		this.services.add(service);
 		return service;

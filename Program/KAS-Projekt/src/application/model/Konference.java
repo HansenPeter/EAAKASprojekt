@@ -4,8 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Konference {
-	private LocalDate startDato;
-	private LocalDate slutDato;
+	private LocalDate dato;
 	private String lokation;
 	private String navn;
 	private String tema;
@@ -15,10 +14,9 @@ public class Konference {
 	private ArrayList<Tilmelding> tilmeldinger;
 	private double pris;
 
-	Konference(LocalDate startDato, LocalDate slutDato, String lokation, String navn, String tema, Organisation organisation,
+	Konference(LocalDate dato, String lokation, String navn, String tema, Organisation organisation,
 			double pris) {
-		this.startDato = startDato;
-		this.slutDato = slutDato;
+		this.dato = dato;
 		this.lokation = lokation;
 		this.navn = navn;
 		this.tema = tema;
@@ -30,13 +28,12 @@ public class Konference {
 
 	}
 
-	
 	public String getLokation() {
 		return lokation;
 	}
 
 	public LocalDate getDato() {
-		return startDato;
+		return dato;
 	}
 
 	public String getNavn() {
@@ -68,7 +65,7 @@ public class Konference {
 	}
 
 	public void setDato(LocalDate dato) {
-		this.startDato = dato;
+		this.dato = dato;
 	}
 
 	public void setPris(double pris) {
@@ -103,7 +100,7 @@ public class Konference {
 		this.tilmeldinger.add(tilmelding);
 	}
 
-	public void removeTilmelding(Tilmelding tilmelding) {
+	public void removeTilmding(Tilmelding tilmelding) {
 		this.tilmeldinger.remove(tilmelding);
 	}
 
@@ -114,15 +111,6 @@ public class Konference {
 
 	}
 	
-	public LocalDate getStartDato() {
-		return startDato;
-	}
-
-	public LocalDate getSlutDato() {
-		return slutDato;
-	}
-
-
 
 	public Organisation getOrganisation() {
 		return organisation;

@@ -1,7 +1,6 @@
 package application.model;
 
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
 public class Tilmelding {
@@ -12,7 +11,6 @@ public class Tilmelding {
 	private Ledsager ledsager;
 	private Booking booking;
 	private boolean foredragsholder;
-	private int konferenceDage;
 
 	Tilmelding(Deltager deltager, Konference konference, LocalDate ankomstdato, 
 			LocalDate afrejsedato, Boolean foredragsholder) {
@@ -20,10 +18,8 @@ public class Tilmelding {
 		this.konference = konference;
 		this.ankomstdato = ankomstdato;
 		this.afrejsedato = afrejsedato;
+		
 		this.foredragsholder = foredragsholder;
-		this.konferenceDage = (int) ChronoUnit.DAYS.between(ankomstdato,afrejsedato) + 1;
-		
-		
 	}
 
 	public Booking getBooking() {
@@ -82,7 +78,7 @@ public class Tilmelding {
 		double samletPris = 0;
 		
 		if(booking != null) {
-			samletPris += this.booking.beregnPris() * (konferenceDage-1);
+			samletPris += this.booking.beregnPris();
 		}
 		
 		if (ledsager != null) {
@@ -91,27 +87,19 @@ public class Tilmelding {
 		
 		
 		if(!this.isForedragsholder()) {
-			samletPris += this.konference.getPris() * (konferenceDage);
+			samletPris += this.konference.getPris();
 		}
 		
 		return samletPris;
 	}
 
 	public Ledsager createLedsager(String navn) {
-		Ledsager ledsager = new Ledsager(navn);
-		this.ledsager = ledsager;
-		return ledsager;
+		Ledsager l = new Ledsager(navn);
+		return l;
 	}
 	
 	public Booking createBooking(ArrayList<Service> services, Beboelse beboelse) {
 		Booking booking = new Booking(isDouble(), beboelse, services);
-		this.booking = booking;
-		return booking;
-	}
-	
-	public Booking createBooking(Beboelse beboelse) {
-		Booking booking = new Booking(isDouble(), beboelse);
-		this.booking = booking;
 		return booking;
 	}
 

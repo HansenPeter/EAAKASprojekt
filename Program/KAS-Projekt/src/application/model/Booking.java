@@ -12,11 +12,6 @@ public class Booking {
 		this.beboelse = beboelse;
 		servicesValgt = new ArrayList<>(services);
 	}
-	Booking(boolean isDoubleRoom, Beboelse beboelse) {
-		this.isDoubleRoom = isDoubleRoom;
-		this.beboelse = beboelse;
-		servicesValgt = new ArrayList<>();
-	}
 
 
 	public Beboelse getBeboelse() {
