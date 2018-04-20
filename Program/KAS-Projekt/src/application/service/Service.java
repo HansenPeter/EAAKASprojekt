@@ -16,14 +16,14 @@ import storage.Storage;
 
 public class Service {
 
-	public static Deltager createDeltager(String navn, String adresse, String by, String land, long tlfnr) {
+	public static Deltager createDeltager(String navn, String adresse, String by, String land, String tlfnr) {
 		Deltager deltager = new Deltager(navn, adresse, by, land, tlfnr);
 		Storage.addDeltager(deltager);
 		
 		return deltager;
 	}
 
-	public static Deltager createDeltager(String navn, String firmanavn, String adresse, String by, String land, long tlfnr, long firmatlfnr) {
+	public static Deltager createDeltager(String navn, String firmanavn, String adresse, String by, String land, String tlfnr, String firmatlfnr) {
 		Deltager deltager = new Deltager(navn, firmanavn, adresse, by, land, tlfnr, firmatlfnr);
 		Storage.addDeltager(deltager);
 		
@@ -75,8 +75,8 @@ public class Service {
 	}
 	//---------------------------------------------------------------------------------------------------------------------------------------
 	
-	public static Konference createKonference(Organisation organisation, LocalDate dato, String lokation, String navn, String tema, double pris) {
-		Konference konference = organisation.createKonference(dato, lokation, navn, tema, pris);
+	public static Konference createKonference(Organisation organisation, LocalDate startDato, LocalDate slutDato, String lokation, String navn, String tema, double pris) {
+		Konference konference = organisation.createKonference(startDato, slutDato, lokation, navn, tema, pris);
 		organisation.addKonference(konference);
 		Storage.addKonference(konference);
 		return konference;

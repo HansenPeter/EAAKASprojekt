@@ -9,12 +9,13 @@ public class Deltager {
 	private String adresse;
 	private String by;
 	private String land;
-	private long tlfnr;
-	private long firmatlfnr;
+	private String tlfnr;
+	private String firmatlfnr;
 	private ArrayList<Tilmelding> tilmeldinger;
+	
 
-	public Deltager(String navn, String firmanavn, String adresse, String by, String land, long tlfnr,
-			long firmatlfnr) {
+	public Deltager(String navn, String firmanavn, String adresse, String by, String land, String tlfnr,
+			String firmatlfnr) {
 		// TODO Auto-generated constructor stub
 
 		this.navn = navn;
@@ -27,7 +28,7 @@ public class Deltager {
 		this.tilmeldinger = new ArrayList<Tilmelding>();
 	}
 	
-	public Deltager(String navn, String adresse, String by, String land, long tlfnr) {
+	public Deltager(String navn, String adresse, String by, String land, String tlfnr) {
 		this.navn = navn;
 		this.adresse = adresse;
 		this.by = by;
@@ -52,7 +53,7 @@ public class Deltager {
 		return by;
 	}
 
-	public long getFirmatlfnr() {
+	public String getFirmatlfnr() {
 		return firmatlfnr;
 	}
 
@@ -64,7 +65,7 @@ public class Deltager {
 		return new ArrayList<>(tilmeldinger);
 	}
 
-	public long getTlfnr() {
+	public String getTlfnr() {
 		return tlfnr;
 	}
 

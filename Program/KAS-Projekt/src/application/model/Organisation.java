@@ -13,8 +13,8 @@ public class Organisation {
 	}
 	
 
-	public Konference createKonference(LocalDate dato, String lokation, String navn, String tema, double pris) {
-		Konference k = new Konference(dato, lokation, navn, tema, this, pris);
+	public Konference createKonference(LocalDate startDato, LocalDate slutDato, String lokation, String navn, String tema, double pris) {
+		Konference k = new Konference(startDato, slutDato, lokation, navn, tema, this, pris);
 		
 		return k;
 		// LocalDate dato, String lokation, String navn, String tema, Organisation
