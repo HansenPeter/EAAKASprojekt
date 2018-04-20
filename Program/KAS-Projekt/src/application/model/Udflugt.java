@@ -55,7 +55,9 @@ public class Udflugt {
 
 	void addLedsager(Ledsager ledsager) {
 		this.ledsagere.add(ledsager);
-		
-
+	}
+	
+	public void removeLedsager(Ledsager ledsager) {
+		this.ledsagere.remove(ledsager);
 	}
 }
