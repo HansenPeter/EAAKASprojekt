@@ -3,14 +3,9 @@ package storage;
 import java.util.ArrayList;
 
 import application.model.Beboelse;
-import application.model.Booking;
 import application.model.Deltager;
-import application.model.Konference;
-import application.model.Ledsager;
 import application.model.Organisation;
-import application.model.Service;
-import application.model.Tilmelding;
-import application.model.Udflugt;
+
 
 public class Storage {
 	private static ArrayList<Beboelse> beboelser = new ArrayList<>();
