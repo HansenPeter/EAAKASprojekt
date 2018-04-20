@@ -1,5 +1,6 @@
 package application.model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Deltager {
@@ -12,8 +13,10 @@ public class Deltager {
 	private long firmatlfnr;
 	private ArrayList<Tilmelding> tilmeldinger;
 
-	public Deltager() {
+	public Deltager(String navn, String firmanavn, String adresse, String by, String land, long tlfnr,
+			long firmatlfnr) {
 		// TODO Auto-generated constructor stub
+
 		this.navn = navn;
 		this.firmanavn = firmanavn;
 		this.adresse = adresse;
@@ -21,6 +24,15 @@ public class Deltager {
 		this.land = land;
 		this.tlfnr = tlfnr;
 		this.firmatlfnr = firmatlfnr;
+		this.tilmeldinger = new ArrayList<Tilmelding>();
+	}
+	
+	public Deltager(String navn, String adresse, String by, String land, long tlfnr) {
+		this.navn = navn;
+		this.adresse = adresse;
+		this.by = by;
+		this.land = land;
+		this.tlfnr = tlfnr;
 		this.tilmeldinger = new ArrayList<Tilmelding>();
 	}
 
@@ -56,15 +68,25 @@ public class Deltager {
 		return tlfnr;
 	}
 
-	public Tilmelding opretTilmelding() {
+	public Tilmelding opretTilmelding(Konference konference, LocalDate ankomstdato, LocalDate afrejsedato,
+			boolean foredragsholder) {
 		// TODO færdiggør denne når du har Tilmelding-Klassen
-		Tilmelding tilmelding = new Tilmelding(this);
-		this.tilmeldinger.add(tilmelding);
+		Tilmelding tilmelding = new Tilmelding(this, konference, ankomstdato, afrejsedato, foredragsholder);
 		return tilmelding;
 	}
+	
+	public void addTilmelding(Tilmelding tilmelding) {
+		this.tilmeldinger.add(tilmelding);
+	}
 
-	private void fjernTilmelding(Tilmelding tilmelding) {
+	public void fjernTilmelding(Tilmelding tilmelding) {
 		// TODO Auto-generated method stub
 		this.tilmeldinger.remove(tilmelding);
 	}
+
+
+	
+	
+	
+	
 }

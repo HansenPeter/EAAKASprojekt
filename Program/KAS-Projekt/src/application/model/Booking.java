@@ -3,22 +3,16 @@ package application.model;
 import java.util.ArrayList;
 
 public class Booking {
-	private int værelsesnr;
 	private boolean isDoubleRoom;
 	ArrayList<Service> servicesValgt;
 	private Beboelse beboelse;
 
-	public Booking(boolean isDoubleRoom, Beboelse beboelse) {
-		// TODO Auto-generated constructor stub
-		this.værelsesnr = (int) Math.random();
+	Booking(boolean isDoubleRoom, Beboelse beboelse, ArrayList<Service> services) {
 		this.isDoubleRoom = isDoubleRoom;
 		this.beboelse = beboelse;
-		servicesValgt = new ArrayList<Service>();
+		servicesValgt = new ArrayList<>(services);
 	}
 
-	public int getVærelsesnr() {
-		return værelsesnr;
-	}
 
 	public Beboelse getBeboelse() {
 		return beboelse;
@@ -36,9 +30,7 @@ public class Booking {
 		this.servicesValgt.remove(service);
 	}
 
-	public void setVærelsesnr(int værelsesnr) {
-		this.værelsesnr = værelsesnr;
-	}
+
 
 	public void setServicesValgt(ArrayList<Service> servicesValgt) {
 		this.servicesValgt = servicesValgt;
