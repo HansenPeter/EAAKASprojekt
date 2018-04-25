@@ -15,8 +15,8 @@ public class Konference {
 	private ArrayList<Tilmelding> tilmeldinger;
 	private double pris;
 
-	Konference(LocalDate startDato, LocalDate slutDato, String lokation, String navn, String tema, Organisation organisation,
-			double pris) {
+	Konference(LocalDate startDato, LocalDate slutDato, String lokation, String navn, String tema,
+			Organisation organisation, double pris) {
 		this.startDato = startDato;
 		this.slutDato = slutDato;
 		this.lokation = lokation;
@@ -30,7 +30,6 @@ public class Konference {
 
 	}
 
-	
 	public String getLokation() {
 		return lokation;
 	}
@@ -107,13 +106,13 @@ public class Konference {
 		this.tilmeldinger.remove(tilmelding);
 	}
 
-	public Udflugt createUdflugt(String lokation, LocalDate dato, double pris, boolean frokost) {
-		Udflugt u = new Udflugt(lokation, dato, pris, frokost);
+	public Udflugt createUdflugt(String name, LocalDate dato, double pris, boolean frokost) {
+		Udflugt u = new Udflugt(name, dato, pris, frokost);
 		this.udflugter.add(u);
 		return u;
 
 	}
-	
+
 	public LocalDate getStartDato() {
 		return startDato;
 	}
@@ -121,8 +120,6 @@ public class Konference {
 	public LocalDate getSlutDato() {
 		return slutDato;
 	}
-
-
 
 	public Organisation getOrganisation() {
 		return organisation;
