@@ -9,14 +9,13 @@ public class Deltager {
 	private String adresse;
 	private String by;
 	private String land;
-	private long tlfnr;
-	private long firmatlfnr;
+	private String tlfnr;
+	private String firmatlfnr;
 	private ArrayList<Tilmelding> tilmeldinger;
+	
 
-	public Deltager(String navn, String firmanavn, String adresse, String by, String land, long tlfnr,
-			long firmatlfnr) {
-		// TODO Auto-generated constructor stub
-
+	public Deltager(String navn, String firmanavn, String adresse, String by, String land, String tlfnr,
+			String firmatlfnr) {
 		this.navn = navn;
 		this.firmanavn = firmanavn;
 		this.adresse = adresse;
@@ -27,7 +26,7 @@ public class Deltager {
 		this.tilmeldinger = new ArrayList<Tilmelding>();
 	}
 	
-	public Deltager(String navn, String adresse, String by, String land, long tlfnr) {
+	public Deltager(String navn, String adresse, String by, String land, String tlfnr) {
 		this.navn = navn;
 		this.adresse = adresse;
 		this.by = by;
@@ -52,7 +51,7 @@ public class Deltager {
 		return by;
 	}
 
-	public long getFirmatlfnr() {
+	public String getFirmatlfnr() {
 		return firmatlfnr;
 	}
 
@@ -64,13 +63,12 @@ public class Deltager {
 		return new ArrayList<>(tilmeldinger);
 	}
 
-	public long getTlfnr() {
+	public String getTlfnr() {
 		return tlfnr;
 	}
 
-	public Tilmelding opretTilmelding(Konference konference, LocalDate ankomstdato, LocalDate afrejsedato,
+	public Tilmelding createTilmelding(Konference konference, LocalDate ankomstdato, LocalDate afrejsedato,
 			boolean foredragsholder) {
-		// TODO færdiggør denne når du har Tilmelding-Klassen
 		Tilmelding tilmelding = new Tilmelding(this, konference, ankomstdato, afrejsedato, foredragsholder);
 		return tilmelding;
 	}
@@ -80,7 +78,6 @@ public class Deltager {
 	}
 
 	public void fjernTilmelding(Tilmelding tilmelding) {
-		// TODO Auto-generated method stub
 		this.tilmeldinger.remove(tilmelding);
 	}
 

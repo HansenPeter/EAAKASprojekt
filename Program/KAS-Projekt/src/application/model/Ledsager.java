@@ -34,5 +34,9 @@ public class Ledsager {
 		this.udflugter.add(udflugt);
 		udflugt.addLedsager(this);
 	}
+	
+	public ArrayList<Udflugt> getUdflugter(){
+		return new ArrayList<>(this.udflugter);
+	}
 
 }
