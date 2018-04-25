@@ -16,99 +16,99 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import storage.Storage;
 
 public class KASmainApp extends Application {
 
-	public static void main(String[] args) {
-		Application.launch(args);
-	}
+    public static void main(String[] args) {
+        Application.launch(args);
+    }
 
-	@Override
-	public void start(Stage stage) {
-		stage.setTitle("KAS");
-		BorderPane pane = new BorderPane();
-		this.initContent(pane);
+    @Override
+    public void start(Stage stage) {
+        stage.setTitle("KAS");
+        BorderPane pane = new BorderPane();
+        initContent(pane);
 
-		Scene scene = new Scene(pane);
-		stage.setScene(scene);
-		stage.setMinHeight(160);
-		stage.setMinWidth(330);
-		stage.show();
-	}
+        Scene scene = new Scene(pane);
+        stage.setScene(scene);
+        stage.setMinHeight(160);
+        stage.setMinWidth(330);
+        stage.show();
+    }
 
-	// -------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
 
-	private void initContent(BorderPane pane) {
-		GridPane gridPane = new GridPane();
-		this.initGridPane(gridPane);
-		pane.setCenter(gridPane);
-		pane.setPadding(new Insets(10));
+    private void initContent(BorderPane pane) {
+        GridPane gridPane = new GridPane();
+        initGridPane(gridPane);
+        pane.setCenter(gridPane);
+        pane.setPadding(new Insets(10));
+        Storage.initContent();
 
-	}
+    }
 
-	private void initGridPane(GridPane gridPane) {
-		gridPane.setAlignment(Pos.CENTER);
-		gridPane.setHgap(20);
-		gridPane.setVgap(10);
-		Label lblWelcome = new Label("Velkommen til Konference Administrations Systemet");
-		gridPane.add(lblWelcome, 0, 0);
+    private void initGridPane(GridPane gridPane) {
+        gridPane.setAlignment(Pos.CENTER);
+        gridPane.setHgap(20);
+        gridPane.setVgap(10);
+        Label lblWelcome = new Label("Velkommen til Konference Administrations Systemet");
+        gridPane.add(lblWelcome, 0, 0);
 
-		ListView lvwKonferences = new ListView<String>();
+        ListView lvwKonferences = new ListView<String>();
 
-		gridPane.add(lvwKonferences, 0, 1, 1, 2);
+        gridPane.add(lvwKonferences, 0, 1, 1, 2);
 
-		// Midlertidig data til listview
-		lvwKonferences.getItems().add("Torben");
-		lvwKonferences.getItems().add("Peter");
-		lvwKonferences.getItems().add("Made");
+        // Midlertidig data til listview
+        lvwKonferences.getItems().add("Torben");
+        lvwKonferences.getItems().add("Peter");
+        lvwKonferences.getItems().add("Made");
 
-		VBox vbButton = new VBox();
+        VBox vbButton = new VBox();
 
-		gridPane.add(vbButton, 1, 1);
+        gridPane.add(vbButton, 1, 1);
 
-		int addButtonWidth = 150;
-		int addButtonHeight = 100;
+        int addButtonWidth = 150;
+        int addButtonHeight = 100;
 
-		Button btnAddConference = new Button("Tilføj Konference");
-		btnAddConference.setMinSize(addButtonWidth, addButtonHeight);
-		GridPane.setHalignment(btnAddConference, HPos.CENTER);
-		vbButton.getChildren().add(btnAddConference);
+        Button btnAddConference = new Button("Tilføj Konference");
+        btnAddConference.setMinSize(addButtonWidth, addButtonHeight);
+        GridPane.setHalignment(btnAddConference, HPos.CENTER);
+        vbButton.getChildren().add(btnAddConference);
 
-		Button btnAddParticipant = new Button("Tilmeld Deltager");
-		btnAddParticipant.setMinSize(addButtonWidth, addButtonHeight);
-		GridPane.setHalignment(btnAddParticipant, HPos.CENTER);
-		vbButton.getChildren().add(btnAddParticipant);
+        Button btnAddParticipant = new Button("Tilmeld Deltager");
+        btnAddParticipant.setMinSize(addButtonWidth, addButtonHeight);
+        GridPane.setHalignment(btnAddParticipant, HPos.CENTER);
+        vbButton.getChildren().add(btnAddParticipant);
 
-		Button btnClose = new Button("Luk Program");
-		btnClose.setMinWidth(150);
-		GridPane.setHalignment(btnClose, HPos.CENTER);
-		gridPane.add(btnClose, 1, 3);
+        Button btnClose = new Button("Luk Program");
+        btnClose.setMinWidth(150);
+        GridPane.setHalignment(btnClose, HPos.CENTER);
+        gridPane.add(btnClose, 1, 3);
 
-		btnAddConference.setOnAction(event -> this.addConference());
-		btnAddParticipant.setOnAction(event -> this.addParticipant());
-		btnClose.setOnAction(event -> this.closeProgram());
+        btnAddConference.setOnAction(event -> addConference());
+        btnAddParticipant.setOnAction(event -> addParticipant());
+        btnClose.setOnAction(event -> closeProgram());
 
-	}
+    }
 
-	private void addConference() {
-		// TODO Auto-generated method stub
-		KASOrganisationWindow window = new KASOrganisationWindow();
-		window.showAndWait();
+    private void addConference() {
+        // TODO Auto-generated method stub
+        KASOrganisationWindow window = new KASOrganisationWindow();
+        window.showAndWait();
 
-	}
+    }
 
-	private void addParticipant() {
-		
-		KASTilmeldDeltagerWindow window = new KASTilmeldDeltagerWindow();
-		window.showAndWait();
-		
-	}
+    private void addParticipant() {
 
-	
+        KASTilmeldDeltagerWindow window = new KASTilmeldDeltagerWindow();
+        window.showAndWait();
 
-	private void closeProgram() {
-		// TODO Auto-generated method stub
-		Platform.exit();
-		System.exit(0);
-	}
+    }
+
+    private void closeProgram() {
+        // TODO Auto-generated method stub
+        Platform.exit();
+        System.exit(0);
+    }
 }

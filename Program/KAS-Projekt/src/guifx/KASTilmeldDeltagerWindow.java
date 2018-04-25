@@ -1,5 +1,9 @@
 package guifx;
 
+import java.util.ArrayList;
+
+import application.model.Konference;
+import application.service.Service;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -15,9 +19,14 @@ import javafx.stage.Stage;
 
 public class KASTilmeldDeltagerWindow extends Stage {
 
+    private ArrayList<Konference> konferencer;
+
     public KASTilmeldDeltagerWindow() {
         setTitle("Tilmeld Deltager");
         BorderPane pane = new BorderPane();
+
+        konferencer = Service.getKonferencer();
+
         initContent(pane);
 
         Scene scene = new Scene(pane);
@@ -36,16 +45,19 @@ public class KASTilmeldDeltagerWindow extends Stage {
     private void initTabPane(TabPane tabPane) {
         tabPane.setTabClosingPolicy(TabClosingPolicy.UNAVAILABLE);
 
+        Tab tabKonference = new Tab("Konference");
+        tabPane.getTabs().add(tabKonference);
         Tab tabDeltager = new Tab("Deltager");
         tabPane.getTabs().add(tabDeltager);
         Tab tabLedsager = new Tab("Ledsager");
         tabPane.getTabs().add(tabLedsager);
         Tab tabOvernatning = new Tab("Overnatning");
         tabPane.getTabs().add(tabOvernatning);
-        Tab tabKonference = new Tab("Konference");
-        tabPane.getTabs().add(tabKonference);
 
-        KASDeltagerPane deltagerPane = new KASDeltagerPane();
+        KASKonferencePane konferencePane = new KASKonferencePane(konferencer);
+        tabKonference.setContent(konferencePane);
+
+        KASDeltagerPane deltagerPane = new KASDeltagerPane(this);
         tabDeltager.setContent(deltagerPane);
 
         KASLedsagerPane ledsagerPane = new KASLedsagerPane();
@@ -54,8 +66,9 @@ public class KASTilmeldDeltagerWindow extends Stage {
         KASOvernatningPane overnatningPane = new KASOvernatningPane();
         tabOvernatning.setContent(overnatningPane);
 
-        KASKonferencePane konferencePane = new KASKonferencePane();
-        tabKonference.setContent(konferencePane);
+    }
 
+    void cancelAction() {
+        hide();
     }
 }
