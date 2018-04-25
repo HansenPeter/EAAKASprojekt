@@ -12,7 +12,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class KASmainApp extends Application {
@@ -46,7 +45,6 @@ public class KASmainApp extends Application {
 
 	Label lblWelcome;
 	ListView lvwKonferences;
-	VBox vbButton;
 	GridPane gridButtons;
 	Button btnAddConference, btnAddParticipant, btnClose;
 
