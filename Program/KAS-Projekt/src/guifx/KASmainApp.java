@@ -96,11 +96,13 @@ public class KASmainApp extends Application {
 	}
 
 	private void addParticipant() {
-		// TODO Auto-generated method stub
-		Alert alert = new Alert(AlertType.INFORMATION, "Her skal ske noget fedt!", ButtonType.CLOSE);
-		alert.setHeaderText("INFO");
-		alert.showAndWait();
+		
+		KASTilmeldDeltagerWindow window = new KASTilmeldDeltagerWindow();
+		window.showAndWait();
+		
 	}
+
+	
 
 	private void closeProgram() {
 		// TODO Auto-generated method stub
