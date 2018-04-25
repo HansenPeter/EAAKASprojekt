@@ -1,4 +1,5 @@
 package guifx;
+
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -12,53 +13,49 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-public class KASTilmeldDeltagerWindow extends Stage{
+public class KASTilmeldDeltagerWindow extends Stage {
 
+    public KASTilmeldDeltagerWindow() {
+        setTitle("Tilmeld Deltager");
+        BorderPane pane = new BorderPane();
+        initContent(pane);
 
-	public KASTilmeldDeltagerWindow() {
-		this.setTitle("Tilmeld Deltager");
-		BorderPane pane = new BorderPane();
-		this.initContent(pane);
+        Scene scene = new Scene(pane);
+        setScene(scene);
+    }
 
-		Scene scene = new Scene(pane);
-		this.setScene(scene);
-	}
+    // -------------------------------------------------------------------------
+    private void initContent(BorderPane pane) {
 
-	// Image kasKassen = KASkas.png
-	Label lblOrganisation;
-	ListView lvwOrganisations;
-	TextField txfOrganisationName;
-	Button btnPickOrganisation;
-	Button btnAddOrganisation;
-	 // -------------------------------------------------------------------------
-	private void initContent(BorderPane pane) {
-		
-		TabPane tabPane = new TabPane();
-		this.initTabPane(tabPane);
-		pane.setCenter(tabPane);
-		
-	}
-	private void initTabPane(TabPane tabPane) {
-		tabPane.setTabClosingPolicy(TabClosingPolicy.UNAVAILABLE);
-		
-		Tab tabDeltager = new Tab("Deltager");
-		tabPane.getTabs().add(tabDeltager);
-		Tab tabLedsager = new Tab("Ledsager");
-		tabPane.getTabs().add(tabLedsager);
-		Tab tabOvernatning = new Tab("Overnatning");
-		tabPane.getTabs().add(tabOvernatning);
-		Tab tabKonference = new Tab("Konference");
-		tabPane.getTabs().add(tabKonference);
-		
-		KASDeltagerPane deltagerPane = new KASDeltagerPane();
-		tabDeltager.setContent(deltagerPane);
-		
+        TabPane tabPane = new TabPane();
+        initTabPane(tabPane);
+        pane.setCenter(tabPane);
 
-		// gridPane.add(kasKassen, 1, 0);
+    }
 
-		
-	}
+    private void initTabPane(TabPane tabPane) {
+        tabPane.setTabClosingPolicy(TabClosingPolicy.UNAVAILABLE);
+
+        Tab tabDeltager = new Tab("Deltager");
+        tabPane.getTabs().add(tabDeltager);
+        Tab tabLedsager = new Tab("Ledsager");
+        tabPane.getTabs().add(tabLedsager);
+        Tab tabOvernatning = new Tab("Overnatning");
+        tabPane.getTabs().add(tabOvernatning);
+        Tab tabKonference = new Tab("Konference");
+        tabPane.getTabs().add(tabKonference);
+
+        KASDeltagerPane deltagerPane = new KASDeltagerPane();
+        tabDeltager.setContent(deltagerPane);
+
+        KASLedsagerPane ledsagerPane = new KASLedsagerPane();
+        tabLedsager.setContent(ledsagerPane);
+
+        KASOvernatningPane overnatningPane = new KASOvernatningPane();
+        tabOvernatning.setContent(overnatningPane);
+
+        KASKonferencePane konferencePane = new KASKonferencePane();
+        tabKonference.setContent(konferencePane);
+
+    }
 }
-
-	
-
