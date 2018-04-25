@@ -14,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class KASmainApp extends Application {
@@ -61,8 +62,9 @@ public class KASmainApp extends Application {
 		lvwKonferences.getItems().add("Peter");
 		lvwKonferences.getItems().add("Made");
 
-		GridPane gridButton = new GridPane();
-		gridPane.add(gridButton, 1, 2);
+		VBox vbButton = new VBox();
+
+		gridPane.add(vbButton, 1, 1);
 
 		int addButtonWidth = 150;
 		int addButtonHeight = 100;
@@ -70,12 +72,12 @@ public class KASmainApp extends Application {
 		Button btnAddConference = new Button("Tilføj Konference");
 		btnAddConference.setMinSize(addButtonWidth, addButtonHeight);
 		GridPane.setHalignment(btnAddConference, HPos.CENTER);
-		gridButton.add(btnAddConference, 0, 0);
+		vbButton.getChildren().add(btnAddConference);
 
 		Button btnAddParticipant = new Button("Tilmeld Deltager");
 		btnAddParticipant.setMinSize(addButtonWidth, addButtonHeight);
 		GridPane.setHalignment(btnAddParticipant, HPos.CENTER);
-		gridButton.add(btnAddParticipant, 0, 1);
+		vbButton.getChildren().add(btnAddParticipant);
 
 		Button btnClose = new Button("Luk Program");
 		btnClose.setMinWidth(150);
