@@ -108,4 +108,12 @@ public class Service {
         return Storage.getKonferencer();
     }
 
+    public static LocalDate getKonferenceStartdato(Konference konference) {
+        return konference.getStartDato();
+    }
+
+    public static LocalDate getKonferenceSlutdato(Konference konference) {
+        return konference.getSlutDato();
+    }
+
 }
