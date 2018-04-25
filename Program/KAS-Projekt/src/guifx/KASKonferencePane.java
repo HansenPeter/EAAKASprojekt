@@ -7,6 +7,7 @@ import application.model.Konference;
 import application.service.Service;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -33,6 +34,12 @@ public class KASKonferencePane extends GridPane {
     private VBox vbAnkomstdato, vbAfrejsedato;
     private CheckBox chbForedragsholder;
     private HBox imgBox;
+    private Konference curKonference;
+
+    private Callback<DatePicker, DateCell> cfAnkomstdato;
+    private Callback<DatePicker, DateCell> cfAfrejsedato;
+    LocalDate startDato;
+    LocalDate slutDato;
 
     private DatePicker dpAnkomstdato, dpAfrejsedato;
 
@@ -55,15 +62,17 @@ public class KASKonferencePane extends GridPane {
         GridPane.setValignment(cbbKonference, VPos.BOTTOM);
         add(cbbKonference, 2, 1);
 
+        cbbKonference.setOnAction(event -> updateControls());
+
         vbAnkomstdato = new VBox();
 
-        Konference curKonference = cbbKonference.getSelectionModel().getSelectedItem();
-        LocalDate startDato = Service.getKonferenceStartdato(curKonference);
-        LocalDate slutDato = Service.getKonferenceSlutdato(curKonference);
+        curKonference = cbbKonference.getSelectionModel().getSelectedItem();
+        startDato = Service.getKonferenceStartdato(curKonference);
+        slutDato = Service.getKonferenceSlutdato(curKonference);
         dpAnkomstdato = new DatePicker(startDato);
         dpAfrejsedato = new DatePicker(slutDato);
 
-        final Callback<DatePicker, DateCell> cfAfrejsedato = new Callback<DatePicker, DateCell>() {
+        cfAfrejsedato = new Callback<DatePicker, DateCell>() {
             @Override
             public DateCell call(final DatePicker datePicker) {
                 return new DateCell() {
@@ -80,7 +89,7 @@ public class KASKonferencePane extends GridPane {
             }
         };
 
-        final Callback<DatePicker, DateCell> cfAnkomstdato = new Callback<DatePicker, DateCell>() {
+        cfAnkomstdato = new Callback<DatePicker, DateCell>() {
             @Override
             public DateCell call(final DatePicker datePicker) {
                 return new DateCell() {
@@ -116,5 +125,15 @@ public class KASKonferencePane extends GridPane {
         vbAfrejsedato.getChildren().add(dpAfrejsedato);
         add(vbAfrejsedato, 1, 1);
 
+    }
+
+    private void updateControls() {
+        this.curKonference = cbbKonference.getSelectionModel().getSelectedItem();
+        startDato = Service.getKonferenceStartdato(curKonference);
+        slutDato = Service.getKonferenceSlutdato(curKonference);
+        this.dpAfrejsedato.setValue(slutDato);
+        this.dpAnkomstdato.setValue(startDato);
+        dpAfrejsedato.setDayCellFactory(cfAfrejsedato);
+        dpAnkomstdato.setDayCellFactory(cfAnkomstdato);
     }
 }
