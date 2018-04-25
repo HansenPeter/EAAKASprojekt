@@ -90,9 +90,9 @@ public class KASmainApp extends Application {
 
 	private void addConference() {
 		// TODO Auto-generated method stub
-		Alert alert = new Alert(AlertType.INFORMATION, "Her skal ske noget fedt!", ButtonType.CLOSE);
-		alert.setHeaderText("INFO");
-		alert.showAndWait();
+		KASOrganisationWindow window = new KASOrganisationWindow();
+		window.showAndWait();
+
 	}
 
 	private void addParticipant() {
