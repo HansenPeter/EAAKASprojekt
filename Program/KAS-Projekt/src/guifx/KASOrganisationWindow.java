@@ -1,11 +1,14 @@
 package guifx;
 
 import javafx.geometry.Insets;
+import javafx.geometry.VPos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -28,6 +31,7 @@ public class KASOrganisationWindow extends Stage {
 	Button btnAddOrganisation;
 	Button btnOK;
 	int buttonWidth = 120;
+	Image KASkassen = new Image("File:resources/Kaskas.png");
 
 	public void initContent(GridPane gridPane) {
 		// TODO Auto-generated method stub
@@ -40,6 +44,10 @@ public class KASOrganisationWindow extends Stage {
 		lblOrganisation = new Label("Organisationer");
 		gridPane.add(lblOrganisation, 0, 0);
 
+		ImageView KASkas = new ImageView(GUITools.kasKas());
+		GridPane.setValignment(KASkas, VPos.BASELINE);
+		gridPane.add(KASkas, 1, 0, 1, 2);
+
 		lvwOrganisations = new ListView<String>();
 		gridPane.add(lvwOrganisations, 0, 1);
 		// Midlertidigt indhold
@@ -50,21 +58,18 @@ public class KASOrganisationWindow extends Stage {
 		lvwOrganisations.getItems().add("Jyllands Posten");
 		lvwOrganisations.getItems().add("Vatikanet");
 
-		btnPickOrganisation = new Button("Vælg Organisation");
-		btnPickOrganisation.setMinWidth(buttonWidth);
+		btnPickOrganisation = GUITools.stdButton("Vælg Organisation");
 		btnPickOrganisation.setOnAction(event -> this.addKonference());
 		gridPane.add(btnPickOrganisation, 1, 1);
 
 		txfOrganisationName = new TextField("Ny Organisation");
 		gridPane.add(txfOrganisationName, 0, 2);
 
-		btnAddOrganisation = new Button("Tilføj");
-		btnAddOrganisation.setMinWidth(buttonWidth);
+		btnAddOrganisation = GUITools.stdButton("Tilføj");
 		btnAddOrganisation.setOnAction(event -> this.addOrganisation());
 		gridPane.add(btnAddOrganisation, 1, 2);
 
-		btnOK = new Button("OK");
-		btnOK.setMinWidth(buttonWidth);
+		btnOK = GUITools.stdButton("OK");
 		btnOK.setOnAction(event -> this.closeWindow());
 		gridPane.add(btnOK, 1, 3);
 

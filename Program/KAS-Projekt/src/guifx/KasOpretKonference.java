@@ -1,12 +1,12 @@
 package guifx;
 
 import javafx.geometry.Insets;
+import javafx.geometry.VPos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -23,12 +23,10 @@ public class KasOpretKonference extends Stage {
 		this.setScene(scene);
 	}
 
-	Image KASkassen = new Image("File:resources/Kaskas.png");
 	Label lblBeboelser, lblUdflugter, lblNavn, lblStartDato, lblSlutDato, lblTema, lblLokation;
 	ListView<String> lvwBeboelser, lvwUdflugter;
 	Button btnAddBeboelse, btnAddServices, btnAddUdflugt, btnOK, btnCancel;
 	TextField txfNavn, txfTema, txfLokation, txfStartDato, txfSlutDato;
-	int buttonWidth = 120;
 
 	public void initContent(GridPane gridPane) {
 		gridPane.setPadding(new Insets(10));
@@ -47,12 +45,10 @@ public class KasOpretKonference extends Stage {
 		lvwBeboelser.getItems().add("Høtel Phønix");
 		lvwBeboelser.getItems().add("Comwell");
 
-		btnAddBeboelse = new Button("Tilføj Beboelse");
-		btnAddBeboelse.setMinWidth(buttonWidth);
+		btnAddBeboelse = GUITools.stdButton("Tilføj Beboelse");
 		gridPane.add(btnAddBeboelse, 0, 3);
 
-		btnAddServices = new Button("Tilføj Services");
-		btnAddServices.setMinWidth(buttonWidth);
+		btnAddServices = GUITools.stdButton("Tilføj Services");
 		gridPane.add(btnAddServices, 1, 3);
 
 		lblUdflugter = new Label("Udflugter");
@@ -67,58 +63,47 @@ public class KasOpretKonference extends Stage {
 		lvwUdflugter.getItems().add("Givskud Zoo");
 		lvwUdflugter.getItems().add("LEGO Land Land");
 
-		btnAddUdflugt = new Button("Tilføj Udflugt");
-		btnAddUdflugt.setMinWidth(buttonWidth);
+		btnAddUdflugt = GUITools.stdButton("Tilføj Udflugt");
 		gridPane.add(btnAddUdflugt, 0, 7);
 
 		lblNavn = new Label("Navn");
 		gridPane.add(lblNavn, 2, 0);
 
-		txfNavn = new TextField();
-		txfNavn.setMinWidth(buttonWidth);
-		txfNavn.setMaxWidth(buttonWidth);
+		txfNavn = GUITools.stdTextField();
 		gridPane.add(txfNavn, 2, 1);
 
 		lblStartDato = new Label("Startdato");
+		GridPane.setValignment(lblStartDato, VPos.BOTTOM);
 		gridPane.add(lblStartDato, 2, 2);
 
-		txfStartDato = new TextField();
-		txfStartDato.setMinWidth(buttonWidth);
-		txfStartDato.setMaxWidth(buttonWidth);
+		txfStartDato = GUITools.stdTextField();
 		gridPane.add(txfStartDato, 2, 3);
 
 		lblTema = new Label("Tema");
 		gridPane.add(lblTema, 2, 4);
 
-		txfTema = new TextField();
-		txfTema.setMinWidth(buttonWidth);
-		txfTema.setMaxWidth(buttonWidth);
+		txfTema = GUITools.stdTextField();
 		gridPane.add(txfTema, 2, 5);
 
-		btnOK = new Button("OK");
-		btnOK.setMinWidth(buttonWidth);
+		btnOK = GUITools.stdButton("OK");
 		gridPane.add(btnOK, 2, 7);
 
-		gridPane.add(new ImageView(KASkassen), 3, 0, 1, 2);
+		gridPane.add(new ImageView(GUITools.kasKas()), 3, 0, 1, 2);
 
 		lblSlutDato = new Label("SlutDato");
+		GridPane.setValignment(lblSlutDato, VPos.BOTTOM);
 		gridPane.add(lblSlutDato, 3, 2);
 
-		txfSlutDato = new TextField();
-		txfSlutDato.setMinWidth(buttonWidth);
-		txfSlutDato.setMaxWidth(buttonWidth);
+		txfSlutDato = GUITools.stdTextField();
 		gridPane.add(txfSlutDato, 3, 3);
 
 		lblLokation = new Label("Lokation");
 		gridPane.add(lblLokation, 3, 4);
 
-		txfLokation = new TextField();
-		txfLokation.setMinWidth(buttonWidth);
-		txfLokation.setMaxWidth(buttonWidth);
+		txfLokation = GUITools.stdTextField();
 		gridPane.add(txfLokation, 3, 5);
 
-		btnCancel = new Button("Annulér");
-		btnCancel.setMinWidth(buttonWidth);
+		btnCancel = GUITools.stdButton("Annulér");
 		gridPane.add(btnCancel, 3, 7);
 	}
 }
