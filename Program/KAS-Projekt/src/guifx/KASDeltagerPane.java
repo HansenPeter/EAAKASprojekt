@@ -9,19 +9,24 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.TextAlignment;
 
 public class KASDeltagerPane extends GridPane {
     Image KASkas = GUITools.kasKas();
+    KASTilmeldDeltagerWindow stage;
 
-    public KASDeltagerPane() {
-        // setGridLinesVisible(true);
+    public KASDeltagerPane(KASTilmeldDeltagerWindow stage) {
+        this.stage = stage;
         setPadding(new Insets(20));
         setHgap(20);
         setVgap(5);
 
-        add(new ImageView(KASkas), 2, 0);
+        HBox imgBox = new HBox();
+        imgBox.getChildren().add(new ImageView(KASkas));
+        imgBox.setAlignment(Pos.BASELINE_RIGHT);
+        add(imgBox, 2, 0);
 
         Label lblDeltagernavn = new Label("Deltagernavn*");
         TextField txfDeltagernavn = GUITools.stdTextField();
@@ -87,8 +92,20 @@ public class KASDeltagerPane extends GridPane {
         btnOK.setTextAlignment(TextAlignment.CENTER);
         add(btnOK, 0, 5);
 
-        Button btnAnuller = GUITools.stdButton("Anuller");
-        btnAnuller.setTextAlignment(TextAlignment.CENTER);
-        add(btnAnuller, 2, 5);
+        Button btnAnnuller = GUITools.stdButton("Annuller");
+        btnAnnuller.setTextAlignment(TextAlignment.CENTER);
+        add(btnAnnuller, 2, 5);
+
+        btnAnnuller.setOnAction(event -> cancelAction());
+        btnOK.setOnAction(event -> okAction());
     }
+
+    private void cancelAction() {
+        stage.cancelAction();
+    }
+
+    private void okAction() {
+        stage.cancelAction();
+    }
+
 }
