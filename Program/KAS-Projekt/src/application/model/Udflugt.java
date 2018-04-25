@@ -4,14 +4,14 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Udflugt {
-	private String lokation;
+	private String name;
 	private LocalDate dato;
 	private double pris;
 	private boolean frokost;
 	private ArrayList<Ledsager> ledsagere = new ArrayList<>();
 
-	Udflugt(String lokation, LocalDate dato, double pris, boolean frokost) {
-		this.lokation = lokation;
+	Udflugt(String name, LocalDate dato, double pris, boolean frokost) {
+		this.name = name;
 		this.dato = dato;
 		this.pris = pris;
 		this.frokost = frokost;
@@ -29,8 +29,8 @@ public class Udflugt {
 		return this.dato;
 	}
 
-	public String getLokation() {
-		return this.lokation;
+	public String getName() {
+		return this.name;
 	}
 
 	public ArrayList<Ledsager> getLedsager() {
@@ -49,14 +49,14 @@ public class Udflugt {
 		this.frokost = frokost;
 	}
 
-	public void setLokation(String lokation) {
-		this.lokation = lokation;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	void addLedsager(Ledsager ledsager) {
 		this.ledsagere.add(ledsager);
 	}
-	
+
 	public void removeLedsager(Ledsager ledsager) {
 		this.ledsagere.remove(ledsager);
 	}
