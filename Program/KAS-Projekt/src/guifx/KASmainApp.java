@@ -2,19 +2,16 @@ package guifx;
 
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.geometry.VPos;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import storage.Storage;
 
@@ -48,6 +45,7 @@ public class KASmainApp extends Application {
 
     }
 
+<<<<<<< HEAD
     private void initGridPane(GridPane gridPane) {
         gridPane.setAlignment(Pos.CENTER);
         gridPane.setHgap(20);
@@ -58,12 +56,32 @@ public class KASmainApp extends Application {
         ListView lvwKonferences = new ListView<String>();
 
         gridPane.add(lvwKonferences, 0, 1, 1, 2);
+=======
+	Label lblWelcome;
+	ListView lvwKonferences;
+	GridPane gridButtons;
+	Button btnAddConference, btnAddParticipant, btnClose;
+
+	private void initGridPane(GridPane gridPane) {
+		gridPane.setAlignment(Pos.CENTER);
+		gridPane.setHgap(20);
+		gridPane.setVgap(10);
+		gridPane.setGridLinesVisible(false);
+		lblWelcome = new Label("Velkommen til Konference Administrations Systemet");
+		gridPane.add(lblWelcome, 0, 0);
+
+		lvwKonferences = new ListView<String>();
+		lvwKonferences.setMinHeight(100);
+		lvwKonferences.setMaxHeight(200);
+		gridPane.add(lvwKonferences, 0, 1, 1, 2);
+>>>>>>> 92150fd20f2ec7054d75248243dd751f189c02ac
 
         // Midlertidig data til listview
         lvwKonferences.getItems().add("Torben");
         lvwKonferences.getItems().add("Peter");
         lvwKonferences.getItems().add("Made");
 
+<<<<<<< HEAD
         VBox vbButton = new VBox();
 
         gridPane.add(vbButton, 1, 1);
@@ -85,6 +103,24 @@ public class KASmainApp extends Application {
         btnClose.setMinWidth(150);
         GridPane.setHalignment(btnClose, HPos.CENTER);
         gridPane.add(btnClose, 1, 3);
+=======
+		gridPane.add(new ImageView(GUITools.kasKas()), 1, 0, 1, 2);
+
+		gridButtons = new GridPane();
+		gridButtons.setAlignment(Pos.CENTER);
+		gridButtons.setHgap(20);
+		gridButtons.setVgap(10);
+		gridPane.add(gridButtons, 1, 2);
+		btnAddConference = GUITools.stdButton("Tilføj Konference");
+		gridButtons.add(btnAddConference, 0, 0);
+
+		btnAddParticipant = GUITools.stdButton("Tilmeld Deltager");
+		gridButtons.add(btnAddParticipant, 0, 1);
+
+		btnClose = GUITools.stdButton("Luk Program");
+		GridPane.setValignment(btnClose, VPos.BOTTOM);
+		gridPane.add(btnClose, 1, 2);
+>>>>>>> 92150fd20f2ec7054d75248243dd751f189c02ac
 
         btnAddConference.setOnAction(event -> addConference());
         btnAddParticipant.setOnAction(event -> addParticipant());
@@ -99,10 +135,19 @@ public class KASmainApp extends Application {
 
     }
 
+<<<<<<< HEAD
     private void addParticipant() {
 
         KASTilmeldDeltagerWindow window = new KASTilmeldDeltagerWindow();
         window.showAndWait();
+=======
+	private void addParticipant() {
+
+		KASTilmeldDeltagerWindow window = new KASTilmeldDeltagerWindow();
+		window.showAndWait();
+
+	}
+>>>>>>> 92150fd20f2ec7054d75248243dd751f189c02ac
 
     }
 
