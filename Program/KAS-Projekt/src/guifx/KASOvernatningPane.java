@@ -6,7 +6,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 
 public class KASOvernatningPane extends GridPane {
-    Image KASkas = new Image("File:resources/Kaskas.png");
+    Image KASkas = GUITools.kasKas();
 
     public KASOvernatningPane() {
         super();
