@@ -47,9 +47,11 @@ public class KasOpretKonference extends Stage {
 
 		btnAddBeboelse = GUITools.stdButton("Tilføj Beboelse");
 		gridPane.add(btnAddBeboelse, 0, 3);
+		btnAddBeboelse.setOnAction(event -> addBeboelseAction()); // MADE
 
 		btnAddServices = GUITools.stdButton("Tilføj Services");
 		gridPane.add(btnAddServices, 1, 3);
+		btnAddServices.setOnAction(event -> this.addServiceAction()); // MADE
 
 		lblUdflugter = new Label("Udflugter");
 		gridPane.add(lblUdflugter, 0, 4);
@@ -65,6 +67,7 @@ public class KasOpretKonference extends Stage {
 
 		btnAddUdflugt = GUITools.stdButton("Tilføj Udflugt");
 		gridPane.add(btnAddUdflugt, 0, 7);
+		btnAddUdflugt.setOnAction(event -> this.addUdflugtAction()); // MADE
 
 		lblNavn = new Label("Navn");
 		gridPane.add(lblNavn, 2, 0);
@@ -105,5 +108,24 @@ public class KasOpretKonference extends Stage {
 
 		btnCancel = GUITools.stdButton("Annulér");
 		gridPane.add(btnCancel, 3, 7);
+	}
+
+	// MADE
+	private void addUdflugtAction() {
+		KASTilfoejUdflugt udflugtWindow = new KASTilfoejUdflugt();
+		udflugtWindow.showAndWait();
+
+	}
+
+	// MADE
+	private void addBeboelseAction() {
+		KASOpretBeboelse beboelseWindow = new KASOpretBeboelse();
+		beboelseWindow.showAndWait();
+	}
+
+	// MADE
+	private void addServiceAction() {
+		KASTilfoejService serviceWindow = new KASTilfoejService();
+		serviceWindow.showAndWait();
 	}
 }
