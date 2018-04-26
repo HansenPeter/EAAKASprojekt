@@ -1,8 +1,11 @@
 package guifx;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
+import application.model.Deltager;
 import application.model.Konference;
+import application.model.Tilmelding;
 import application.model.Udflugt;
 import application.service.Service;
 import javafx.geometry.Insets;
@@ -16,6 +19,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TabPane.TabClosingPolicy;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 public class KASTilmeldDeltagerWindow extends Stage {
@@ -27,6 +32,7 @@ public class KASTilmeldDeltagerWindow extends Stage {
     KASLedsagerPane ledsagerPane;
     KASKonferencePane konferencePane;
     KASDeltagerPane deltagerPane;
+    Button btnOK, btnAnnuller;
 
     public KASTilmeldDeltagerWindow() {
         setTitle("Tilmeld Deltager");
@@ -44,8 +50,22 @@ public class KASTilmeldDeltagerWindow extends Stage {
     private void initContent(BorderPane pane) {
 
         TabPane tabPane = new TabPane();
+        GridPane gridPane = new GridPane();
         initTabPane(tabPane);
         pane.setCenter(tabPane);
+        
+        btnOK = GUITools.stdButton("OK");
+        
+        btnAnnuller = GUITools.stdButton("Annuller");
+        
+        pane.setBottom(gridPane);
+        gridPane.setHgap(20);
+        gridPane.setPadding(new Insets(20));
+        gridPane.add(btnOK, 0, 0);
+        gridPane.add(btnAnnuller, 1, 0);
+        
+        btnAnnuller.setOnAction(event -> cancelAction());
+        btnOK.setOnAction(event -> okAction());
 
     }
 
@@ -72,13 +92,11 @@ public class KASTilmeldDeltagerWindow extends Stage {
 
         overnatningPane = new KASOvernatningPane(this);
         tabOvernatning.setContent(overnatningPane);
-
-        
         
     }
 
     void cancelAction() {
-        hide();
+        this.close();
     }
     
     public void updateCurKonference() {
@@ -109,6 +127,18 @@ public class KASTilmeldDeltagerWindow extends Stage {
 	public void setCurKonference(Konference curKonference) {
 		this.curKonference = curKonference;
 	}
+
+    private void okAction() {
+    	System.out.println(deltagerPane.getTest());
+//    	Deltager deltager = deltagerPane.getDeltagerInformation();
+//    	Konference konference = konferencePane.getKonference();
+//    	LocalDate ankomstdato = konferencePane.getAnkomstdato();
+//    	LocalDate afrejsedato = konferencePane.getAnkomstdato();
+//    	Boolean isForedragsholder = konferencePane.isForedragsholder();
+//    	Tilmelding tilmelding = Service.createTilmelding(deltager, konference, ankomstdato, afrejsedato, isForedragsholder);
+//    	KASDeltagerBekraeftelse bekraeftelsesWindow = new KASDeltagerBekraeftelse(tilmelding);
+//    	bekraeftelsesWindow.showAndWait();
+    }
 	
 	
     

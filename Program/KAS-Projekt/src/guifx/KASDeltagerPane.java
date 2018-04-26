@@ -1,5 +1,7 @@
 package guifx;
 
+import application.model.Deltager;
+import application.service.Service;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
@@ -16,6 +18,7 @@ import javafx.scene.text.TextAlignment;
 public class KASDeltagerPane extends GridPane {
     Image KASkas = GUITools.kasKas();
     KASTilmeldDeltagerWindow stage;
+    TextField txfDeltagernavn, txfTlfnr, txfAdresse,txfBy,txfLand, txfFirma,txfFirmaTlfnr;
 
     public KASDeltagerPane(KASTilmeldDeltagerWindow stage) {
 //    	setGridLinesVisible(true);
@@ -88,25 +91,24 @@ public class KASDeltagerPane extends GridPane {
         vbFirmaTlfnr.getChildren().add(lblFirmaTlfnr);
         vbFirmaTlfnr.getChildren().add(txfFirmaTlfnr);
         add(vbFirmaTlfnr, 1, 3);
-
-        Button btnOK = GUITools.stdButton("OK");
-        btnOK.setTextAlignment(TextAlignment.CENTER);
-        add(btnOK, 0, 5);
-
-        Button btnAnnuller = GUITools.stdButton("Annuller");
-        btnAnnuller.setTextAlignment(TextAlignment.CENTER);
-        add(btnAnnuller, 2, 5);
-
-        btnAnnuller.setOnAction(event -> cancelAction());
-        btnOK.setOnAction(event -> okAction());
+ 
     }
-
-    private void cancelAction() {
-        stage.cancelAction();
+    
+    public Deltager getDeltagerInformation() {
+    	String deltagerNavn = txfDeltagernavn.getText();
+    	String deltagerAdresse = txfAdresse.getText();
+    	String deltagerBy = txfBy.getText();
+    	String deltagerLand = txfLand.getText();
+    	String deltagerTlfnr = txfTlfnr.getText();
+    	
+    	Deltager deltager = Service.createDeltager(deltagerNavn, deltagerAdresse, deltagerBy, deltagerLand, deltagerTlfnr);
+    	System.out.println(deltager.toString());
+    	return deltager;
     }
-
-    private void okAction() {
-        stage.cancelAction();
+    
+    public String getTest() {
+    	return txfDeltagernavn.getText();
     }
+    
 
 }
