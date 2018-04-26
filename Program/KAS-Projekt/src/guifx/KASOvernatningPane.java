@@ -2,6 +2,7 @@ package guifx;
 
 import java.util.ArrayList;
 
+import application.model.Beboelse;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ObservableValue;
@@ -25,11 +26,12 @@ public class KASOvernatningPane extends GridPane {
     private VBox vbBeboelse, vbServices;
     private ListView<String> lvwServices;
     private HBox imgBox;
+    private ArrayList<Beboelse> beboelser;
 
     public KASOvernatningPane() {
         super();
 
-        setGridLinesVisible(true);
+//        setGridLinesVisible(true);
         setPadding(new Insets(20));
         setHgap(20);
         setVgap(10);

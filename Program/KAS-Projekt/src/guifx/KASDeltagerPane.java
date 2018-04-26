@@ -18,10 +18,11 @@ public class KASDeltagerPane extends GridPane {
     KASTilmeldDeltagerWindow stage;
 
     public KASDeltagerPane(KASTilmeldDeltagerWindow stage) {
+    	setGridLinesVisible(true);
         this.stage = stage;
         setPadding(new Insets(20));
         setHgap(20);
-        setVgap(5);
+        setVgap(10);
 
         HBox imgBox = new HBox();
         imgBox.getChildren().add(new ImageView(KASkas));

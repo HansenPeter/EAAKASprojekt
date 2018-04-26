@@ -3,6 +3,7 @@ package guifx;
 import java.util.ArrayList;
 
 import application.model.Konference;
+import application.model.Udflugt;
 import application.service.Service;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -26,15 +27,20 @@ public class KASLedsagerPane extends GridPane {
     private Label lblLedsagernavn, lblUdflugter;
     private TextField txfLedsagernavn;
     private VBox vbLedsagernavn, vbUdflugter;
-    private ListView<String> lvwUdflugter;
-    private ArrayList<Konference> konferencer = Service.getKonferencer();
+    private ListView<Udflugt> lvwUdflugter;
+    private ArrayList<Udflugt> alUdflugter;
+    private Konference curKonference;
+    private KASTilmeldDeltagerWindow stage;
+    
 
-    public KASLedsagerPane() {
+    public KASLedsagerPane(KASTilmeldDeltagerWindow stage) {
 
         setGridLinesVisible(true);
         setPadding(new Insets(20));
         setHgap(20);
         setVgap(10);
+        
+        this.stage = stage;
 
         imgBox = new HBox();
         imgBox.getChildren().add(new ImageView(KASkas));
@@ -57,18 +63,44 @@ public class KASLedsagerPane extends GridPane {
         vbUdflugter.getChildren().add(lvwUdflugter);
         add(vbUdflugter, 1, 1);
 
-        ArrayList<String> alTest = new ArrayList<>();
-        alTest.add("Test");
-        alTest.add("Test2");
-        lvwUdflugter.getItems().addAll(alTest);
-        lvwUdflugter.setCellFactory(CheckBoxListCell.forListView(new Callback<String, ObservableValue<Boolean>>() {
+        
+        curKonference = stage.getCurKonference();
+        alUdflugter = Service.getUdflugter(curKonference);
+        lvwUdflugter.getItems().addAll(alUdflugter);
+        lvwUdflugter.setCellFactory(CheckBoxListCell.forListView(new Callback<Udflugt, ObservableValue<Boolean>>() {
 
             @Override
-            public ObservableValue<Boolean> call(String string) {
+            public ObservableValue<Boolean> call(Udflugt udflugt) {
                 BooleanProperty observable = new SimpleBooleanProperty();
                 return observable;
             }
         }));
 
     }
+    
+    public void updateControls() {
+        
+        this.curKonference = stage.getCurKonference();
+        this.alUdflugter = Service.getUdflugter(curKonference);
+        
+        this.lvwUdflugter.getItems().addAll(alUdflugter);
+        
+        
+        //KASOvernatning.updateControls()
+        //KASLedsager.updateControls()
+    }
+    
+    public void updateUdflugter() {
+    	this.curKonference = stage.getCurKonference();
+        this.alUdflugter = Service.getUdflugter(curKonference);
+        
+        
+        this.lvwUdflugter.getItems().setAll(alUdflugter);
+    }
+    
+    
+    
+    
+    
+    
 }
