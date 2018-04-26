@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import application.model.Konference;
 import application.model.Udflugt;
 import application.service.Service;
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.VPos;
 import javafx.scene.Scene;
@@ -17,6 +18,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -46,6 +48,11 @@ public class KASTilfoejUdflugt extends Stage {
 		gridPane.setPadding(new Insets(10));
 		gridPane.setHgap(10);
 		gridPane.setVgap(10);
+
+		ImageView KASkas = new ImageView(GUITools.kasKas());
+		GridPane.setValignment(KASkas, VPos.TOP);
+		GridPane.setHalignment(KASkas, HPos.RIGHT);
+		gridPane.add(KASkas, 2, 0, 1, 2);
 
 		lblUdflugt = new Label("Udflugter");
 		gridPane.add(lblUdflugt, 0, 0);
