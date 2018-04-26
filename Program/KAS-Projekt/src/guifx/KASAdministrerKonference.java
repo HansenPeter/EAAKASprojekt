@@ -47,6 +47,7 @@ public class KASAdministrerKonference extends Stage {
 		gridPane.setVgap(10);
 
 		KASKas = new ImageView(GUITools.kasKas());
+		// Downscale hvis den er for stor
 		KASKas.setScaleX(2);
 		KASKas.setScaleY(2);
 		GridPane.setHalignment(KASKas, HPos.CENTER);
