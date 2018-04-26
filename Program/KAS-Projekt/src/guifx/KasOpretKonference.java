@@ -40,90 +40,45 @@ public class KasOpretKonference extends Stage {
 		gridPane.setHgap(10);
 		gridPane.setVgap(10);
 
-		lblBeboelser = new Label("Beboelser");
-		gridPane.add(lblBeboelser, 0, 0);
-
-		lvwBeboelser = new ListView<>();
-		lvwBeboelser.setMaxHeight(100);
-		gridPane.add(lvwBeboelser, 0, 1, 2, 2);
-
-		btnAddBeboelse = GUITools.stdButton("Tilfoej Beboelse");
-		gridPane.add(btnAddBeboelse, 0, 3);
-		btnAddBeboelse.setOnAction(event -> addBeboelseAction()); // MADE
-
-		btnAddServices = GUITools.stdButton("Tilfoej Services");
-		gridPane.add(btnAddServices, 1, 3);
-		btnAddServices.setOnAction(event -> addServiceAction()); // MADE
-
-		lblUdflugter = new Label("Udflugter");
-		gridPane.add(lblUdflugter, 0, 4);
-
-		lvwUdflugter = new ListView<>();
-		lvwUdflugter.setMaxHeight(100);
-		gridPane.add(lvwUdflugter, 0, 5, 2, 2);
-
-		btnAddUdflugt = GUITools.stdButton("Tilfoej Udflugt");
-		gridPane.add(btnAddUdflugt, 0, 7);
-		btnAddUdflugt.setOnAction(event -> addUdflugtAction()); // MADE
-
 		lblNavn = new Label("Navn");
-		gridPane.add(lblNavn, 2, 0);
+		gridPane.add(lblNavn, 0, 0);
 
 		txfNavn = GUITools.stdTextField();
-		gridPane.add(txfNavn, 2, 1);
+		gridPane.add(txfNavn, 0, 1);
 
 		lblStartDato = new Label("Startdato");
 		GridPane.setValignment(lblStartDato, VPos.BOTTOM);
-		gridPane.add(lblStartDato, 2, 2);
+		gridPane.add(lblStartDato, 0, 2);
 
 		txfStartDato = GUITools.stdTextField();
-		gridPane.add(txfStartDato, 2, 3);
+		gridPane.add(txfStartDato, 0, 3);
 
 		lblTema = new Label("Tema");
-		gridPane.add(lblTema, 2, 4);
+		gridPane.add(lblTema, 0, 4);
 
 		txfTema = GUITools.stdTextField();
-		gridPane.add(txfTema, 2, 5);
+		gridPane.add(txfTema, 0, 5);
 
 		btnOK = GUITools.stdButton("OK");
-		gridPane.add(btnOK, 2, 7);
+		gridPane.add(btnOK, 0, 7);
 
-		gridPane.add(new ImageView(GUITools.kasKas()), 3, 0, 1, 2);
+		gridPane.add(new ImageView(GUITools.kasKas()), 1, 0, 1, 2);
 
 		lblSlutDato = new Label("SlutDato");
 		GridPane.setValignment(lblSlutDato, VPos.BOTTOM);
-		gridPane.add(lblSlutDato, 3, 2);
+		gridPane.add(lblSlutDato, 1, 2);
 
 		txfSlutDato = GUITools.stdTextField();
-		gridPane.add(txfSlutDato, 3, 3);
+		gridPane.add(txfSlutDato, 1, 3);
 
 		lblLokation = new Label("Lokation");
-		gridPane.add(lblLokation, 3, 4);
+		gridPane.add(lblLokation, 1, 4);
 
 		txfLokation = GUITools.stdTextField();
-		gridPane.add(txfLokation, 3, 5);
+		gridPane.add(txfLokation, 1, 5);
 
 		btnCancel = GUITools.stdButton("Annuller");
-		gridPane.add(btnCancel, 3, 7);
+		gridPane.add(btnCancel, 1, 7);
 	}
 
-	// MADE
-	public void addUdflugtAction() {
-		KASTilfoejUdflugt udflugtWindow = new KASTilfoejUdflugt();
-		udflugtWindow.showAndWait();
-		lvwUdflugter.getItems().clear();
-
-	}
-
-	// MADE
-	public void addBeboelseAction() {
-		KASOpretBeboelse beboelseWindow = new KASOpretBeboelse();
-		beboelseWindow.showAndWait();
-	}
-
-	// MADE
-	public void addServiceAction() {
-		KASTilfoejService serviceWindow = new KASTilfoejService();
-		serviceWindow.showAndWait();
-	}
 }

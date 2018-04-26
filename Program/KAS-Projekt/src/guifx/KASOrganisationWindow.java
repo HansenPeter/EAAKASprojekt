@@ -8,8 +8,6 @@ import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.geometry.VPos;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -73,7 +71,6 @@ public class KASOrganisationWindow extends Stage {
 						.addAll(lvwOrganisations.getSelectionModel().getSelectedItem().getKonferencer());
 			}
 		});
-		;
 
 		VBOrganisation = new VBox();
 		gridPane.add(VBOrganisation, 1, 2);
@@ -115,8 +112,11 @@ public class KASOrganisationWindow extends Stage {
 
 	private void administerKonference() {
 		// TODO Auto-generated method stub
-		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setContentText("TODO Implement");
+		if (lvwKonferencer.getSelectionModel().getSelectedItem() != null) {
+			KASAdministrerKonference window = new KASAdministrerKonference(
+					lvwKonferencer.getSelectionModel().getSelectedItem());
+			window.showAndWait();
+		}
 	}
 
 	private void addKonference() {
