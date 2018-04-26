@@ -81,8 +81,9 @@ public class KASTilmeldDeltagerWindow extends Stage {
         hide();
     }
     
-    public void updateUdflugterPane() {
+    public void updateCurKonference() {
     	ledsagerPane.updateUdflugter();
+    	overnatningPane.updateBeboelser();
     }
 
 	public void setKonferencer(ArrayList<Konference> konferencer) {

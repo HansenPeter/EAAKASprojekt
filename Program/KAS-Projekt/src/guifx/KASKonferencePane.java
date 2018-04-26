@@ -63,7 +63,7 @@ public class KASKonferencePane extends GridPane {
         add(cbbKonference, 2, 1);
 
         cbbKonference.setOnAction(event -> updateUdflugterPane());
-        cbbKonference.setMaxWidth(120);
+        cbbKonference.setMaxWidth(150);
         this.stage.setCurKonference(cbbKonference.getSelectionModel().getSelectedItem());
         this.curKonference = stage.getCurKonference();
 
@@ -113,8 +113,8 @@ public class KASKonferencePane extends GridPane {
         dpAnkomstdato.setDayCellFactory(cfAnkomstdato);
         dpAfrejsedato.setEditable(false);
         dpAnkomstdato.setEditable(false);
-        dpAnkomstdato.setMaxWidth(120);
-        dpAfrejsedato.setMaxWidth(120);
+        dpAnkomstdato.setMaxWidth(150);
+        dpAfrejsedato.setMaxWidth(150);
 
         lblAnkomstdato = new Label("Ankomstdato");
         txfAnkomstdato = GUITools.stdTextField();
@@ -150,7 +150,7 @@ public class KASKonferencePane extends GridPane {
     
     private void updateUdflugterPane() {
     	updateControls();
-    	stage.updateUdflugterPane();
+    	stage.updateCurKonference();
     }
     
     

@@ -3,6 +3,8 @@ package guifx;
 import java.util.ArrayList;
 
 import application.model.Beboelse;
+import application.model.Konference;
+import application.service.Service;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ObservableValue;
@@ -27,9 +29,11 @@ public class KASOvernatningPane extends GridPane {
     private ListView<String> lvwServices;
     private HBox imgBox;
     private ArrayList<Beboelse> beboelser;
-
-    public KASOvernatningPane() {
-        super();
+    private KASTilmeldDeltagerWindow stage;
+	private Konference curKonference;
+    
+    public KASOvernatningPane(KASTilmeldDeltagerWindow stage) {
+        this.stage = stage;
 
 //        setGridLinesVisible(true);
         setPadding(new Insets(20));
@@ -45,7 +49,7 @@ public class KASOvernatningPane extends GridPane {
 
         lblBeboelse = new Label("Beboelse");
         cbbBeboelse = new ComboBox<>();
-        cbbBeboelse.setPrefWidth(120);
+        cbbBeboelse.setPrefWidth(150);
 
         vbBeboelse.getChildren().add(lblBeboelse);
         vbBeboelse.getChildren().add(cbbBeboelse);
@@ -70,6 +74,26 @@ public class KASOvernatningPane extends GridPane {
                 return observable;
             }
         }));
+    }
+
+    public void updateControls() {
+        
+        this.curKonference = stage.getCurKonference();
+        this.alUdflugter = Service.getBeboelser(curKonference);
+        
+        this.lvwUdflugter.getItems().addAll(alUdflugter);
+        
+        
+        //KASOvernatning.updateControls()
+        //KASLedsager.updateControls()
+    }
+    
+    public void updateUdflugter() {
+    	this.curKonference = stage.getCurKonference();
+        this.alUdflugter = Service.getUdflugter(curKonference);
+        
+        
+        this.lvwUdflugter.getItems().setAll(alUdflugter);
     }
 
 }

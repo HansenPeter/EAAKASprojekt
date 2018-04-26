@@ -8,15 +8,15 @@ public class GUITools {
 
 	public static Button stdButton(String tekst) {
 		Button btn = new Button(tekst);
-		btn.setMinWidth(120);
+		btn.setMinWidth(150);
 		return btn;
 
 	}
 
 	public static TextField stdTextField() {
 		TextField txf = new TextField();
-		txf.setMinWidth(120);
-		txf.setMaxWidth(120);
+		txf.setMinWidth(150);
+		txf.setMaxWidth(150);
 
 		return txf;
 	}
