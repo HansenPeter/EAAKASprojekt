@@ -1,5 +1,7 @@
 package guifx;
 
+import application.model.Konference;
+import application.service.Service;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
@@ -38,15 +40,15 @@ public class KASmainApp extends Application {
 
 	private void initContent(BorderPane pane) {
 		GridPane gridPane = new GridPane();
+		Storage.initContent();
 		initGridPane(gridPane);
 		pane.setCenter(gridPane);
 		pane.setPadding(new Insets(10));
-		Storage.initContent();
 
 	}
 
 	Label lblWelcome;
-	ListView lvwKonferences;
+	ListView<Konference> lvwKonferences;
 	GridPane gridButtons;
 	Button btnAddConference, btnAddParticipant, btnClose;
 
@@ -58,16 +60,11 @@ public class KASmainApp extends Application {
 		lblWelcome = new Label("Velkommen til Konference Administrations Systemet");
 		gridPane.add(lblWelcome, 0, 0);
 
-		lvwKonferences = new ListView<String>();
+		lvwKonferences = new ListView<>();
 		lvwKonferences.setMinHeight(100);
 		lvwKonferences.setMaxHeight(200);
 		gridPane.add(lvwKonferences, 0, 1, 1, 2);
-
-		// Midlertidig data til listview
-		lvwKonferences.getItems().add("Torben");
-		lvwKonferences.getItems().add("Peter");
-		lvwKonferences.getItems().add("Made");
-		lvwKonferences.getItems().add("Lars");
+		lvwKonferences.getItems().setAll(Service.getKonferencer());
 
 		gridPane.add(new ImageView(GUITools.kasKas()), 1, 0, 1, 2);
 
@@ -96,6 +93,7 @@ public class KASmainApp extends Application {
 		// TODO Auto-generated method stub
 		KASOrganisationWindow window = new KASOrganisationWindow();
 		window.showAndWait();
+		lvwKonferences.getItems().setAll(Service.getKonferencer());
 
 	}
 
