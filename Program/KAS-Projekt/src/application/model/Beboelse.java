@@ -9,14 +9,13 @@ public class Beboelse {
 	private double prisEnkeltVaerelse;
 	private double prisDobbeltVaerelse;
 
-
 	public Beboelse(String name, double prisEnkeltvaerelse, double prisDobbeltVaerelse) {
 		this.name = name;
 		this.bookings = new ArrayList<Booking>();
 		this.services = new ArrayList<Service>();
 		this.prisEnkeltVaerelse = prisEnkeltvaerelse;
 		this.prisDobbeltVaerelse = prisDobbeltVaerelse;
-		
+
 	}
 
 	public String getName() {
@@ -30,8 +29,6 @@ public class Beboelse {
 	public ArrayList<Service> getServices() {
 		return new ArrayList<>(services);
 	}
-
-
 
 	public double getPris(Booking booking) {
 		if (booking.isDoubleRoom()) {
@@ -50,13 +47,18 @@ public class Beboelse {
 	public void removeService(Service service) {
 		this.services.remove(service);
 	}
-	
+
 	public void addBooking(Booking booking) {
 		this.bookings.add(booking);
 	}
-	
+
 	public void removeBooking(Booking booking) {
 		this.bookings.remove(booking);
 	}
 
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return this.name + ": " + this.prisEnkeltVaerelse + " / " + this.prisDobbeltVaerelse;
+	}
 }

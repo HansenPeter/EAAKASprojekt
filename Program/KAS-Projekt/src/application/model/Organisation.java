@@ -11,14 +11,14 @@ public class Organisation {
 		this.navn = navn;
 		this.konferencer = new ArrayList<>();
 	}
-	
 
-	public Konference createKonference(LocalDate startDato, LocalDate slutDato, String lokation, String navn, String tema, double pris) {
+	public Konference createKonference(LocalDate startDato, LocalDate slutDato, String lokation, String navn,
+			String tema, double pris) {
 		Konference konference = new Konference(startDato, slutDato, lokation, navn, tema, this, pris);
 		this.konferencer.add(konference);
 		return konference;
 	}
-	
+
 	public void addKonference(Konference konference) {
 		this.konferencer.add(konference);
 	}
@@ -33,5 +33,11 @@ public class Organisation {
 
 	public String getNavn() {
 		return navn;
+	}
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return this.navn;
 	}
 }

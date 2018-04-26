@@ -35,4 +35,10 @@ public class Service {
 	public void setServicePris(double servicePris) {
 		this.servicePris = servicePris;
 	}
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return this.serviceNavn + ": " + this.servicePris;
+	}
 }
