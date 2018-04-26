@@ -123,6 +123,13 @@ public class Service {
 		return konference.getSlutDato();
 	}
 
+	public static Beboelse addBeboelseToKonference(Konference konference, String navn, double prisEnkelværelse,
+			double prisDobbeltværelse) {
+		Beboelse beboelse = new Beboelse(navn, prisEnkelværelse, prisDobbeltværelse);
+		konference.addBeboelse(beboelse);
+		Storage.addBeboelse(beboelse);
+		return beboelse;
+	}
 	// ---------------------------------------------------------------------------------------------------------------------------------------
 
 	public static Udflugt createUdflugt(Konference konference, String navn, LocalDate dato, double pris,

@@ -95,7 +95,7 @@ public class KASAdministrerKonference extends Stage {
 
 	// MADE
 	public void addBeboelseAction() {
-		KASOpretBeboelse beboelseWindow = new KASOpretBeboelse();
+		KASOpretBeboelse beboelseWindow = new KASOpretBeboelse(this.konference);
 		beboelseWindow.showAndWait();
 		lvwBeboelser.getItems().setAll(Service.getBeboelser(konference));
 
@@ -103,7 +103,7 @@ public class KASAdministrerKonference extends Stage {
 
 	// MADE
 	public void addServiceAction() {
-		KASTilfoejService serviceWindow = new KASTilfoejService();
+		KASTilfoejService serviceWindow = new KASTilfoejService(lvwBeboelser.getSelectionModel().getSelectedItem());
 		serviceWindow.showAndWait();
 		lvwUdflugter.getItems().setAll(Service.getUdflugter(konference));
 	}

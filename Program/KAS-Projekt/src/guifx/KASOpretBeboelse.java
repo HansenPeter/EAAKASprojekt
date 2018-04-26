@@ -1,5 +1,6 @@
 package guifx;
 
+import application.model.Konference;
 import application.service.Service;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -12,7 +13,9 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class KASOpretBeboelse extends Stage {
-	public KASOpretBeboelse() {
+
+	public KASOpretBeboelse(Konference konference) {
+		this.konference = konference;
 		this.setTitle("Opret Beboelse");
 		GridPane gridPane = new GridPane();
 		this.initContent(gridPane);
@@ -22,6 +25,7 @@ public class KASOpretBeboelse extends Stage {
 
 	}
 
+	private Konference konference;
 	Image KASkassen = new Image("File:resources/Kaskas.png");
 	Label lblNavn, lblPrisEnkelt, lblPrisDobbelt;
 	Button btnOK, btnCancel;
@@ -66,7 +70,7 @@ public class KASOpretBeboelse extends Stage {
 		gridPane.add(btnCancel, 1, 4);
 
 		btnOK.setOnAction(event -> this.okAction());
-		btnCancel.setOnAction(event -> this.annullerAction());
+		btnCancel.setOnAction(event -> this.close());
 
 	}
 
@@ -79,24 +83,19 @@ public class KASOpretBeboelse extends Stage {
 			try {
 				double enkelt = Double.parseDouble(prisEnkelt);
 				double dobbelt = Double.parseDouble(prisDobbelt);
-				Service.createBeboelse(name, enkelt, dobbelt);
+				Service.addBeboelseToKonference(konference, txfNavn.getText(), enkelt, dobbelt);
+				this.close();
 			} catch (NumberFormatException e) {
 				Alert a1 = new Alert(Alert.AlertType.INFORMATION);
 				a1.setTitle("Error");
-				a1.setContentText("Udfyld venligest alt");
+				a1.setContentText("Udfyld venligst priser med tal");
 				a1.showAndWait();
 
 			}
 		} else {
 			Alert nameAlert = new Alert(Alert.AlertType.INFORMATION);
 			nameAlert.setTitle("Error");
-			nameAlert.setContentText("Udfyld venligest navn");
+			nameAlert.setContentText("Udfyld venligst navn");
 		}
-
 	}
-
-	private void annullerAction() {
-
-	}
-
 }

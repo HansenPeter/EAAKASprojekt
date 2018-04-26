@@ -1,5 +1,6 @@
 package guifx;
 
+import application.model.Beboelse;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -11,7 +12,9 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class KASTilfoejService extends Stage {
-	public KASTilfoejService() {
+
+	public KASTilfoejService(Beboelse beboelse) {
+		this.beboelse = beboelse;
 		this.setTitle("Tilfoej Service");
 		GridPane gridPane = new GridPane();
 		this.initContent(gridPane);
@@ -20,6 +23,7 @@ public class KASTilfoejService extends Stage {
 		this.setScene(scene);
 	}
 
+	private Beboelse beboelse;
 	Image KASkassen = new Image("File:resources/Kaskas.png");
 	Label lblServices, lblNavn, lblBeskrivelse, lblPris;
 	ListView<String> lvwServices;
