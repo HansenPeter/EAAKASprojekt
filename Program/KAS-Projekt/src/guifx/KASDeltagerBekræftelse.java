@@ -9,9 +9,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-public class KASDeltagerBekræftelse extends Stage {
+public class KASDeltagerBekraeftelse extends Stage {
 
-	public KASDeltagerBekræftelse(Tilmelding tilmelding) {
+	public KASDeltagerBekraeftelse(Tilmelding tilmelding) {
 		// TODO Auto-generated constructor stub
 		// Subject to change
 		this.tilmelding = tilmelding;
@@ -49,11 +49,11 @@ public class KASDeltagerBekræftelse extends Stage {
 		// To implement
 		// lblLedsager og lblOvernatning
 
-		btnBekraeft = GUITools.stdButton("Bekræft");
+		btnBekraeft = GUITools.stdButton("Bekraeft");
 		gridPane.add(btnBekraeft, 0, 4);
 		btnBekraeft.setOnAction(event -> bekraeft());
 
-		btnAnnuller = GUITools.stdButton("Annullér");
+		btnAnnuller = GUITools.stdButton("Annuller");
 		gridPane.add(btnAnnuller, 1, 4);
 		btnAnnuller.setOnAction(event -> annuller(tilmelding));
 	}

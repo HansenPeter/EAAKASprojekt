@@ -41,15 +41,15 @@ public class KasOpretKonference extends Stage {
         gridPane.add(lvwBeboelser, 0, 1, 2, 2);
 
         // Midlertidige beboelser
-        lvwBeboelser.getItems().add("Huset på Christianshavn");
-        lvwBeboelser.getItems().add("Høtel Phønix");
+        lvwBeboelser.getItems().add("Huset paa Christianshavn");
+        lvwBeboelser.getItems().add("Hoetel Phoenix");
         lvwBeboelser.getItems().add("Comwell");
 
-        btnAddBeboelse = GUITools.stdButton("Tilføj Beboelse");
+        btnAddBeboelse = GUITools.stdButton("Tilfoej Beboelse");
         gridPane.add(btnAddBeboelse, 0, 3);
         btnAddBeboelse.setOnAction(event -> addBeboelseAction()); // MADE
 
-        btnAddServices = GUITools.stdButton("Tilføj Services");
+        btnAddServices = GUITools.stdButton("Tilfoej Services");
         gridPane.add(btnAddServices, 1, 3);
         btnAddServices.setOnAction(event -> addServiceAction()); // MADE
 
@@ -65,7 +65,7 @@ public class KasOpretKonference extends Stage {
         lvwUdflugter.getItems().add("Givskud Zoo");
         lvwUdflugter.getItems().add("LEGO Land Land");
 
-        btnAddUdflugt = GUITools.stdButton("Tilføj Udflugt");
+        btnAddUdflugt = GUITools.stdButton("Tilfoej Udflugt");
         gridPane.add(btnAddUdflugt, 0, 7);
         btnAddUdflugt.setOnAction(event -> addUdflugtAction()); // MADE
 
@@ -106,7 +106,7 @@ public class KasOpretKonference extends Stage {
         txfLokation = GUITools.stdTextField();
         gridPane.add(txfLokation, 3, 5);
 
-        btnCancel = GUITools.stdButton("Annulér");
+        btnCancel = GUITools.stdButton("Annuller");
         gridPane.add(btnCancel, 3, 7);
     }
 
