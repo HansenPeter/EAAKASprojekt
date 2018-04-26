@@ -111,20 +111,20 @@ public class KasOpretKonference extends Stage {
 	}
 
 	// MADE
-	private void addUdflugtAction() {
+	public void addUdflugtAction() {
 		KASTilfoejUdflugt udflugtWindow = new KASTilfoejUdflugt();
 		udflugtWindow.showAndWait();
 
 	}
 
 	// MADE
-	private void addBeboelseAction() {
+	public void addBeboelseAction() {
 		KASOpretBeboelse beboelseWindow = new KASOpretBeboelse();
 		beboelseWindow.showAndWait();
 	}
 
 	// MADE
-	private void addServiceAction() {
+	public void addServiceAction() {
 		KASTilfoejService serviceWindow = new KASTilfoejService();
 		serviceWindow.showAndWait();
 	}
