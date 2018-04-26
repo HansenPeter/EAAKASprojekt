@@ -95,6 +95,9 @@ public class Service {
 		return organisation;
 	}
 
+	public static ArrayList<Organisation> getOrganisations() {
+		return new ArrayList<>(Storage.getOrganisations());
+	}
 	// ---------------------------------------------------------------------------------------------------------------------------------------
 
 	public static Konference createKonference(Organisation organisation, LocalDate startDato, LocalDate slutDato,
@@ -140,7 +143,7 @@ public class Service {
 	public static ArrayList<Beboelse> getBeboelser(Konference konference) {
 		return new ArrayList<>(konference.getBeboelser());
 	}
-	
+
 	public static ArrayList<application.model.Service> getServices(Beboelse beboelse) {
 		return new ArrayList<>(beboelse.getServices());
 	}

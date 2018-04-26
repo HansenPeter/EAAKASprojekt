@@ -1,8 +1,15 @@
 package guifx;
 
+import application.model.Konference;
+import application.model.Organisation;
+import application.service.Service;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.geometry.VPos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -10,6 +17,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class KASOrganisationWindow extends Stage {
@@ -24,12 +32,16 @@ public class KASOrganisationWindow extends Stage {
 	}
 
 	// Image kasKassen = KASkas.png
-	Label lblOrganisation;
-	ListView lvwOrganisations;
+	Label lblOrganisation, lblkonferencer;
+	ListView<Organisation> lvwOrganisations;
+	ListView<Konference> lvwKonferencer;
 	TextField txfOrganisationName;
 	Button btnPickOrganisation;
 	Button btnAddOrganisation;
 	Button btnOK;
+	Button btnAddKonference;
+	Button btnAdminKonference;
+	VBox VBOrganisation, VBKonference;
 	int buttonWidth = 120;
 	Image KASkassen = new Image("File:resources/Kaskas.png");
 
@@ -48,42 +60,82 @@ public class KASOrganisationWindow extends Stage {
 		GridPane.setValignment(KASkas, VPos.BASELINE);
 		gridPane.add(KASkas, 1, 0, 1, 2);
 
-		lvwOrganisations = new ListView<String>();
-		gridPane.add(lvwOrganisations, 0, 1);
-		// Midlertidigt indhold
-		lvwOrganisations.getItems().add("Odense Universitet");
-		lvwOrganisations.getItems().add("Erhvervsakademiet Aarhus");
-		lvwOrganisations.getItems().add("Aarhus Universitet");
-		lvwOrganisations.getItems().add("Peters Praksis");
-		lvwOrganisations.getItems().add("Jyllands Posten");
-		lvwOrganisations.getItems().add("Vatikanet");
+		lvwOrganisations = new ListView<Organisation>();
+		gridPane.add(lvwOrganisations, 0, 1, 1, 3);
+		lvwOrganisations.getItems().addAll(Service.getOrganisations());
+		lvwOrganisations.setMaxHeight(200);
+		lvwOrganisations.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Organisation>() {
+			@Override
+			public void changed(ObservableValue<? extends Organisation> observable, Organisation oldOrganisation,
+					Organisation newOrganisation) {
+				lvwKonferencer.getItems().clear();
+				lvwKonferencer.getItems()
+						.addAll(lvwOrganisations.getSelectionModel().getSelectedItem().getKonferencer());
+			}
+		});
+		;
+
+		VBOrganisation = new VBox();
+		gridPane.add(VBOrganisation, 1, 2);
+
+		txfOrganisationName = new TextField("Ny Organisation");
+		VBOrganisation.getChildren().add(txfOrganisationName);
+
+		btnAddOrganisation = GUITools.stdButton("Tilføj organisation");
+		btnAddOrganisation.setOnAction(event -> this.addOrganisation());
+		VBOrganisation.getChildren().add(btnAddOrganisation);
 
 		btnPickOrganisation = GUITools.stdButton("Vælg Organisation");
 		btnPickOrganisation.setOnAction(event -> this.addKonference());
-		gridPane.add(btnPickOrganisation, 1, 1);
 
-		txfOrganisationName = new TextField("Ny Organisation");
-		gridPane.add(txfOrganisationName, 0, 2);
+		lblkonferencer = new Label("Konferencer");
+		gridPane.add(lblkonferencer, 0, 4);
 
-		btnAddOrganisation = GUITools.stdButton("Tilføj");
-		btnAddOrganisation.setOnAction(event -> this.addOrganisation());
-		gridPane.add(btnAddOrganisation, 1, 2);
+		lvwKonferencer = new ListView<Konference>();
+		lvwKonferencer.setMaxHeight(200);
+		gridPane.add(lvwKonferencer, 0, 5);
+
+		VBKonference = new VBox();
+		gridPane.add(VBKonference, 1, 5);
+
+		btnAddKonference = GUITools.stdButton("Ny Konference");
+		btnAddKonference.setOnAction(event -> addKonference());
+
+		btnAdminKonference = GUITools.stdButton("Administrer Konference");
+		btnAdminKonference.setOnAction(event -> administerKonference());
+
+		VBKonference.getChildren().add(btnAddKonference);
+		VBKonference.getChildren().add(btnAdminKonference);
 
 		btnOK = GUITools.stdButton("OK");
 		btnOK.setOnAction(event -> this.closeWindow());
-		gridPane.add(btnOK, 1, 3);
+		gridPane.add(btnOK, 1, 6);
 
+	}
+
+	private void administerKonference() {
+		// TODO Auto-generated method stub
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setContentText("TODO Implement");
 	}
 
 	private void addKonference() {
 		// TODO Auto-generated method stub
-		KasOpretKonference window = new KasOpretKonference();
-		window.showAndWait();
+		if (lvwOrganisations.getSelectionModel().getSelectedItem() != null) {
+			KasOpretKonference window = new KasOpretKonference(lvwOrganisations.getSelectionModel().getSelectedItem());
+			window.showAndWait();
+		}
 	}
 
 	private void addOrganisation() {
 		// TODO Auto-generated method stub
-		lvwOrganisations.getItems().add(txfOrganisationName.getText());
+		if (!txfOrganisationName.getText().equals("Ny Organisation")) {
+			Service.createOrganisation(txfOrganisationName.getText());
+			lvwOrganisations.getItems().clear();
+			lvwOrganisations.getItems().addAll(Service.getOrganisations());
+			txfOrganisationName.clear();
+		}
+		// else do nothing
 	}
 
 	private void closeWindow() {
