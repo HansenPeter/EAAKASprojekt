@@ -101,8 +101,8 @@ public class KASOrganisationWindow extends Stage {
 		VBKonference.getChildren().add(btnAddKonference);
 		VBKonference.getChildren().add(btnAdminKonference);
 
-		btnOK = GUITools.stdButton("OK");
-		btnOK.setOnAction(event -> this.closeWindow());
+		btnOK = GUITools.stdButton("Close");
+		btnOK.setOnAction(event -> this.close());
 		gridPane.add(btnOK, 1, 6);
 
 	}
@@ -135,10 +135,5 @@ public class KASOrganisationWindow extends Stage {
 			txfOrganisationName.clear();
 		}
 		// else do nothing
-	}
-
-	private void closeWindow() {
-		// TODO Auto-generated method stub
-		this.close();
 	}
 }

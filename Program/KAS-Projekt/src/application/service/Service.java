@@ -125,6 +125,12 @@ public class Service {
 
 	// ---------------------------------------------------------------------------------------------------------------------------------------
 
+	public static Udflugt createUdflugt(Konference konference, String navn, LocalDate dato, double pris,
+			boolean frokost) {
+		Udflugt udflugt = konference.createUdflugt(navn, dato, pris, frokost);
+		return udflugt;
+	}
+
 	public static ArrayList<Udflugt> getUdflugter(Konference konference) {
 		return new ArrayList<>(konference.getUdflugter());
 	}

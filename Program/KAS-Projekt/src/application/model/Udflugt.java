@@ -60,7 +60,8 @@ public class Udflugt {
 	public void removeLedsager(Ledsager ledsager) {
 		this.ledsagere.remove(ledsager);
 	}
-	
+
+	@Override
 	public String toString() {
 		return this.name;
 	}

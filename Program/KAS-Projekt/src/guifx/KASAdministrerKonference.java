@@ -87,7 +87,7 @@ public class KASAdministrerKonference extends Stage {
 
 	// MADE
 	public void addUdflugtAction() {
-		KASTilfoejUdflugt udflugtWindow = new KASTilfoejUdflugt();
+		KASTilfoejUdflugt udflugtWindow = new KASTilfoejUdflugt(this.konference);
 		udflugtWindow.showAndWait();
 		lvwUdflugter.getItems().setAll(Service.getUdflugter(konference));
 
