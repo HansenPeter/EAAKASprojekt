@@ -141,7 +141,7 @@ public class Service {
 		return new ArrayList<>(konference.getBeboelser());
 	}
 	
-	public static ArrayList<Service> getServices(Beboelse beboelse) {
+	public static ArrayList<application.model.Service> getServices(Beboelse beboelse) {
 		return new ArrayList<>(beboelse.getServices());
 	}
 
