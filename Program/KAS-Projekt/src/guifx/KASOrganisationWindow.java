@@ -12,7 +12,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
@@ -40,8 +39,6 @@ public class KASOrganisationWindow extends Stage {
 	Button btnAddKonference;
 	Button btnAdminKonference;
 	VBox VBOrganisation, VBKonference;
-	int buttonWidth = 120;
-	Image KASkassen = new Image("File:resources/Kaskas.png");
 
 	public void initContent(GridPane gridPane) {
 		// TODO Auto-generated method stub
@@ -67,8 +64,8 @@ public class KASOrganisationWindow extends Stage {
 			public void changed(ObservableValue<? extends Organisation> observable, Organisation oldOrganisation,
 					Organisation newOrganisation) {
 				lvwKonferencer.getItems().clear();
-				lvwKonferencer.getItems()
-						.addAll(lvwOrganisations.getSelectionModel().getSelectedItem().getKonferencer());
+				lvwKonferencer.getItems().addAll(
+						Service.getSpecifikkeKonferencer(lvwOrganisations.getSelectionModel().getSelectedItem()));
 			}
 		});
 
@@ -124,6 +121,8 @@ public class KASOrganisationWindow extends Stage {
 		if (lvwOrganisations.getSelectionModel().getSelectedItem() != null) {
 			KasOpretKonference window = new KasOpretKonference(lvwOrganisations.getSelectionModel().getSelectedItem());
 			window.showAndWait();
+			lvwKonferencer.getItems()
+					.setAll(Service.getSpecifikkeKonferencer(lvwOrganisations.getSelectionModel().getSelectedItem()));
 		}
 	}
 

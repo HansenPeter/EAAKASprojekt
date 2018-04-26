@@ -107,6 +107,10 @@ public class Service {
 		return konference;
 	}
 
+	public static ArrayList<Konference> getSpecifikkeKonferencer(Organisation organisation) {
+		return Storage.getSpecifikkeKonferencer(organisation);
+	}
+
 	public static ArrayList<Konference> getKonferencer() {
 		return Storage.getKonferencer();
 	}
