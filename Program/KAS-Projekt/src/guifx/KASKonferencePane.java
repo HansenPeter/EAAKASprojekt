@@ -54,6 +54,9 @@ public class KASKonferencePane extends GridPane {
         imgBox.setAlignment(Pos.BASELINE_RIGHT);
         add(imgBox, 2, 0);
         
+        chbForedragsholder = new CheckBox("Er foredragsholder");
+        add(chbForedragsholder,1,0);
+        
         konferencer = stage.getKonferencer();
         
         cbbKonference = new ComboBox<>();
@@ -155,6 +158,22 @@ public class KASKonferencePane extends GridPane {
     private void updateCurKonference() {
     	updateControls();
     	stage.updateCurKonference();
+    }
+    
+    public Konference getKonference() {
+    	return curKonference;
+    }
+    
+    public LocalDate getAnkomstdato() {
+    	return dpAnkomstdato.getDayCellFactory().call(dpAnkomstdato).getItem();
+    }
+
+    public LocalDate getAfrejsedato() {
+    	return dpAfrejsedato.getDayCellFactory().call(dpAfrejsedato).getItem();
+    }
+    
+    public Boolean isForedragsholder() {
+    	return chbForedragsholder.isSelected();
     }
     
     
