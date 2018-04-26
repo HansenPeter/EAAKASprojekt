@@ -64,7 +64,7 @@ public class KASDeltagerBekraeftelse extends Stage {
 	}
 
 	private void annuller(Tilmelding tilmelding) {
-		Service.removeTilmelding(tilmelding.getDeltager());
+		Service.removeTilmelding(tilmelding);
 		this.close();
 	}
 
