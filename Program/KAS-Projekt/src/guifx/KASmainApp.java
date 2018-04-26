@@ -65,6 +65,7 @@ public class KASmainApp extends Application {
 		lvwKonferences.getItems().add("Torben");
 		lvwKonferences.getItems().add("Peter");
 		lvwKonferences.getItems().add("Made");
+		lvwKonferences.getItems().add("Lars");
 
 		gridPane.add(new ImageView(GUITools.kasKas()), 1, 0, 1, 2);
 
