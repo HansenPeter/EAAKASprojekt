@@ -137,4 +137,12 @@ public class Service {
 		tilmelding.getDeltager().fjernTilmelding(tilmelding);
 	}
 
+	public static ArrayList<Beboelse> getBeboelser(Konference konference) {
+		return new ArrayList<>(konference.getBeboelser());
+	}
+	
+	public static ArrayList<Service> getServices(Beboelse beboelse) {
+		return new ArrayList<>(beboelse.getServices());
+	}
+
 }

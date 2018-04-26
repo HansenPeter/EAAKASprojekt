@@ -70,7 +70,7 @@ public class KASTilmeldDeltagerWindow extends Stage {
         ledsagerPane = new KASLedsagerPane(this);
         tabLedsager.setContent(ledsagerPane);
 
-        overnatningPane = new KASOvernatningPane();
+        overnatningPane = new KASOvernatningPane(this);
         tabOvernatning.setContent(overnatningPane);
 
         

@@ -26,7 +26,8 @@ public class KASOvernatningPane extends GridPane {
     private Label lblBeboelse, lblServices;
     private ComboBox<String> cbbBeboelse;
     private VBox vbBeboelse, vbServices;
-    private ListView<String> lvwServices;
+    private ListView<Service> lvwServices;
+    private ArrayList<Service> alServices;
     private HBox imgBox;
     private ArrayList<Beboelse> beboelser;
     private KASTilmeldDeltagerWindow stage;
@@ -79,21 +80,21 @@ public class KASOvernatningPane extends GridPane {
     public void updateControls() {
         
         this.curKonference = stage.getCurKonference();
-        this.alUdflugter = Service.getBeboelser(curKonference);
+        this.beboelser = Service.getBeboelser(curKonference);
         
-        this.lvwUdflugter.getItems().addAll(alUdflugter);
+        this.lvwServices.getItems().addAll(alUdflugter);
         
         
         //KASOvernatning.updateControls()
         //KASLedsager.updateControls()
     }
     
-    public void updateUdflugter() {
+    public void updateBeboelser() {
     	this.curKonference = stage.getCurKonference();
-        this.alUdflugter = Service.getUdflugter(curKonference);
+        this.beboelser = Service.getBeboelser(curKonference);
         
         
-        this.lvwUdflugter.getItems().setAll(alUdflugter);
+        this.lvwServices.getItems().setAll(alUdflugter);
     }
 
 }
