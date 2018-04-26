@@ -30,7 +30,6 @@ public class KASOpretBeboelse extends Stage {
 	Label lblNavn, lblPrisEnkelt, lblPrisDobbelt;
 	Button btnOK, btnCancel;
 	TextField txfNavn, txfEnkelt, txfDobblet;
-	int buttonWidth = 120;
 
 	public void initContent(GridPane gridPane) {
 		gridPane.setPadding(new Insets(10));
@@ -40,33 +39,25 @@ public class KASOpretBeboelse extends Stage {
 		lblNavn = new Label("Navn:");
 		gridPane.add(lblNavn, 0, 0);
 
-		txfNavn = new TextField();
-		txfNavn.setMinWidth(buttonWidth);
-		txfNavn.setMaxWidth(buttonWidth);
+		txfNavn = GUITools.stdTextField();
 		gridPane.add(txfNavn, 0, 1);
 
 		lblPrisEnkelt = new Label("Pris for enkeltvaerelse");
 		gridPane.add(lblPrisEnkelt, 0, 2);
 
-		txfEnkelt = new TextField();
-		txfNavn.setMinWidth(buttonWidth);
-		txfNavn.setMaxWidth(buttonWidth);
+		txfEnkelt = GUITools.stdTextField();
 		gridPane.add(txfEnkelt, 0, 3);
 
 		lblPrisDobbelt = new Label("Pris for dobbelvaerelse");
 		gridPane.add(lblPrisDobbelt, 1, 2);
 
-		txfDobblet = new TextField();
-		txfNavn.setMinWidth(buttonWidth);
-		txfNavn.setMaxWidth(buttonWidth);
+		txfDobblet = GUITools.stdTextField();
 		gridPane.add(txfDobblet, 1, 3);
 
-		btnOK = new Button("Okay");
-		btnOK.setMinWidth(buttonWidth);
+		btnOK = GUITools.stdButton("Okay");
 		gridPane.add(btnOK, 0, 4);
 
-		btnCancel = new Button("Annullér");
-		btnCancel.setMinWidth(buttonWidth);
+		btnCancel = GUITools.stdButton("Annullér");
 		gridPane.add(btnCancel, 1, 4);
 
 		btnOK.setOnAction(event -> this.okAction());
