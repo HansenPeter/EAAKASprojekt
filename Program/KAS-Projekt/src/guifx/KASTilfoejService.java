@@ -1,13 +1,19 @@
 package guifx;
 
 import application.model.Beboelse;
+import application.service.Service;
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
+import javafx.geometry.VPos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -26,7 +32,7 @@ public class KASTilfoejService extends Stage {
 	private Beboelse beboelse;
 	Image KASkassen = new Image("File:resources/Kaskas.png");
 	Label lblServices, lblNavn, lblBeskrivelse, lblPris;
-	ListView<String> lvwServices;
+	ListView<application.model.Service> lvwServices;
 	Button btnTilfoej, btnOK, btnAnnuller;
 	TextField txfNavn, txfBeskrivelse, txfPris;
 	int buttonWidth = 120;
@@ -36,61 +42,60 @@ public class KASTilfoejService extends Stage {
 		gridPane.setHgap(10);
 		gridPane.setVgap(10);
 
+		ImageView KASkas = new ImageView(GUITools.kasKas());
+		GridPane.setValignment(KASkas, VPos.TOP);
+		GridPane.setHalignment(KASkas, HPos.RIGHT);
+		gridPane.add(KASkas, 2, 0, 1, 2);
+
 		lblServices = new Label("Services");
 		gridPane.add(lblServices, 0, 0);
 
 		lvwServices = new ListView<>();
 		lvwServices.setMaxHeight(100);
-		gridPane.add(lvwServices, 0, 1);
-
-		btnTilfoej = new Button("Tilfoej Service");
-		gridPane.add(btnTilfoej, 0, 2);
-		btnTilfoej.setOnAction(event -> this.tilfoejAction());
+		lvwServices.getItems().addAll(Service.getServices(beboelse));
+		gridPane.add(lvwServices, 0, 1, 1, 4);
 
 		lblNavn = new Label("Servicenavn");
 		gridPane.add(lblNavn, 1, 0);
 
-		txfNavn = new TextField();
-		txfNavn.setMinWidth(buttonWidth);
-		txfNavn.setMaxWidth(buttonWidth);
+		txfNavn = GUITools.stdTextField();
 		gridPane.add(txfNavn, 1, 1);
 
 		lblBeskrivelse = new Label("Kort beskrivelse");
+		GridPane.setValignment(lblBeskrivelse, VPos.BOTTOM);
 		gridPane.add(lblBeskrivelse, 1, 2);
 
-		txfBeskrivelse = new TextField();
-		txfBeskrivelse.setMinWidth(buttonWidth);
-		txfBeskrivelse.setMaxWidth(buttonWidth);
+		txfBeskrivelse = GUITools.stdTextField();
+		GridPane.setValignment(txfBeskrivelse, VPos.BOTTOM);
 		gridPane.add(txfBeskrivelse, 1, 3);
 
 		lblPris = new Label("Pris");
+		GridPane.setValignment(lblPris, VPos.BOTTOM);
 		gridPane.add(lblPris, 2, 2);
 
-		txfPris = new TextField();
-		txfPris.setMinWidth(buttonWidth);
-		txfPris.setMaxWidth(buttonWidth);
+		txfPris = GUITools.stdTextField();
+		GridPane.setValignment(txfPris, VPos.BOTTOM);
 		gridPane.add(txfPris, 2, 3);
 
-		btnOK = new Button("Okay");
-		btnOK.setMinWidth(buttonWidth);
-		btnOK.setOnAction(event -> this.okAction());
+		btnOK = GUITools.stdButton("Okay");
+		btnOK.setOnAction(event -> this.tilfoejAction());
+		gridPane.add(btnOK, 1, 5);
 
-		btnAnnuller = new Button("Annullér");
-		btnAnnuller.setMinWidth(buttonWidth);
-		btnAnnuller.setOnAction(event -> this.annulerAction());
-
+		btnAnnuller = GUITools.stdButton("Annullér");
+		btnAnnuller.setOnAction(event -> this.close());
+		gridPane.add(btnAnnuller, 2, 5);
 	}
 
 	private void tilfoejAction() {
-
-	}
-
-	private void okAction() {
-
-	}
-
-	private void annulerAction() {
-
+		Alert alert;
+		try {
+			double pris = Double.parseDouble(txfPris.getText());
+			Service.addService(beboelse, txfNavn.getText(), txfBeskrivelse.getText(), pris);
+			this.close();
+		} catch (NumberFormatException e) {
+			alert = new Alert(AlertType.ERROR);
+			alert.setContentText("pris skal være et tal");
+		}
 	}
 
 }

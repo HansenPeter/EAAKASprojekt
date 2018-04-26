@@ -165,4 +165,10 @@ public class Service {
 		return new ArrayList<>(beboelse.getServices());
 	}
 
+	public static application.model.Service addService(Beboelse beboelse, String navn, String beskrivelse,
+			double pris) {
+
+		application.model.Service service = beboelse.createService(navn, beskrivelse, pris);
+		return service;
+	}
 }

@@ -5,6 +5,7 @@ import application.model.Organisation;
 import application.service.Service;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.VPos;
 import javafx.scene.Scene;
@@ -53,6 +54,7 @@ public class KASOrganisationWindow extends Stage {
 
 		ImageView KASkas = new ImageView(GUITools.kasKas());
 		GridPane.setValignment(KASkas, VPos.BASELINE);
+		GridPane.setHalignment(KASkas, HPos.RIGHT);
 		gridPane.add(KASkas, 1, 0, 1, 2);
 
 		lvwOrganisations = new ListView<Organisation>();

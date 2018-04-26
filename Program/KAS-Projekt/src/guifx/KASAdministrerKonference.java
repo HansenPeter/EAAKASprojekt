@@ -6,11 +6,14 @@ import application.model.Udflugt;
 import application.service.Service;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
+import javafx.geometry.VPos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -34,13 +37,21 @@ public class KASAdministrerKonference extends Stage {
 	ListView<Udflugt> lvwUdflugter;
 	ListView<application.model.Service> lvwServices;
 
-	Button btnAddBeboelse, btnAddServices, btnAddUdflugt;
+	Button btnAddBeboelse, btnAddServices, btnAddUdflugt, btnClose;
+	private ImageView KASKas;
 
 	private void initContent(GridPane gridPane) {
 		// TODO Auto-generated method stub
 		gridPane.setPadding(new Insets(10));
 		gridPane.setHgap(10);
 		gridPane.setVgap(10);
+
+		KASKas = new ImageView(GUITools.kasKas());
+		KASKas.setScaleX(2);
+		KASKas.setScaleY(2);
+		GridPane.setHalignment(KASKas, HPos.CENTER);
+		GridPane.setValignment(KASKas, VPos.CENTER);
+		gridPane.add(KASKas, 1, 0, 1, 2);
 
 		lblUdflugter = new Label("Udflugter");
 		gridPane.add(lblUdflugter, 0, 0);
@@ -73,8 +84,7 @@ public class KASAdministrerKonference extends Stage {
 			@Override
 			public void changed(ObservableValue<? extends Beboelse> observable, Beboelse oldBeboelse,
 					Beboelse newBeboelse) {
-				lvwServices.getItems().clear();
-				lvwServices.getItems().addAll(Service.getServices(lvwBeboelser.getSelectionModel().getSelectedItem()));
+				lvwServices.getItems().setAll(Service.getServices(lvwBeboelser.getSelectionModel().getSelectedItem()));
 			}
 
 		});
@@ -83,9 +93,13 @@ public class KASAdministrerKonference extends Stage {
 		gridPane.add(btnAddServices, 1, 5);
 		btnAddServices.setOnAction(event -> addServiceAction()); // MADE
 
+		btnClose = GUITools.stdButton("Close");
+		gridPane.add(btnClose, 1, 6);
+		GridPane.setHalignment(btnClose, HPos.RIGHT);
+		btnClose.setOnAction(event -> this.close());
+
 	}
 
-	// MADE
 	public void addUdflugtAction() {
 		KASTilfoejUdflugt udflugtWindow = new KASTilfoejUdflugt(this.konference);
 		udflugtWindow.showAndWait();
@@ -93,7 +107,6 @@ public class KASAdministrerKonference extends Stage {
 
 	}
 
-	// MADE
 	public void addBeboelseAction() {
 		KASOpretBeboelse beboelseWindow = new KASOpretBeboelse(this.konference);
 		beboelseWindow.showAndWait();
@@ -101,10 +114,9 @@ public class KASAdministrerKonference extends Stage {
 
 	}
 
-	// MADE
 	public void addServiceAction() {
 		KASTilfoejService serviceWindow = new KASTilfoejService(lvwBeboelser.getSelectionModel().getSelectedItem());
 		serviceWindow.showAndWait();
-		lvwUdflugter.getItems().setAll(Service.getUdflugter(konference));
+		lvwServices.getItems().setAll(Service.getServices(lvwBeboelser.getSelectionModel().getSelectedItem()));
 	}
 }

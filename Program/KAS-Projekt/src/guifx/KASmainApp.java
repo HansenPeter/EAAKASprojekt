@@ -4,6 +4,7 @@ import application.model.Konference;
 import application.service.Service;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
@@ -51,6 +52,7 @@ public class KASmainApp extends Application {
 	ListView<Konference> lvwKonferences;
 	GridPane gridButtons;
 	Button btnAddConference, btnAddParticipant, btnClose;
+	ImageView KASkas;
 
 	private void initGridPane(GridPane gridPane) {
 		gridPane.setAlignment(Pos.CENTER);
@@ -66,7 +68,9 @@ public class KASmainApp extends Application {
 		gridPane.add(lvwKonferences, 0, 1, 1, 2);
 		lvwKonferences.getItems().setAll(Service.getKonferencer());
 
-		gridPane.add(new ImageView(GUITools.kasKas()), 1, 0, 1, 2);
+		KASkas = new ImageView(GUITools.kasKas());
+		gridPane.add(KASkas, 1, 0, 1, 2);
+		GridPane.setHalignment(KASkas, HPos.RIGHT);
 
 		gridButtons = new GridPane();
 		gridButtons.setAlignment(Pos.CENTER);
