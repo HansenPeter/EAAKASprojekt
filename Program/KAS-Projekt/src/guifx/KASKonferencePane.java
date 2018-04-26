@@ -45,7 +45,7 @@ public class KASKonferencePane extends GridPane {
     	
     	this.stage = stage;
 
-        setGridLinesVisible(true);
+//        setGridLinesVisible(true);
         setPadding(new Insets(20));
         setHgap(20);
         setVgap(10);
@@ -57,19 +57,23 @@ public class KASKonferencePane extends GridPane {
         konferencer = stage.getKonferencer();
         
         cbbKonference = new ComboBox<>();
-        cbbKonference.getItems().addAll(konferencer);
-        cbbKonference.getSelectionModel().select(0);
+        if (!konferencer.isEmpty()) {
+        	cbbKonference.getItems().addAll(konferencer);
+        	cbbKonference.getSelectionModel().select(0);        	
+        } else {
+        	cbbKonference.getItems().setAll((Konference) null);
+        }
+        
         GridPane.setValignment(cbbKonference, VPos.BOTTOM);
         add(cbbKonference, 2, 1);
 
-        cbbKonference.setOnAction(event -> updateUdflugterPane());
+        cbbKonference.setOnAction(event -> updateCurKonference());
         cbbKonference.setMaxWidth(150);
         this.stage.setCurKonference(cbbKonference.getSelectionModel().getSelectedItem());
         this.curKonference = stage.getCurKonference();
 
         vbAnkomstdato = new VBox();
 
-        stage.setCurKonference(cbbKonference.getSelectionModel().getSelectedItem());
         startDato = Service.getKonferenceStartdato(curKonference);
         slutDato = Service.getKonferenceSlutdato(curKonference);
         dpAnkomstdato = new DatePicker(startDato);
@@ -148,7 +152,7 @@ public class KASKonferencePane extends GridPane {
         //KASLedsager.updateControls()
     }
     
-    private void updateUdflugterPane() {
+    private void updateCurKonference() {
     	updateControls();
     	stage.updateCurKonference();
     }

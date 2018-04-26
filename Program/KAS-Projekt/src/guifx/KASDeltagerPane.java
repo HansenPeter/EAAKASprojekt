@@ -18,7 +18,7 @@ public class KASDeltagerPane extends GridPane {
     KASTilmeldDeltagerWindow stage;
 
     public KASDeltagerPane(KASTilmeldDeltagerWindow stage) {
-    	setGridLinesVisible(true);
+//    	setGridLinesVisible(true);
         this.stage = stage;
         setPadding(new Insets(20));
         setHgap(20);

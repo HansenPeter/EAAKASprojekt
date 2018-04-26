@@ -81,5 +81,15 @@ public class Storage {
         Udflugt egeskov = havOgHimmel.createUdflugt("Egeskov", LocalDate.of(2018, 05, 19), 75, false);
         Udflugt bytur = havOgHimmel.createUdflugt("Bytur, Odense", LocalDate.of(2018,05,18), 125, true);
         Udflugt hyggeligeStunder = hyggeligheden.createUdflugt("Hyggelige stunder", LocalDate.of(2018,05,18), 125, true);
+        Beboelse hoetelPhoenix = new Beboelse("Hoetel Phoenix", 700, 800);
+        application.model.Service phoenixBad = hoetelPhoenix.createService("Bad", "Dejligt bad", 200);
+        Beboelse denHvideSvane = new Beboelse("Den Hvide Svane", 1050, 1250);
+        application.model.Service phoenixWiFi = hoetelPhoenix.createService("Wi-Fi", "Det er lynlangsomt", 75);
+        havOgHimmel.addBeboelse(hoetelPhoenix);
+        application.model.Service svaneWiFi = denHvideSvane.createService("Wi-Fi", "50/10 forbindelse", 50);
+        havOgHimmel.addBeboelse(denHvideSvane);
+        
+        
+        
     }
 }
