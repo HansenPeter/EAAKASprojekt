@@ -3,6 +3,7 @@ package guifx;
 import java.util.ArrayList;
 
 import application.model.Konference;
+import application.model.Udflugt;
 import application.service.Service;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -20,6 +21,12 @@ import javafx.stage.Stage;
 public class KASTilmeldDeltagerWindow extends Stage {
 
     private ArrayList<Konference> konferencer;
+    private ArrayList<Udflugt> udflugter;
+    private Konference curKonference;
+    KASOvernatningPane overnatningPane;
+    KASLedsagerPane ledsagerPane;
+    KASKonferencePane konferencePane;
+    KASDeltagerPane deltagerPane;
 
     public KASTilmeldDeltagerWindow() {
         setTitle("Tilmeld Deltager");
@@ -54,21 +61,55 @@ public class KASTilmeldDeltagerWindow extends Stage {
         Tab tabOvernatning = new Tab("Overnatning");
         tabPane.getTabs().add(tabOvernatning);
 
-        KASKonferencePane konferencePane = new KASKonferencePane(konferencer);
+        konferencePane = new KASKonferencePane(this);
         tabKonference.setContent(konferencePane);
 
-        KASDeltagerPane deltagerPane = new KASDeltagerPane(this);
+        deltagerPane = new KASDeltagerPane(this);
         tabDeltager.setContent(deltagerPane);
 
-        KASLedsagerPane ledsagerPane = new KASLedsagerPane();
+        ledsagerPane = new KASLedsagerPane(this);
         tabLedsager.setContent(ledsagerPane);
 
-        KASOvernatningPane overnatningPane = new KASOvernatningPane();
+        overnatningPane = new KASOvernatningPane();
         tabOvernatning.setContent(overnatningPane);
 
+        
+        
     }
 
     void cancelAction() {
         hide();
     }
+    
+    public void updateUdflugterPane() {
+    	ledsagerPane.updateUdflugter();
+    }
+
+	public void setKonferencer(ArrayList<Konference> konferencer) {
+		this.konferencer = konferencer;
+	}
+
+	public void setUdflugter(ArrayList<Udflugt> udflugter) {
+		this.udflugter = udflugter;
+	}
+
+	public ArrayList<Konference> getKonferencer() {
+		return new ArrayList<>(konferencer);
+	}
+
+	public ArrayList<Udflugt> getUdflugter() {
+		return new ArrayList<>(udflugter);
+	}
+
+	public Konference getCurKonference() {
+		return curKonference;
+	}
+
+	public void setCurKonference(Konference curKonference) {
+		this.curKonference = curKonference;
+	}
+	
+	
+    
+    
 }

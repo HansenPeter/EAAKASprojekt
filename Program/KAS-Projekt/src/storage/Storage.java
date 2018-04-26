@@ -7,6 +7,7 @@ import application.model.Beboelse;
 import application.model.Deltager;
 import application.model.Konference;
 import application.model.Organisation;
+import application.model.Udflugt;
 import application.service.Service;
 
 public class Storage {
@@ -74,8 +75,11 @@ public class Storage {
     public static void initContent() {
         Organisation odense = Service.createOrganisation("Odense Universitet");
         Konference havOgHimmel = Service.createKonference(odense, LocalDate.of(2018, 05, 18),
-                LocalDate.of(2018, 05, 21), "Odense Universitet", "Hav og Himmel", "Miljø", 1500);
+                LocalDate.of(2018, 05, 20), "Odense Universitet", "Hav og Himmel", "Miljø", 1500);
         Konference hyggeligheden = Service.createKonference(odense, LocalDate.of(2018, 04, 30),
                 LocalDate.of(2018, 05, 10), "Smilets By", "Hyggeligheden", "Godt humør", 115);
+        Udflugt egeskov = havOgHimmel.createUdflugt("Egeskov", LocalDate.of(2018, 05, 19), 75, false);
+        Udflugt bytur = havOgHimmel.createUdflugt("Bytur, Odense", LocalDate.of(2018,05,18), 125, true);
+        Udflugt hyggeligeStunder = hyggeligheden.createUdflugt("Hyggelige stunder", LocalDate.of(2018,05,18), 125, true);
     }
 }
