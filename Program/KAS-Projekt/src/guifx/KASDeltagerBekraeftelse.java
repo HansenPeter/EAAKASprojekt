@@ -47,6 +47,16 @@ public class KASDeltagerBekraeftelse extends Stage {
 
         // To implement
         // lblLedsager og lblOvernatning
+        String ledsagerOvernatning = "";
+        if (Service.hasLedsager(tilmelding) && Service.hasOvernatning(tilmelding)) {
+            ledsagerOvernatning = "Med ledsager og overnatning.";
+        } else if (Service.hasLedsager(tilmelding)) {
+            ledsagerOvernatning = "Med ledsager.";
+        } else if (Service.hasOvernatning(tilmelding)) {
+            ledsagerOvernatning = "Med overnatning.";
+        }
+        lblLedsagerOgOvernatning = new Label(ledsagerOvernatning);
+        gridPane.add(lblLedsagerOgOvernatning, 0, 2);
 
         btnBekraeft = GUITools.stdButton("Bekraeft");
         gridPane.add(btnBekraeft, 0, 4);
@@ -58,7 +68,7 @@ public class KASDeltagerBekraeftelse extends Stage {
     }
 
     private void bekraeft() {
-        // TODO Auto-generated method stub
+        // TODO luk tilmeldingsvinduet også
         close();
     }
 

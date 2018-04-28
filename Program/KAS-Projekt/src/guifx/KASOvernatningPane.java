@@ -32,15 +32,15 @@ public class KASOvernatningPane extends GridPane {
     private ArrayList<application.model.Service> alServices;
     private HBox imgBox;
     private KASTilmeldDeltagerWindow stage;
-	private Konference curKonference;
-	private Beboelse curBeboelse;
-	private CheckBox chbOvernatning;
-	
-    
+    private Konference curKonference;
+    private Beboelse curBeboelse;
+    private CheckBox chbOvernatning;
+    private ArrayList<application.model.Service> selectedServices;
+
     public KASOvernatningPane(KASTilmeldDeltagerWindow stage) {
         this.stage = stage;
 
-//        setGridLinesVisible(true);
+        // setGridLinesVisible(true);
         setPadding(new Insets(20));
         setHgap(20);
         setVgap(10);
@@ -49,29 +49,29 @@ public class KASOvernatningPane extends GridPane {
         imgBox.getChildren().add(new ImageView(KASkas));
         imgBox.setAlignment(Pos.BASELINE_RIGHT);
         add(imgBox, 1, 0);
-        
+
         chbOvernatning = new CheckBox("Book overnatning");
-        add(chbOvernatning,0,0);
+        add(chbOvernatning, 0, 0);
         chbOvernatning.setOnAction(event -> toggleOvernatning(chbOvernatning.isSelected()));
-        
+
         vbBeboelse = new VBox();
 
         lblBeboelse = new Label("Beboelse");
         cbbBeboelse = new ComboBox<>();
         cbbBeboelse.setDisable(true);
-        
+
         cbbBeboelse.setOnAction(event -> updateControls());
-        
+
         curKonference = stage.getCurKonference();
-        
+
         this.alBeboelser = Service.getBeboelser(curKonference);
-        
+
         if (alBeboelser.isEmpty()) {
-        	cbbBeboelse.getItems().setAll();
+            cbbBeboelse.getItems().setAll();
 
         } else {
-        	
-        	cbbBeboelse.getItems().addAll(alBeboelser);
+
+            cbbBeboelse.getItems().addAll(alBeboelser);
         }
         cbbBeboelse.setPrefWidth(150);
 
@@ -83,16 +83,16 @@ public class KASOvernatningPane extends GridPane {
         lblServices = new Label("Services");
         lvwServices = new ListView<>();
         lvwServices.setDisable(true);
-        
+
         cbbBeboelse.getSelectionModel().select(0);
         curBeboelse = cbbBeboelse.getSelectionModel().getSelectedItem();
-        //TODO: FIX PLS
+        // TODO: FIX PLS
         if (curBeboelse != null) {
-        	alServices = Service.getServices(curBeboelse);  	
+            alServices = Service.getServices(curBeboelse);
         } else {
-        	alServices = new ArrayList<>();
+            alServices = new ArrayList<>();
         }
-        
+
         vbServices.getChildren().add(lblServices);
         vbServices.getChildren().add(lvwServices);
         add(vbServices, 1, 1);
@@ -101,49 +101,69 @@ public class KASOvernatningPane extends GridPane {
         alTest.add("Test");
         alTest.add("Test2");
         lvwServices.getItems().addAll(alServices);
-        lvwServices.setCellFactory(CheckBoxListCell.forListView(new Callback<application.model.Service, ObservableValue<Boolean>>() {
+        selectedServices = new ArrayList<>();
+        lvwServices.setCellFactory(
+                CheckBoxListCell.forListView(new Callback<application.model.Service, ObservableValue<Boolean>>() {
 
-            @Override
-            public ObservableValue<Boolean> call(application.model.Service service) {
-                BooleanProperty observable = new SimpleBooleanProperty();
-                return observable;
-            }
-        }));
-        
-        
+                    @Override
+                    public ObservableValue<Boolean> call(application.model.Service service) {
+                        BooleanProperty observable = new SimpleBooleanProperty();
+                        observable.addListener((obs, wasSelected, isNowSelected) -> {
+                            if (isNowSelected) {
+                                selectedServices.add(service);
+                            } else if (wasSelected) {
+                                selectedServices.remove(service);
+                            }
+                        });
+                        return observable;
+                    }
+                }));
+
     }
 
     public void updateControls() {
-        
+
         this.curKonference = stage.getCurKonference();
         this.alBeboelser = Service.getBeboelser(curKonference);
         this.curBeboelse = cbbBeboelse.getSelectionModel().getSelectedItem();
-        if(curBeboelse != null) {
-        	this.alServices = Service.getServices(curBeboelse);
+        if (curBeboelse != null) {
+            this.alServices = Service.getServices(curBeboelse);
         } else {
-        	this.alServices = new ArrayList<>();
+            this.alServices = new ArrayList<>();
         }
-        
+
         this.lvwServices.getItems().setAll(alServices);
-        
-        
-        //KASOvernatning.updateControls()
-        //KASLedsager.updateControls()
+
+        // KASOvernatning.updateControls()
+        // KASLedsager.updateControls()
     }
-    
+
     public void updateBeboelser() {
-    	this.curKonference = stage.getCurKonference();
-    	
+        this.curKonference = stage.getCurKonference();
+
         this.alBeboelser = Service.getBeboelser(curKonference);
-        
+
         cbbBeboelse.getItems().setAll(alBeboelser);
-        
+
         this.lvwServices.getItems().setAll(alServices);
     }
-    
+
     private void toggleOvernatning(Boolean isSelected) {
-    	cbbBeboelse.setDisable(!isSelected);
-    	lvwServices.setDisable(!isSelected);
+        cbbBeboelse.setDisable(!isSelected);
+        lvwServices.setDisable(!isSelected);
+    }
+
+    public Boolean hasOvernatning() {
+        return chbOvernatning.isSelected();
+    }
+
+    public Beboelse getBeboelse() {
+        return curBeboelse;
+    }
+
+    public ArrayList<application.model.Service> getServices() {
+
+        return new ArrayList<>(selectedServices);
     }
 
 }

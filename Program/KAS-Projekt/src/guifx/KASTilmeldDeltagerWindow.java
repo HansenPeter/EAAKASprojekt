@@ -3,6 +3,7 @@ package guifx;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import application.model.Booking;
 import application.model.Deltager;
 import application.model.Konference;
 import application.model.Ledsager;
@@ -139,6 +140,10 @@ public class KASTilmeldDeltagerWindow extends Stage {
             for (Udflugt u : ledsagerPane.getUdflugter()) {
                 ledsager.addUdflugt(u);
             }
+        }
+        if (overnatningPane.hasOvernatning()) {
+            Booking booking = Service.createBooking(tilmelding, overnatningPane.getServices(),
+                    overnatningPane.getBeboelse());
         }
 
         KASDeltagerBekraeftelse bekraeftelsesWindow = new KASDeltagerBekraeftelse(tilmelding);
