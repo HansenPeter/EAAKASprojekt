@@ -122,7 +122,6 @@ public class KASKonferencePane extends GridPane {
         dpAfrejsedato.setMaxWidth(150);
 
         lblAnkomstdato = new Label("Ankomstdato");
-        txfAnkomstdato = GUITools.stdTextField();
 
         vbAnkomstdato.getChildren().add(lblAnkomstdato);
         vbAnkomstdato.getChildren().add(dpAnkomstdato);
@@ -131,7 +130,6 @@ public class KASKonferencePane extends GridPane {
         vbAfrejsedato = new VBox();
 
         lblAfrejsedato = new Label("Afrejsedato");
-        txfAfrejsedato = GUITools.stdTextField();
 
         vbAfrejsedato.getChildren().add(lblAfrejsedato);
         vbAfrejsedato.getChildren().add(dpAfrejsedato);
