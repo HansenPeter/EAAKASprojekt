@@ -39,8 +39,6 @@ public class KASKonferencePane extends GridPane {
 
     private DatePicker dpAnkomstdato, dpAfrejsedato;
 
-    private TextField txfAnkomstdato, txfAfrejsedato;
-
     public KASKonferencePane(KASTilmeldDeltagerWindow stage) {
 
         this.stage = stage;
@@ -55,7 +53,7 @@ public class KASKonferencePane extends GridPane {
         add(imgBox, 2, 0);
 
         chbForedragsholder = new CheckBox("Er foredragsholder");
-        add(chbForedragsholder, 1, 0);
+        add(chbForedragsholder, 0, 0);
 
         konferencer = stage.getKonferencer();
 

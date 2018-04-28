@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import application.model.Deltager;
 import application.model.Konference;
+import application.model.Ledsager;
 import application.model.Tilmelding;
 import application.model.Udflugt;
 import application.service.Service;
@@ -132,6 +133,14 @@ public class KASTilmeldDeltagerWindow extends Stage {
         Boolean isForedragsholder = konferencePane.isForedragsholder();
         Tilmelding tilmelding = Service.createTilmelding(deltager, konference, ankomstdato, afrejsedato,
                 isForedragsholder);
+        Ledsager ledsager;
+        if (ledsagerPane.hasLedsager()) {
+            ledsager = tilmelding.createLedsager(ledsagerPane.getLedsagernavn());
+            for (Udflugt u : ledsagerPane.getUdflugter()) {
+                ledsager.addUdflugt(u);
+            }
+        }
+
         KASDeltagerBekraeftelse bekraeftelsesWindow = new KASDeltagerBekraeftelse(tilmelding);
         bekraeftelsesWindow.showAndWait();
     }

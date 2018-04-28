@@ -93,7 +93,7 @@ public class KASDeltagerPane extends GridPane {
         vbFirmaTlfnr.getChildren().add(txfFirmaTlfnr);
         add(vbFirmaTlfnr, 1, 3);
 
-        btnFindTlfnr.setOnAction(event -> printTest());
+        // btnFindTlfnr.setOnAction(event -> printTest());
     }
 
     public Deltager getDeltagerInformation() {
@@ -105,17 +105,11 @@ public class KASDeltagerPane extends GridPane {
 
         Deltager deltager = Service.createDeltager(deltagerNavn, deltagerAdresse, deltagerBy, deltagerLand,
                 deltagerTlfnr);
-        System.out.println(deltager.toString());
         return deltager;
     }
 
     public String getTest() {
         return txfDeltagernavn.getText();
-    }
-
-    public void printTest() {
-        System.out.println(txfDeltagernavn == null);
-        System.out.println(txfDeltagernavn.getText());
     }
 
 }
