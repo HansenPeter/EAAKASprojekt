@@ -13,15 +13,15 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.TextAlignment;
 
 public class KASDeltagerPane extends GridPane {
-    Image KASkas = GUITools.kasKas();
-    KASTilmeldDeltagerWindow stage;
-    TextField txfDeltagernavn, txfTlfnr, txfAdresse,txfBy,txfLand, txfFirma,txfFirmaTlfnr;
+    private Image KASkas = GUITools.kasKas();
+    private KASTilmeldDeltagerWindow stage;
+    private TextField txfDeltagernavn, txfTlfnr, txfAdresse, txfBy, txfLand, txfFirma, txfFirmaTlfnr;
+    private Label lblDeltagernavn, lblTlfnr, lblAdresse, lblBy, lblLand, lblFirma, lblFirmaTlfnr;
 
     public KASDeltagerPane(KASTilmeldDeltagerWindow stage) {
-//    	setGridLinesVisible(true);
+        // setGridLinesVisible(true);
         this.stage = stage;
         setPadding(new Insets(20));
         setHgap(20);
@@ -32,16 +32,17 @@ public class KASDeltagerPane extends GridPane {
         imgBox.setAlignment(Pos.BASELINE_RIGHT);
         add(imgBox, 2, 0);
 
-        Label lblDeltagernavn = new Label("Deltagernavn*");
-        TextField txfDeltagernavn = GUITools.stdTextField();
+        lblDeltagernavn = new Label("Deltagernavn*");
+        txfDeltagernavn = GUITools.stdTextField();
+
         VBox vbDeltagernavn = new VBox();
 
         vbDeltagernavn.getChildren().add(lblDeltagernavn);
         vbDeltagernavn.getChildren().add(txfDeltagernavn);
         add(vbDeltagernavn, 0, 1);
 
-        Label lblTlfnr = new Label("Tlf.nr.*");
-        TextField txfTlfnr = GUITools.stdTextField();
+        lblTlfnr = new Label("Tlf.nr.*");
+        txfTlfnr = GUITools.stdTextField();
         VBox vbTlfnr = new VBox();
 
         vbTlfnr.getChildren().add(lblTlfnr);
@@ -52,63 +53,69 @@ public class KASDeltagerPane extends GridPane {
         GridPane.setValignment(btnFindTlfnr, VPos.BOTTOM);
         add(btnFindTlfnr, 2, 1);
 
-        Label lblAdresse = new Label("Adresse*");
-        TextField txfAdresse = GUITools.stdTextField();
+        lblAdresse = new Label("Adresse*");
+        txfAdresse = GUITools.stdTextField();
         VBox vbAdresse = new VBox();
 
         vbAdresse.getChildren().add(lblAdresse);
         vbAdresse.getChildren().add(txfAdresse);
         add(vbAdresse, 0, 2);
 
-        Label lblBy = new Label("By*");
-        TextField txfBy = GUITools.stdTextField();
+        lblBy = new Label("By*");
+        txfBy = GUITools.stdTextField();
         VBox vbBy = new VBox();
 
         vbBy.getChildren().add(lblBy);
         vbBy.getChildren().add(txfBy);
         add(vbBy, 1, 2);
 
-        Label lblLand = new Label("Land*");
-        TextField txfLand = GUITools.stdTextField();
+        lblLand = new Label("Land*");
+        txfLand = GUITools.stdTextField();
         VBox vbLand = new VBox();
 
         vbLand.getChildren().add(lblLand);
         vbLand.getChildren().add(txfLand);
         add(vbLand, 2, 2);
 
-        Label lblFirma = new Label("Firma");
-        TextField txfFirma = GUITools.stdTextField();
+        lblFirma = new Label("Firma");
+        txfFirma = GUITools.stdTextField();
         VBox vbFirma = new VBox();
 
         vbFirma.getChildren().add(lblFirma);
         vbFirma.getChildren().add(txfFirma);
         add(vbFirma, 0, 3);
 
-        Label lblFirmaTlfnr = new Label("Firma Tlf.nr.");
-        TextField txfFirmaTlfnr = GUITools.stdTextField();
+        lblFirmaTlfnr = new Label("Firma Tlf.nr.");
+        txfFirmaTlfnr = GUITools.stdTextField();
         VBox vbFirmaTlfnr = new VBox();
 
         vbFirmaTlfnr.getChildren().add(lblFirmaTlfnr);
         vbFirmaTlfnr.getChildren().add(txfFirmaTlfnr);
         add(vbFirmaTlfnr, 1, 3);
- 
+
+        btnFindTlfnr.setOnAction(event -> printTest());
     }
-    
+
     public Deltager getDeltagerInformation() {
-    	String deltagerNavn = txfDeltagernavn.getText();
-    	String deltagerAdresse = txfAdresse.getText();
-    	String deltagerBy = txfBy.getText();
-    	String deltagerLand = txfLand.getText();
-    	String deltagerTlfnr = txfTlfnr.getText();
-    	
-    	Deltager deltager = Service.createDeltager(deltagerNavn, deltagerAdresse, deltagerBy, deltagerLand, deltagerTlfnr);
-    	System.out.println(deltager.toString());
-    	return deltager;
+        String deltagerNavn = txfDeltagernavn.getText();
+        String deltagerAdresse = txfAdresse.getText();
+        String deltagerBy = txfBy.getText();
+        String deltagerLand = txfLand.getText();
+        String deltagerTlfnr = txfTlfnr.getText();
+
+        Deltager deltager = Service.createDeltager(deltagerNavn, deltagerAdresse, deltagerBy, deltagerLand,
+                deltagerTlfnr);
+        System.out.println(deltager.toString());
+        return deltager;
     }
-    
+
     public String getTest() {
-    	return txfDeltagernavn.getText();
+        return txfDeltagernavn.getText();
     }
-    
+
+    public void printTest() {
+        System.out.println(txfDeltagernavn == null);
+        System.out.println(txfDeltagernavn.getText());
+    }
 
 }

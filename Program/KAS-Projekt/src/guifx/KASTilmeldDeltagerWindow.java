@@ -53,17 +53,17 @@ public class KASTilmeldDeltagerWindow extends Stage {
         GridPane gridPane = new GridPane();
         initTabPane(tabPane);
         pane.setCenter(tabPane);
-        
+
         btnOK = GUITools.stdButton("OK");
-        
+
         btnAnnuller = GUITools.stdButton("Annuller");
-        
+
         pane.setBottom(gridPane);
         gridPane.setHgap(20);
         gridPane.setPadding(new Insets(20));
         gridPane.add(btnOK, 0, 0);
         gridPane.add(btnAnnuller, 1, 0);
-        
+
         btnAnnuller.setOnAction(event -> cancelAction());
         btnOK.setOnAction(event -> okAction());
 
@@ -92,55 +92,54 @@ public class KASTilmeldDeltagerWindow extends Stage {
 
         overnatningPane = new KASOvernatningPane(this);
         tabOvernatning.setContent(overnatningPane);
-        
+
     }
 
     void cancelAction() {
-        this.close();
+        close();
     }
-    
+
     public void updateCurKonference() {
-    	ledsagerPane.updateUdflugter();
-    	overnatningPane.updateBeboelser();
+        ledsagerPane.updateUdflugter();
+        overnatningPane.updateBeboelser();
     }
 
-	public void setKonferencer(ArrayList<Konference> konferencer) {
-		this.konferencer = konferencer;
-	}
+    public void setKonferencer(ArrayList<Konference> konferencer) {
+        this.konferencer = konferencer;
+    }
 
-	public void setUdflugter(ArrayList<Udflugt> udflugter) {
-		this.udflugter = udflugter;
-	}
+    public void setUdflugter(ArrayList<Udflugt> udflugter) {
+        this.udflugter = udflugter;
+    }
 
-	public ArrayList<Konference> getKonferencer() {
-		return new ArrayList<>(konferencer);
-	}
+    public ArrayList<Konference> getKonferencer() {
+        return new ArrayList<>(konferencer);
+    }
 
-	public ArrayList<Udflugt> getUdflugter() {
-		return new ArrayList<>(udflugter);
-	}
+    public ArrayList<Udflugt> getUdflugter() {
+        return new ArrayList<>(udflugter);
+    }
 
-	public Konference getCurKonference() {
-		return curKonference;
-	}
+    public Konference getCurKonference() {
+        return curKonference;
+    }
 
-	public void setCurKonference(Konference curKonference) {
-		this.curKonference = curKonference;
-	}
+    public void setCurKonference(Konference curKonference) {
+        this.curKonference = curKonference;
+    }
 
     private void okAction() {
-    	System.out.println(deltagerPane.getTest());
-//    	Deltager deltager = deltagerPane.getDeltagerInformation();
-//    	Konference konference = konferencePane.getKonference();
-//    	LocalDate ankomstdato = konferencePane.getAnkomstdato();
-//    	LocalDate afrejsedato = konferencePane.getAnkomstdato();
-//    	Boolean isForedragsholder = konferencePane.isForedragsholder();
-//    	Tilmelding tilmelding = Service.createTilmelding(deltager, konference, ankomstdato, afrejsedato, isForedragsholder);
-//    	KASDeltagerBekraeftelse bekraeftelsesWindow = new KASDeltagerBekraeftelse(tilmelding);
-//    	bekraeftelsesWindow.showAndWait();
+        close();
+        // Deltager deltager = deltagerPane.getDeltagerInformation();
+        // Konference konference = konferencePane.getKonference();
+        // LocalDate ankomstdato = konferencePane.getAnkomstdato();
+        // LocalDate afrejsedato = konferencePane.getAnkomstdato();
+        // Boolean isForedragsholder = konferencePane.isForedragsholder();
+        // Tilmelding tilmelding = Service.createTilmelding(deltager, konference,
+        // ankomstdato, afrejsedato, isForedragsholder);
+        // KASDeltagerBekraeftelse bekraeftelsesWindow = new
+        // KASDeltagerBekraeftelse(tilmelding);
+        // bekraeftelsesWindow.showAndWait();
     }
-	
-	
-    
-    
+
 }
