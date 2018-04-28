@@ -42,10 +42,10 @@ public class KASKonferencePane extends GridPane {
     private TextField txfAnkomstdato, txfAfrejsedato;
 
     public KASKonferencePane(KASTilmeldDeltagerWindow stage) {
-    	
-    	this.stage = stage;
 
-//        setGridLinesVisible(true);
+        this.stage = stage;
+
+        // setGridLinesVisible(true);
         setPadding(new Insets(20));
         setHgap(20);
         setVgap(10);
@@ -53,20 +53,20 @@ public class KASKonferencePane extends GridPane {
         imgBox.getChildren().add(new ImageView(KASkas));
         imgBox.setAlignment(Pos.BASELINE_RIGHT);
         add(imgBox, 2, 0);
-        
+
         chbForedragsholder = new CheckBox("Er foredragsholder");
-        add(chbForedragsholder,1,0);
-        
+        add(chbForedragsholder, 1, 0);
+
         konferencer = stage.getKonferencer();
-        
+
         cbbKonference = new ComboBox<>();
         if (!konferencer.isEmpty()) {
-        	cbbKonference.getItems().addAll(konferencer);
-        	cbbKonference.getSelectionModel().select(0);        	
+            cbbKonference.getItems().addAll(konferencer);
+            cbbKonference.getSelectionModel().select(0);
         } else {
-        	cbbKonference.getItems().setAll((Konference) null);
+            cbbKonference.getItems().setAll((Konference) null);
         }
-        
+
         GridPane.setValignment(cbbKonference, VPos.BOTTOM);
         add(cbbKonference, 2, 1);
 
@@ -144,39 +144,36 @@ public class KASKonferencePane extends GridPane {
     private void updateControls() {
         this.stage.setCurKonference(cbbKonference.getSelectionModel().getSelectedItem());
         this.curKonference = stage.getCurKonference();
-        
+
         startDato = Service.getKonferenceStartdato(curKonference);
         slutDato = Service.getKonferenceSlutdato(curKonference);
         this.dpAfrejsedato.setValue(slutDato);
         this.dpAnkomstdato.setValue(startDato);
-//        dpAfrejsedato.setDayCellFactory(cfAfrejsedato);
-//        dpAnkomstdato.setDayCellFactory(cfAnkomstdato);
-        //KASOvernatning.updateControls()
-        //KASLedsager.updateControls()
+        // dpAfrejsedato.setDayCellFactory(cfAfrejsedato);
+        // dpAnkomstdato.setDayCellFactory(cfAnkomstdato);
+        // KASOvernatning.updateControls()
+        // KASLedsager.updateControls()
     }
-    
+
     private void updateCurKonference() {
-    	updateControls();
-    	stage.updateCurKonference();
+        updateControls();
+        stage.updateCurKonference();
     }
-    
+
     public Konference getKonference() {
-    	return curKonference;
+        return curKonference;
     }
-    
+
     public LocalDate getAnkomstdato() {
-    	return dpAnkomstdato.getDayCellFactory().call(dpAnkomstdato).getItem();
+        return dpAnkomstdato.getValue();
     }
 
     public LocalDate getAfrejsedato() {
-    	return dpAfrejsedato.getDayCellFactory().call(dpAfrejsedato).getItem();
+        return dpAfrejsedato.getValue();
     }
-    
+
     public Boolean isForedragsholder() {
-    	return chbForedragsholder.isSelected();
+        return chbForedragsholder.isSelected();
     }
-    
-    
-    
-    
+
 }

@@ -11,16 +11,11 @@ import application.service.Service;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import javafx.scene.control.TextField;
 import javafx.scene.control.TabPane.TabClosingPolicy;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 public class KASTilmeldDeltagerWindow extends Stage {
@@ -129,17 +124,16 @@ public class KASTilmeldDeltagerWindow extends Stage {
     }
 
     private void okAction() {
-        close();
-        // Deltager deltager = deltagerPane.getDeltagerInformation();
-        // Konference konference = konferencePane.getKonference();
-        // LocalDate ankomstdato = konferencePane.getAnkomstdato();
-        // LocalDate afrejsedato = konferencePane.getAnkomstdato();
-        // Boolean isForedragsholder = konferencePane.isForedragsholder();
-        // Tilmelding tilmelding = Service.createTilmelding(deltager, konference,
-        // ankomstdato, afrejsedato, isForedragsholder);
-        // KASDeltagerBekraeftelse bekraeftelsesWindow = new
-        // KASDeltagerBekraeftelse(tilmelding);
-        // bekraeftelsesWindow.showAndWait();
+        // close();
+        Deltager deltager = deltagerPane.getDeltagerInformation();
+        Konference konference = konferencePane.getKonference();
+        LocalDate ankomstdato = konferencePane.getAnkomstdato();
+        LocalDate afrejsedato = konferencePane.getAfrejsedato();
+        Boolean isForedragsholder = konferencePane.isForedragsholder();
+        Tilmelding tilmelding = Service.createTilmelding(deltager, konference, ankomstdato, afrejsedato,
+                isForedragsholder);
+        KASDeltagerBekraeftelse bekraeftelsesWindow = new KASDeltagerBekraeftelse(tilmelding);
+        bekraeftelsesWindow.showAndWait();
     }
 
 }
