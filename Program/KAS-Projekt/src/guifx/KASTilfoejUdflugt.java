@@ -18,7 +18,6 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -38,10 +37,9 @@ public class KASTilfoejUdflugt extends Stage {
 		this.setScene(scene);
 	}
 
-	private Image KASkassen = new Image("File:resources/Kaskas.png");
 	private Label lblNavn, lblPris, lblDato, lblUdflugt;
 	private Button btnOK, btnCancel;
-	private TextField txfNavn, txfDato, txfPris;
+	private TextField txfNavn, txfPris;
 	private DatePicker dpDato;
 	private ListView<Udflugt> lvwUdflugt;
 	private CheckBox frokost;

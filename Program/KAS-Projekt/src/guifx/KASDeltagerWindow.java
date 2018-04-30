@@ -19,7 +19,6 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class KASDeltagerWindow extends Stage {
-	private Konference konference;
 	private Label lblListenavn;
 	private ImageView kaskas = new ImageView(GUITools.kasKas());
 	private ListView<String> lvwListe;
@@ -28,10 +27,7 @@ public class KASDeltagerWindow extends Stage {
 	private Button btnClose;
 	private GridPane gridPane = new GridPane();
 
-	public KASDeltagerWindow(Konference konference) {
-		// TODO Auto-generated constructor stub
-		this.konference = konference;
-		
+	public KASDeltagerWindow(Konference konference) {		
 		Scene scene = new Scene(gridPane);
 		this.setScene(scene);
 	}
@@ -60,7 +56,7 @@ public class KASDeltagerWindow extends Stage {
 			}
 		}
 		
-		this.listenavn = "Gaester paa " + beboelse.getName();;
+		this.listenavn = "Gaester paa " + beboelse.getName();
 		this.initContent(gridPane);
 		this.setTitle(beboelse.getName());
 	}

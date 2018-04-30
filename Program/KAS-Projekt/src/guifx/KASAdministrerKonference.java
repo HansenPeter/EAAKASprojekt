@@ -1,7 +1,5 @@
 package guifx;
 
-import java.util.ArrayList;
-
 import application.model.Beboelse;
 import application.model.Konference;
 import application.model.Udflugt;
@@ -31,7 +29,6 @@ public class KASAdministrerKonference extends Stage {
 	private ImageView KASKas;
 
 	public KASAdministrerKonference(Konference konference) {
-		// TODO Auto-generated constructor stub
 		this.konference = konference;
 		setTitle("Administrer Konference");
 		GridPane gridPane = new GridPane();
@@ -43,7 +40,6 @@ public class KASAdministrerKonference extends Stage {
 	}
 
 	private void initContent(GridPane gridPane) {
-
 		gridPane.setPadding(new Insets(10));
 		gridPane.setHgap(10);
 		gridPane.setVgap(10);
@@ -112,7 +108,6 @@ public class KASAdministrerKonference extends Stage {
 	}
 
 	private void showGaester() {
-		// TODO Auto-generated method stub
 		if (lvwBeboelser.getSelectionModel().getSelectedItem() != null) {
 			KASDeltagerWindow window = new KASDeltagerWindow(konference,
 					lvwBeboelser.getSelectionModel().getSelectedItem());
@@ -122,7 +117,6 @@ public class KASAdministrerKonference extends Stage {
 	}
 
 	private void showLedsagere() {
-		// TODO Auto-generated method stub
 		if (lvwUdflugter.getSelectionModel().getSelectedItem() != null) {
 			KASDeltagerWindow window = new KASDeltagerWindow(konference,
 					lvwUdflugter.getSelectionModel().getSelectedItem());

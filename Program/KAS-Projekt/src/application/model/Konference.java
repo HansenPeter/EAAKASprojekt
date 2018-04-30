@@ -1,3 +1,5 @@
+//Gruppe 1: Madeleine, Peter og Torben
+
 package application.model;
 
 import java.time.LocalDate;

@@ -2,8 +2,6 @@ package guifx;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-
-import application.model.Booking;
 import application.model.Deltager;
 import application.model.Konference;
 import application.model.Ledsager;
@@ -80,7 +78,7 @@ public class KASTilmeldDeltagerWindow extends Stage {
         konferencePane = new KASKonferencePane(this);
         tabKonference.setContent(konferencePane);
 
-        deltagerPane = new KASDeltagerPane(this);
+        deltagerPane = new KASDeltagerPane();
         tabDeltager.setContent(deltagerPane);
 
         ledsagerPane = new KASLedsagerPane(konferencePane);
@@ -136,7 +134,7 @@ public class KASTilmeldDeltagerWindow extends Stage {
 	            }
 	        }
 	        if (overnatningPane.hasOvernatning()) {
-	            Booking booking = Service.createBooking(tilmelding, overnatningPane.getServices(),
+	            Service.createBooking(tilmelding, overnatningPane.getServices(),
 	                    overnatningPane.getBeboelse());
 	        }
 	

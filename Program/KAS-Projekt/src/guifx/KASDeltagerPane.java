@@ -20,13 +20,10 @@ import javafx.scene.layout.VBox;
 
 public class KASDeltagerPane extends GridPane {
     private Image KASkas = GUITools.kasKas();
-    private KASTilmeldDeltagerWindow stage;
     private TextField txfDeltagernavn, txfTlfnr, txfAdresse, txfBy, txfLand, txfFirma, txfFirmaTlfnr;
     private Label lblDeltagernavn, lblTlfnr, lblAdresse, lblBy, lblLand, lblFirma, lblFirmaTlfnr;
 
-    public KASDeltagerPane(KASTilmeldDeltagerWindow stage) {
-        // setGridLinesVisible(true);
-        this.stage = stage;
+    public KASDeltagerPane() {
         setPadding(new Insets(20));
         setHgap(20);
         setVgap(10);
