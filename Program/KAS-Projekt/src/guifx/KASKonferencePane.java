@@ -56,20 +56,19 @@ public class KASKonferencePane extends GridPane {
 
         konferencer = stage.getKonferencer();
 
+        //opretter en combobox med alle tilgaengelige konferencer
         cbbKonference = new ComboBox<>();
         cbbKonference.setMinWidth(190);
-        
-   
         cbbKonference.getItems().addAll(konferencer);
         cbbKonference.getSelectionModel().select(0);
-        
         GridPane.setValignment(cbbKonference, VPos.BOTTOM);
         add(cbbKonference, 2, 1);
 
+        //laver et event naar en ny konference bliver valgt
         cbbKonference.setOnAction(event -> updateCurKonference());
-        cbbKonference.setMaxWidth(150);
-        this.stage.setCurKonference(cbbKonference.getSelectionModel().getSelectedItem());
-        this.curKonference = stage.getCurKonference();
+        //initialiserer den valgte konference, saa vi har et udgangspunkt
+        this.curKonference = cbbKonference.getSelectionModel().getSelectedItem();
+//        updateCurKonference();
 
         vbAnkomstdato = new VBox();
 
@@ -78,6 +77,7 @@ public class KASKonferencePane extends GridPane {
         dpAnkomstdato = GUITools.stdDatePicker(startDato);
         dpAfrejsedato = GUITools.stdDatePicker(slutDato);
 
+        //opretter callbacks til vores datepickers, saa vi ikke kan vaelge datoer udenfor den valgte konference.
         cbAfrejsedato = new Callback<DatePicker, DateCell>() {
             @Override
             public DateCell call(final DatePicker datePicker) {
@@ -85,11 +85,9 @@ public class KASKonferencePane extends GridPane {
                     @Override
                     public void updateItem(LocalDate item, boolean empty) {
                         super.updateItem(item, empty);
-
                         if (item.isBefore(dpAnkomstdato.getValue()) || item.isAfter(slutDato)) {
                             setDisable(true);
                         }
-
                     }
                 };
             }
@@ -102,16 +100,15 @@ public class KASKonferencePane extends GridPane {
                     @Override
                     public void updateItem(LocalDate item, boolean empty) {
                         super.updateItem(item, empty);
-
                         if (item.isAfter(dpAfrejsedato.getValue()) || item.isBefore(startDato)) {
                             setDisable(true);
                         }
-
                     }
                 };
             }
         };
 
+        //bruger Callbacks til at oprette cellerne i vores datepicker, saa nogle af dem bliver utilgaengelige.
         dpAfrejsedato.setDayCellFactory(cbAfrejsedato);
         dpAnkomstdato.setDayCellFactory(cbAnkomstdato);
         dpAfrejsedato.setEditable(false);
@@ -134,21 +131,21 @@ public class KASKonferencePane extends GridPane {
     }
 
     private void updateControls() {
-        this.stage.setCurKonference(cbbKonference.getSelectionModel().getSelectedItem());
-        this.curKonference = stage.getCurKonference();
+    	//opdaterer konferencen i det bagvedliggende vindue, saa den kan hentes til de andre panes
+        this.curKonference = cbbKonference.getSelectionModel().getSelectedItem();
 
+        //nye datoer vaelges til datepickers efter den nye konference
         startDato = Service.getKonferenceStartdato(curKonference);
         slutDato = Service.getKonferenceSlutdato(curKonference);
         this.dpAfrejsedato.setValue(slutDato);
         this.dpAnkomstdato.setValue(startDato);
-        // dpAfrejsedato.setDayCellFactory(cfAfrejsedato);
-        // dpAnkomstdato.setDayCellFactory(cfAnkomstdato);
-        // KASOvernatning.updateControls()
-        // KASLedsager.updateControls()
     }
 
     private void updateCurKonference() {
-        updateControls();
+        //opdaterer konferencePane efter den nye konference
+    	updateControls();
+        
+    	//opdaterer de andre panes, saa de afspejler den nye valgte konference
         stage.updateCurKonference();
     }
 

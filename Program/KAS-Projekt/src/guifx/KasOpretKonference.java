@@ -42,8 +42,8 @@ public class KasOpretKonference extends Stage {
 	private Callback<DatePicker, DateCell> cbStartDato, cbSlutDato;
 
 	public void initContent(GridPane gridPane) {
-		gridPane.setPadding(new Insets(10));
-		gridPane.setHgap(10);
+		gridPane.setPadding(new Insets(20));
+		gridPane.setHgap(20);
 		gridPane.setVgap(10);
 
 		lblNavn = new Label("Navn");
@@ -61,6 +61,7 @@ public class KasOpretKonference extends Stage {
 		gridPane.add(dpStartDato, 0, 3);
 		gridPane.add(dpSlutDato, 1, 3);
 		
+		//opretter et callback til datepickeren, som fjerner forbudte datoer
 		cbStartDato = new Callback<DatePicker, DateCell>() {
 			@Override
 			public DateCell call(final DatePicker datePicker) {
@@ -77,6 +78,7 @@ public class KasOpretKonference extends Stage {
 			}
 		};
 
+		//opretter et callback til datepickeren, som fjerner forbudte datoer
 		cbSlutDato = new Callback<DatePicker, DateCell>() {
 			@Override
 			public DateCell call(final DatePicker datePicker) {
@@ -93,6 +95,7 @@ public class KasOpretKonference extends Stage {
 			}
 		};
 		
+		//anvender vores callbacks så kun tilladte datoer kan vaelges i datepickerne
 		dpStartDato.setDayCellFactory(cbStartDato);
 		dpSlutDato.setDayCellFactory(cbSlutDato);
 		
@@ -130,13 +133,11 @@ public class KasOpretKonference extends Stage {
 		btnCancel = GUITools.stdButton("Annuller");
 		btnCancel.setOnAction(event -> close());
 		gridPane.add(btnCancel, 1, 7);
-
 	}
 
 	private void createKonference() {
 		Alert alert;
 		try {
-
 			double pris = Double.parseDouble(txfPris.getText());
 			Service.createKonference(organisation, dpStartDato.getValue(), dpSlutDato.getValue(), txfLokation.getText(),
 					txfNavn.getText(), txfTema.getText(), pris);

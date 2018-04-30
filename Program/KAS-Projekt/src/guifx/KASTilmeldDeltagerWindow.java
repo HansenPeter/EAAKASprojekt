@@ -24,7 +24,7 @@ public class KASTilmeldDeltagerWindow extends Stage {
 
     private ArrayList<Konference> konferencer;
     private ArrayList<Udflugt> udflugter;
-    private Konference curKonference;
+//    private Konference curKonference;
     KASOvernatningPane overnatningPane;
     KASLedsagerPane ledsagerPane;
     KASKonferencePane konferencePane;
@@ -84,10 +84,10 @@ public class KASTilmeldDeltagerWindow extends Stage {
         deltagerPane = new KASDeltagerPane(this);
         tabDeltager.setContent(deltagerPane);
 
-        ledsagerPane = new KASLedsagerPane(this);
+        ledsagerPane = new KASLedsagerPane(konferencePane);
         tabLedsager.setContent(ledsagerPane);
 
-        overnatningPane = new KASOvernatningPane(this);
+        overnatningPane = new KASOvernatningPane(konferencePane);
         tabOvernatning.setContent(overnatningPane);
 
     }
@@ -96,6 +96,7 @@ public class KASTilmeldDeltagerWindow extends Stage {
         close();
     }
 
+    // tager den valgte konference fra konferencePane og opdaterer lister og comboboxes, saa de afspejler valget.
     public void updateCurKonference() {
         ledsagerPane.updateUdflugter();
         overnatningPane.updateBeboelser();
@@ -117,13 +118,13 @@ public class KASTilmeldDeltagerWindow extends Stage {
         return new ArrayList<>(udflugter);
     }
 
-    public Konference getCurKonference() {
-        return curKonference;
-    }
+//    public Konference getCurKonference() {
+//        return curKonference;
+//    }
 
-    public void setCurKonference(Konference curKonference) {
-        this.curKonference = curKonference;
-    }
+//    public void setCurKonference(Konference curKonference) {
+//        this.curKonference = curKonference;
+//    }
 
     private void okAction() {
     	//Tjekker om de noedvendige felter er udfylt - viser en alert hvis ikke

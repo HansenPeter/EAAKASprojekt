@@ -51,13 +51,22 @@ public class Service {
 
 	public static ArrayList<String> getDeltagere(Konference konference) {
 		ArrayList<String> deltagere = new ArrayList<String>();
+		
 		for (Tilmelding tilmelding : konference.getTilmeldinger()) {
+			String deltagerStreng = "";
 			if (tilmelding.getLedsager() != null) {
-				deltagere.add(tilmelding.getDeltager().getNavn() + " & " + tilmelding.getLedsager().getNavn());
+				deltagerStreng += tilmelding.getDeltager().getNavn() + " & " + tilmelding.getLedsager().getNavn();
 			} else {
-				deltagere.add(tilmelding.getDeltager().getNavn());
+				deltagerStreng += tilmelding.getDeltager().getNavn();
 			}
+			
+			if(tilmelding.getDeltager().getFirmanavn() != null) {
+				deltagerStreng += ", Firma: " + tilmelding.getDeltager().getFirmanavn() + ".";
+			}
+				
+			deltagere.add(deltagerStreng);
 		}
+		
 		return deltagere;
 	}
 

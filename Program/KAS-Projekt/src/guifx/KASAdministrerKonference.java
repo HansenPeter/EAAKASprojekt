@@ -43,15 +43,12 @@ public class KASAdministrerKonference extends Stage {
 	}
 
 	private void initContent(GridPane gridPane) {
-		// TODO Auto-generated method stub
+
 		gridPane.setPadding(new Insets(10));
 		gridPane.setHgap(10);
 		gridPane.setVgap(10);
 
 		KASKas = new ImageView(GUITools.kasKas());
-		// Downscale hvis den er for stor
-		KASKas.setScaleX(2);
-		KASKas.setScaleY(2);
 		GridPane.setHalignment(KASKas, HPos.CENTER);
 		GridPane.setValignment(KASKas, VPos.CENTER);
 		gridPane.add(KASKas, 1, 0, 1, 2);
@@ -96,7 +93,9 @@ public class KASAdministrerKonference extends Stage {
 			@Override
 			public void changed(ObservableValue<? extends Beboelse> observable, Beboelse oldBeboelse,
 					Beboelse newBeboelse) {
-					lvwServices.getItems().setAll(Service.getServices(newBeboelse));					
+					if(newBeboelse != null) {
+						lvwServices.getItems().setAll(Service.getServices(newBeboelse));											
+					}
 			}
 
 		});
@@ -149,8 +148,6 @@ public class KASAdministrerKonference extends Stage {
 	public void addServiceAction() {
 		KASTilfoejService serviceWindow = new KASTilfoejService(lvwBeboelser.getSelectionModel().getSelectedItem());
 		serviceWindow.showAndWait();
-//		if(Service.getServices(lvwBeboelser.getSelectionModel()))
-		lvwBeboelser.getSelectionModel().select(0);
 		lvwServices.getItems().setAll(Service.getServices(lvwBeboelser.getSelectionModel().getSelectedItem()));
 	}
 }

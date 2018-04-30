@@ -113,10 +113,18 @@ public class KASDeltagerPane extends GridPane {
         String deltagerAdresse = txfAdresse.getText();
         String deltagerBy = txfBy.getText();
         String deltagerLand = txfLand.getText();
+        Deltager deltager;
+        if(!txfFirma.getText().isEmpty() && !txfFirmaTlfnr.getText().isEmpty()) {
+        	String deltagerFirma = txfFirma.getText();
+        	String deltagerFirmaTlfnr = txfFirmaTlfnr.getText();
+        	deltager = Service.createDeltager(deltagerNavn, deltagerFirma, deltagerAdresse, deltagerBy, deltagerLand, deltagerTlfnr, deltagerFirmaTlfnr);
+        } else {
+    		deltager = Service.createDeltager(deltagerNavn, deltagerAdresse, deltagerBy, deltagerLand,deltagerTlfnr);        	
+        }
         
-        Deltager deltager = Service.createDeltager(deltagerNavn, deltagerAdresse, deltagerBy, deltagerLand,
-                deltagerTlfnr);
         return deltager;
+        
+                
     }
     
    public Boolean isRequiredFilled() {
@@ -149,7 +157,6 @@ public class KASDeltagerPane extends GridPane {
 	   }
 	   
 	   String missingFieldString = "";
-	   
 	  
 	   for (String s : missingFields) {
 		   missingFieldString += s + ", ";

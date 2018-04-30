@@ -3,7 +3,6 @@ package guifx;
 import java.util.ArrayList;
 
 import application.model.Konference;
-import application.model.Ledsager;
 import application.model.Udflugt;
 import application.service.Service;
 import javafx.geometry.Insets;
@@ -34,18 +33,18 @@ public class KASLedsagerPane extends GridPane {
     private ArrayList<Udflugt> alUdflugter;
     private ArrayList<Udflugt> selectedUdflugter;
     private Konference curKonference;
-    private KASTilmeldDeltagerWindow stage;
+    private KASKonferencePane konferencePane;
     private CheckBox chbLedsager;
     private Callback<Udflugt, ObservableValue<Boolean>> cb;
 
-    public KASLedsagerPane(KASTilmeldDeltagerWindow stage) {
+    public KASLedsagerPane(KASKonferencePane konferencePane) {
 
         // setGridLinesVisible(true);
         setPadding(new Insets(20));
         setHgap(20);
         setVgap(10);
 
-        this.stage = stage;
+        this.konferencePane = konferencePane;
 
         imgBox = new HBox();
         imgBox.getChildren().add(new ImageView(KASkas));
@@ -76,7 +75,7 @@ public class KASLedsagerPane extends GridPane {
         vbUdflugter.getChildren().add(lvwUdflugter);
         add(vbUdflugter, 1, 1);
 
-        curKonference = stage.getCurKonference();
+        curKonference = konferencePane.getKonference();
         alUdflugter = Service.getUdflugter(curKonference);
         lvwUdflugter.getItems().addAll(alUdflugter);
         selectedUdflugter = new ArrayList<>();
@@ -96,10 +95,6 @@ public class KASLedsagerPane extends GridPane {
         };
         lvwUdflugter.setCellFactory(CheckBoxListCell.forListView(cb));
 
-        // lvwUdflugter.setCellFactory(CheckBoxListCell.forListView(Boolean ->
-        // SimpleBooleanProperty()));
-        // ;
-
     }
 
     private void toggleLedsager(boolean isSelected) {
@@ -109,7 +104,7 @@ public class KASLedsagerPane extends GridPane {
     }
 
     public void updateUdflugter() {
-        this.curKonference = stage.getCurKonference();
+        this.curKonference = konferencePane.getKonference();
         this.alUdflugter = Service.getUdflugter(curKonference);
 
         this.lvwUdflugter.getItems().setAll(alUdflugter);

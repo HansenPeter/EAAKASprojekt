@@ -70,6 +70,7 @@ public class KASDeltagerWindow extends Stage {
 		alListeindhold.addAll(Service.getDeltagere(konference));
 		this.listenavn = "Deltagere paa konferencen " + konference.getNavn();
 		this.initContent(gridPane);
+		this.setTitle(konference.getNavn());
 	}
 
 	private void initContent(GridPane gridPane) {

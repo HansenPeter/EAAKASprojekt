@@ -31,14 +31,14 @@ public class KASOvernatningPane extends GridPane {
     private ListView<application.model.Service> lvwServices;
     private ArrayList<application.model.Service> alServices;
     private HBox imgBox;
-    private KASTilmeldDeltagerWindow stage;
+    private KASKonferencePane konferencePane;
     private Konference curKonference;
     private Beboelse curBeboelse;
     private CheckBox chbOvernatning;
     private ArrayList<application.model.Service> selectedServices;
 
-    public KASOvernatningPane(KASTilmeldDeltagerWindow stage) {
-        this.stage = stage;
+    public KASOvernatningPane(KASKonferencePane konferencePane) {
+        this.konferencePane = konferencePane;
 
         setPadding(new Insets(20));
         setHgap(20);
@@ -64,7 +64,7 @@ public class KASOvernatningPane extends GridPane {
         cbbBeboelse.setOnAction(event -> updateControls());
         
 
-        curKonference = stage.getCurKonference();
+        curKonference = konferencePane.getKonference();
 
         this.alBeboelser = Service.getBeboelser(curKonference);
 
@@ -127,7 +127,7 @@ public class KASOvernatningPane extends GridPane {
 
     public void updateControls() {
 
-        this.curKonference = stage.getCurKonference();
+        this.curKonference = konferencePane.getKonference();
         this.alBeboelser = Service.getBeboelser(curKonference);
         this.curBeboelse = cbbBeboelse.getSelectionModel().getSelectedItem();
         if (curBeboelse != null) {
@@ -143,7 +143,7 @@ public class KASOvernatningPane extends GridPane {
     }
 
     public void updateBeboelser() {
-        this.curKonference = stage.getCurKonference();
+        this.curKonference = konferencePane.getKonference();
 
         this.alBeboelser = Service.getBeboelser(curKonference);
 
