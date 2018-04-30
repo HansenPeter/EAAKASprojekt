@@ -34,7 +34,7 @@ public class Udflugt {
 	}
 
 	public ArrayList<Ledsager> getLedsagere() {
-		return new ArrayList<Ledsager>();
+		return new ArrayList<Ledsager>(ledsagere);
 	}
 
 	public void setPris(double pris) {
@@ -64,5 +64,14 @@ public class Udflugt {
 	@Override
 	public String toString() {
 		return this.name;
+	}
+	
+
+	public boolean equals(Udflugt udflugt) {
+		if(this.name.equals(udflugt.getName()) && this.dato.isEqual(udflugt.getDato())) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }

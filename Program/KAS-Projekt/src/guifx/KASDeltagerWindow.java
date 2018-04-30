@@ -23,7 +23,7 @@ public class KASDeltagerWindow extends Stage {
 	private Label lblListenavn;
 	private ImageView kaskas = new ImageView(GUITools.kasKas());
 	private ListView<String> lvwListe;
-	private ArrayList<String> alListeindhold;
+	private ArrayList<String> alListeindhold = new ArrayList<>();
 	private String listenavn;
 	private Button btnClose;
 	private GridPane gridPane = new GridPane();
@@ -37,6 +37,7 @@ public class KASDeltagerWindow extends Stage {
 	}
 	public KASDeltagerWindow(Konference konference, Udflugt udflugt) {
 		this(konference);
+		System.out.println(Service.getUdflugtTilmeldte(udflugt));
 		for(Ledsager ledsager : Service.getUdflugtTilmeldte(udflugt)) {
 			alListeindhold.add(ledsager.getNavn());
 		}
@@ -48,11 +49,13 @@ public class KASDeltagerWindow extends Stage {
 	public KASDeltagerWindow(Konference konference, Beboelse beboelse) {
 		this(konference);
 		for (Tilmelding tilmelding : konference.getTilmeldinger()) {
-			if(tilmelding.getBooking().getBeboelse() == beboelse) {
-				if(tilmelding.getLedsager() != null) {
-					alListeindhold.add(tilmelding.getDeltager().getNavn() + " & " + tilmelding.getLedsager().getNavn());					 
-				} else {
-				 alListeindhold.add(tilmelding.getDeltager().getNavn());
+			if (tilmelding.getBooking() != null) {
+				if(tilmelding.getBooking().getBeboelse() == beboelse) {
+					if(tilmelding.getLedsager() != null) {
+						alListeindhold.add(tilmelding.getDeltager().getNavn() + " & " + tilmelding.getLedsager().getNavn());					 
+					} else {
+					 alListeindhold.add(tilmelding.getDeltager().getNavn());
+					}
 				}
 			}
 		}

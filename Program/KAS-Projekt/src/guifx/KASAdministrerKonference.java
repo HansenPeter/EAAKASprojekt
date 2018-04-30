@@ -59,7 +59,8 @@ public class KASAdministrerKonference extends Stage {
 
 		lvwUdflugter = new ListView<>();
 		lvwUdflugter.setMaxHeight(100);
-		lvwUdflugter.getItems().addAll(Service.getUdflugter(konference));
+		lvwUdflugter.getItems().setAll(Service.getUdflugter(konference));
+		
 		gridPane.add(lvwUdflugter, 0, 1);
 
 		btnAddUdflugt = GUITools.stdButton("Tilfoej Udflugt");
@@ -68,7 +69,7 @@ public class KASAdministrerKonference extends Stage {
 
 		btnShowLedsagere = GUITools.stdButton("Vis Ledsagere");
 		gridPane.add(btnShowLedsagere, 0, 3);
-		btnShowLedsagere.setOnAction(event -> showDeltagere());
+		btnShowLedsagere.setOnAction(event -> showLedsagere());
 
 		lblBeboelser = new Label("Beboelser");
 		gridPane.add(lblBeboelser, 0, 4);
@@ -82,9 +83,9 @@ public class KASAdministrerKonference extends Stage {
 		gridPane.add(btnAddBeboelse, 0, 6);
 		btnAddBeboelse.setOnAction(event -> addBeboelseAction()); // MADE
 
-		btnShowDeltagere = GUITools.stdButton("Vis Deltagere");
+		btnShowDeltagere = GUITools.stdButton("Vis Gaester");
 		gridPane.add(btnShowDeltagere, 0, 7);
-		btnShowDeltagere.setOnAction(event -> showLedsagere());
+		btnShowDeltagere.setOnAction(event -> showGaester());
 
 		lvwServices = new ListView<>();
 		lvwServices.setMaxHeight(100);
@@ -109,7 +110,7 @@ public class KASAdministrerKonference extends Stage {
 
 	}
 
-	private void showDeltagere() {
+	private void showGaester() {
 		// TODO Auto-generated method stub
 		if (lvwBeboelser.getSelectionModel().getSelectedItem() != null) {
 			KASDeltagerWindow window = new KASDeltagerWindow(konference,

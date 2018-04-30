@@ -6,7 +6,9 @@ import java.util.ArrayList;
 import application.model.Beboelse;
 import application.model.Deltager;
 import application.model.Konference;
+import application.model.Ledsager;
 import application.model.Organisation;
+import application.model.Tilmelding;
 import application.model.Udflugt;
 import application.service.Service;
 
@@ -95,7 +97,17 @@ public class Storage {
 		havOgHimmel.addBeboelse(denHvideSvane);
 		
 		Deltager d1 = Service.createDeltager("Peter", "Baunehoej", "Esbjerg", "Sverige", "888");
-		Deltager d2 = Service.createDeltager("Peter2", "Baunehoej", "Esbjerg", "Sverige", "777");
+		Tilmelding tilmelding1 = Service.createTilmelding(d1, havOgHimmel, LocalDate.now(), LocalDate.now().plusDays(2), true);
+		Ledsager jens = tilmelding1.createLedsager("Jens");
+		jens.addUdflugt(bytur);
+		jens.addUdflugt(egeskov);
+		tilmelding1.createBooking(denHvideSvane);
+		
+		Deltager d2 = Service.createDeltager("Camina", "Paa en lille oe", "Meget taet ved Aekvator", "Sverige", "777");
+		Tilmelding tilmelding2 = Service.createTilmelding(d2, hyggeligheden, LocalDate.now(), LocalDate.now().plusDays(1), false);
+		Ledsager carlos = tilmelding2.createLedsager("Carlos");
+		carlos.addUdflugt(hyggeligeStunder);
+		
 		
 
 	}
