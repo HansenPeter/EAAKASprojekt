@@ -1,5 +1,7 @@
 package guifx;
 
+import java.util.ArrayList;
+
 import application.model.Beboelse;
 import application.model.Konference;
 import application.model.Udflugt;
@@ -94,7 +96,7 @@ public class KASAdministrerKonference extends Stage {
 			@Override
 			public void changed(ObservableValue<? extends Beboelse> observable, Beboelse oldBeboelse,
 					Beboelse newBeboelse) {
-				lvwServices.getItems().setAll(Service.getServices(lvwBeboelser.getSelectionModel().getSelectedItem()));
+					lvwServices.getItems().setAll(Service.getServices(newBeboelse));					
 			}
 
 		});
@@ -147,6 +149,8 @@ public class KASAdministrerKonference extends Stage {
 	public void addServiceAction() {
 		KASTilfoejService serviceWindow = new KASTilfoejService(lvwBeboelser.getSelectionModel().getSelectedItem());
 		serviceWindow.showAndWait();
+//		if(Service.getServices(lvwBeboelser.getSelectionModel()))
+		lvwBeboelser.getSelectionModel().select(0);
 		lvwServices.getItems().setAll(Service.getServices(lvwBeboelser.getSelectionModel().getSelectedItem()));
 	}
 }

@@ -57,9 +57,10 @@ public class KasOpretKonference extends Stage {
 		gridPane.add(lblStartDato, 0, 2);
 
 		dpStartDato = GUITools.stdDatePicker(LocalDate.now());
-		
+		dpSlutDato = GUITools.stdDatePicker(LocalDate.now().plusDays(1));
 		gridPane.add(dpStartDato, 0, 3);
-
+		gridPane.add(dpSlutDato, 1, 3);
+		
 		cbStartDato = new Callback<DatePicker, DateCell>() {
 			@Override
 			public DateCell call(final DatePicker datePicker) {
@@ -68,7 +69,7 @@ public class KasOpretKonference extends Stage {
 					@Override
 					public void updateItem(LocalDate item, boolean empty) {
 						super.updateItem(item, empty);
-						if (item.isAfter(dpSlutDato.getValue())) {
+						if (item.isAfter(dpSlutDato.getValue()) || item.isBefore(LocalDate.now())) {
 							setDisable(true);
 						}
 					}
@@ -76,6 +77,25 @@ public class KasOpretKonference extends Stage {
 			}
 		};
 
+		cbSlutDato = new Callback<DatePicker, DateCell>() {
+			@Override
+			public DateCell call(final DatePicker datePicker) {
+				// TODO Auto-generated method stub
+				return new DateCell() {
+					@Override
+					public void updateItem(LocalDate item, boolean empty) {
+						super.updateItem(item, empty);
+						if (item.isBefore(dpSlutDato.getValue())) {
+							setDisable(true);
+						}
+					}
+				};
+			}
+		};
+		
+		dpStartDato.setDayCellFactory(cbStartDato);
+		dpSlutDato.setDayCellFactory(cbSlutDato);
+		
 		lblTema = new Label("Tema");
 		gridPane.add(lblTema, 0, 4);
 
@@ -97,29 +117,9 @@ public class KasOpretKonference extends Stage {
 		GridPane.setHalignment(KASkas, HPos.RIGHT);
 		gridPane.add(KASkas, 1, 0, 1, 2);
 
-		lblSlutDato = new Label("SlutDato");
+		lblSlutDato = new Label("Slutdato");
 		GridPane.setValignment(lblSlutDato, VPos.BOTTOM);
 		gridPane.add(lblSlutDato, 1, 2);
-
-		dpSlutDato = GUITools.stdDatePicker(LocalDate.now().plusDays(1));
-		
-		gridPane.add(dpSlutDato, 1, 3);
-
-		cbSlutDato = new Callback<DatePicker, DateCell>() {
-			@Override
-			public DateCell call(final DatePicker datePicker) {
-				// TODO Auto-generated method stub
-				return new DateCell() {
-					@Override
-					public void updateItem(LocalDate item, boolean empty) {
-						super.updateItem(item, empty);
-						if (item.isBefore(dpSlutDato.getValue())) {
-							setDisable(true);
-						}
-					}
-				};
-			}
-		};
 
 		lblLokation = new Label("Lokation");
 		gridPane.add(lblLokation, 1, 4);
@@ -144,7 +144,7 @@ public class KasOpretKonference extends Stage {
 		} catch (NumberFormatException e) {
 			// TODO: handle exception
 			alert = new Alert(AlertType.INFORMATION);
-			alert.setContentText("Prisen skal være et tal");
+			alert.setContentText("Prisen skal vaere et tal");
 			alert.showAndWait();
 
 		}

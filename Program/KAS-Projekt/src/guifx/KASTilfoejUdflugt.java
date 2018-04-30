@@ -13,6 +13,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -21,6 +22,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 public class KASTilfoejUdflugt extends Stage {
 
@@ -36,13 +38,14 @@ public class KASTilfoejUdflugt extends Stage {
 		this.setScene(scene);
 	}
 
-	Image KASkassen = new Image("File:resources/Kaskas.png");
-	Label lblNavn, lblPris, lblDato, lblUdflugt;
-	Button btnOK, btnCancel;
-	TextField txfNavn, txfDato, txfPris;
-	DatePicker dpDato;
-	ListView<Udflugt> lvwUdflugt;
-	CheckBox frokost;
+	private Image KASkassen = new Image("File:resources/Kaskas.png");
+	private Label lblNavn, lblPris, lblDato, lblUdflugt;
+	private Button btnOK, btnCancel;
+	private TextField txfNavn, txfDato, txfPris;
+	private DatePicker dpDato;
+	private ListView<Udflugt> lvwUdflugt;
+	private CheckBox frokost;
+	private Callback<DatePicker, DateCell> cbKonferencePeriode;
 
 	public void initContent(GridPane gridPane) {
 		gridPane.setPadding(new Insets(10));
@@ -72,7 +75,26 @@ public class KASTilfoejUdflugt extends Stage {
 		lblDato = new Label("Dato");
 		gridPane.add(lblDato, 1, 2);
 
-		dpDato = new DatePicker(LocalDate.now());
+		dpDato = new DatePicker(konference.getStartDato());
+		
+		cbKonferencePeriode = new Callback<DatePicker, DateCell>() {
+            @Override
+            public DateCell call(final DatePicker datePicker) {
+                return new DateCell() {
+                    @Override
+                    public void updateItem(LocalDate item, boolean empty) {
+                        super.updateItem(item, empty);
+
+                        if (item.isAfter(konference.getSlutDato()) || item.isBefore(konference.getStartDato())) {
+                            setDisable(true);
+                        }
+
+                    }
+                };
+            }
+        };
+        
+        dpDato.setDayCellFactory(cbKonferencePeriode);
 		dpDato.setMaxWidth(150);
 		gridPane.add(dpDato, 1, 3);
 
@@ -107,7 +129,8 @@ public class KASTilfoejUdflugt extends Stage {
 		} catch (NumberFormatException e) {
 			// TODO: handle exception
 			alert = new Alert(AlertType.ERROR);
-			alert.setContentText("Pris skal være et tal");
+			alert.setContentText("Pris skal vaere et tal");
+			alert.showAndWait();
 		}
 	}
 }

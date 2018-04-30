@@ -104,6 +104,7 @@ public class KASDeltagerPane extends GridPane {
         
         String deltagerTlfnr = txfTlfnr.getText().replaceAll(" ", "");
 
+        //Hvis deltageren findes i forvejen, bruges det gamle objekt
         if(Service.getDeltager(deltagerTlfnr) != null) {
         	return Service.getDeltager(deltagerTlfnr);
         }

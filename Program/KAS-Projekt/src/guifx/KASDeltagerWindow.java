@@ -35,9 +35,9 @@ public class KASDeltagerWindow extends Stage {
 		Scene scene = new Scene(gridPane);
 		this.setScene(scene);
 	}
+	
 	public KASDeltagerWindow(Konference konference, Udflugt udflugt) {
 		this(konference);
-		System.out.println(Service.getUdflugtTilmeldte(udflugt));
 		for(Ledsager ledsager : Service.getUdflugtTilmeldte(udflugt)) {
 			alListeindhold.add(ledsager.getNavn());
 		}

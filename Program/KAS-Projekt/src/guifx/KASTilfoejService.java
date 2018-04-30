@@ -94,7 +94,8 @@ public class KASTilfoejService extends Stage {
 			this.close();
 		} catch (NumberFormatException e) {
 			alert = new Alert(AlertType.ERROR);
-			alert.setContentText("pris skal være et tal");
+			alert.setContentText("pris skal vaere et tal");
+			alert.showAndWait();
 		}
 	}
 

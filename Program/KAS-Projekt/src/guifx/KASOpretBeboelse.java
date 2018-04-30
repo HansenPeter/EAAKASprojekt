@@ -62,7 +62,7 @@ public class KASOpretBeboelse extends Stage {
 		btnOK = GUITools.stdButton("Okay");
 		gridPane.add(btnOK, 0, 4);
 
-		btnCancel = GUITools.stdButton("Annullér");
+		btnCancel = GUITools.stdButton("Annuller");
 		gridPane.add(btnCancel, 1, 4);
 
 		btnOK.setOnAction(event -> this.okAction());
@@ -82,14 +82,14 @@ public class KASOpretBeboelse extends Stage {
 				Service.addBeboelseToKonference(konference, txfNavn.getText(), enkelt, dobbelt);
 				this.close();
 			} catch (NumberFormatException e) {
-				Alert a1 = new Alert(Alert.AlertType.INFORMATION);
+				Alert a1 = new Alert(Alert.AlertType.ERROR);
 				a1.setTitle("Error");
 				a1.setContentText("Udfyld venligst priser med tal");
 				a1.showAndWait();
 
 			}
 		} else {
-			Alert nameAlert = new Alert(Alert.AlertType.INFORMATION);
+			Alert nameAlert = new Alert(Alert.AlertType.ERROR);
 			nameAlert.setTitle("Error");
 			nameAlert.setContentText("Udfyld venligst navn");
 		}

@@ -21,7 +21,7 @@ import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 
 public class KASKonferencePane extends GridPane {
-    Image KASkas = GUITools.kasKas();
+	private Image KASkas = GUITools.kasKas();
     private Label lblAnkomstdato, lblAfrejsedato;
     private ComboBox<Konference> cbbKonference;
     private VBox vbAnkomstdato, vbAfrejsedato;
@@ -31,10 +31,10 @@ public class KASKonferencePane extends GridPane {
     private Konference curKonference;
     private ArrayList<Konference> konferencer;
 
-    private Callback<DatePicker, DateCell> cfAnkomstdato;
-    private Callback<DatePicker, DateCell> cfAfrejsedato;
-    LocalDate startDato;
-    LocalDate slutDato;
+    private Callback<DatePicker, DateCell> cbAnkomstdato;
+    private Callback<DatePicker, DateCell> cbAfrejsedato;
+    private LocalDate startDato;
+    private LocalDate slutDato;
 
     private DatePicker dpAnkomstdato, dpAfrejsedato;
 
@@ -78,7 +78,7 @@ public class KASKonferencePane extends GridPane {
         dpAnkomstdato = GUITools.stdDatePicker(startDato);
         dpAfrejsedato = GUITools.stdDatePicker(slutDato);
 
-        cfAfrejsedato = new Callback<DatePicker, DateCell>() {
+        cbAfrejsedato = new Callback<DatePicker, DateCell>() {
             @Override
             public DateCell call(final DatePicker datePicker) {
                 return new DateCell() {
@@ -95,7 +95,7 @@ public class KASKonferencePane extends GridPane {
             }
         };
 
-        cfAnkomstdato = new Callback<DatePicker, DateCell>() {
+        cbAnkomstdato = new Callback<DatePicker, DateCell>() {
             @Override
             public DateCell call(final DatePicker datePicker) {
                 return new DateCell() {
@@ -112,8 +112,8 @@ public class KASKonferencePane extends GridPane {
             }
         };
 
-        dpAfrejsedato.setDayCellFactory(cfAfrejsedato);
-        dpAnkomstdato.setDayCellFactory(cfAnkomstdato);
+        dpAfrejsedato.setDayCellFactory(cbAfrejsedato);
+        dpAnkomstdato.setDayCellFactory(cbAnkomstdato);
         dpAfrejsedato.setEditable(false);
         dpAnkomstdato.setEditable(false);
 
