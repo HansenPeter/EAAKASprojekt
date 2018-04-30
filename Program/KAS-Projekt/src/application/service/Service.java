@@ -158,6 +158,11 @@ public class Service {
 	public static ArrayList<Udflugt> getUdflugter(Konference konference) {
 		return new ArrayList<>(konference.getUdflugter());
 	}
+	
+	public static ArrayList<Ledsager> getUdflugtTilmeldte(Udflugt udflugt){
+		return new ArrayList<>(udflugt.getLedsagere());
+		
+	}
 
 	// --------------------------------------------------------------------------------------------------------------------
 

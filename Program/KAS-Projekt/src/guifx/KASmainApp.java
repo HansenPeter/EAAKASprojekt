@@ -130,11 +130,6 @@ public class KASmainApp extends Application {
 			alert.setContentText("Vaelg venligst en konference fra listen");
 			alert.showAndWait();
 		}
-		System.out.println(curKonference.getTilmeldinger());
-		for (Konference k : Service.getKonferencer()) {
-			System.out.println(k.getTilmeldinger());
-		}
-		
 		
 	}
 }

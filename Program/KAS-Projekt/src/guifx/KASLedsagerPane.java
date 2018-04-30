@@ -108,21 +108,10 @@ public class KASLedsagerPane extends GridPane {
 
     }
 
-    public void updateControls() {
-
-        this.curKonference = stage.getCurKonference();
-        this.alUdflugter = Service.getUdflugter(curKonference);
-        this.selectedUdflugter.clear();
-        this.lvwUdflugter.getItems().addAll(alUdflugter);
-
-        // KASOvernatning.updateControls()
-        // KASLedsager.updateControls()
-    }
-
     public void updateUdflugter() {
         this.curKonference = stage.getCurKonference();
         this.alUdflugter = Service.getUdflugter(curKonference);
-        this.selectedUdflugter.clear();
+
         this.lvwUdflugter.getItems().setAll(alUdflugter);
     }
 

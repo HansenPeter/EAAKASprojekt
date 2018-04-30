@@ -1,6 +1,12 @@
 package guifx;
 
+import java.util.ArrayList;
+
+import application.model.Beboelse;
 import application.model.Konference;
+import application.model.Ledsager;
+import application.model.Tilmelding;
+import application.model.Udflugt;
 import application.service.Service;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
@@ -14,20 +20,53 @@ import javafx.stage.Stage;
 
 public class KASDeltagerWindow extends Stage {
 	private Konference konference;
-	private Label lblDeltagere;
+	private Label lblListenavn;
 	private ImageView kaskas = new ImageView(GUITools.kasKas());
-	private ListView<String> lvwDeltagere;
+	private ListView<String> lvwListe;
+	private ArrayList<String> alListeindhold;
+	private String listenavn;
 	private Button btnClose;
+	private GridPane gridPane = new GridPane();
 
 	public KASDeltagerWindow(Konference konference) {
 		// TODO Auto-generated constructor stub
 		this.konference = konference;
-		this.setTitle("Deltagere");
-		GridPane gridPane = new GridPane();
-		this.initContent(gridPane);
+		
 		Scene scene = new Scene(gridPane);
 		this.setScene(scene);
-
+	}
+	public KASDeltagerWindow(Konference konference, Udflugt udflugt) {
+		this(konference);
+		for(Ledsager ledsager : Service.getUdflugtTilmeldte(udflugt)) {
+			alListeindhold.add(ledsager.getNavn());
+		}
+		this.listenavn = "Tilmeldte paa " + udflugt.getName();
+		this.initContent(gridPane);
+		this.setTitle(udflugt.getName());
+	}
+	
+	public KASDeltagerWindow(Konference konference, Beboelse beboelse) {
+		this(konference);
+		for (Tilmelding tilmelding : konference.getTilmeldinger()) {
+			if(tilmelding.getBooking().getBeboelse() == beboelse) {
+				if(tilmelding.getLedsager() != null) {
+					alListeindhold.add(tilmelding.getDeltager().getNavn() + " & " + tilmelding.getLedsager().getNavn());					 
+				} else {
+				 alListeindhold.add(tilmelding.getDeltager().getNavn());
+				}
+			}
+		}
+		
+		this.listenavn = "Gaester paa " + beboelse.getName();;
+		this.initContent(gridPane);
+		this.setTitle(beboelse.getName());
+	}
+	
+	public KASDeltagerWindow(Konference konference, boolean isDeltagerListe) {
+		this(konference);
+		alListeindhold.addAll(Service.getDeltagere(konference));
+		this.listenavn = "Deltagere paa konferencen " + konference.getNavn();
+		this.initContent(gridPane);
 	}
 
 	private void initContent(GridPane gridPane) {
@@ -39,12 +78,12 @@ public class KASDeltagerWindow extends Stage {
 		gridPane.add(kaskas, 1, 0, 2, 1);
 		GridPane.setHalignment(kaskas, HPos.RIGHT);
 
-		lblDeltagere = new Label("Deltagere");
-		gridPane.add(lblDeltagere, 0, 0);
+		lblListenavn = new Label(listenavn);
+		gridPane.add(lblListenavn, 0, 0);
 
-		lvwDeltagere = new ListView<>();
-		lvwDeltagere.getItems().setAll(Service.getDeltagere(konference));
-		gridPane.add(lvwDeltagere, 0, 1);
+		lvwListe = new ListView<>();
+		lvwListe.getItems().setAll(alListeindhold);
+		gridPane.add(lvwListe, 0, 1);
 
 		btnClose = GUITools.stdButton("Close");
 		gridPane.add(btnClose, 1, 2);

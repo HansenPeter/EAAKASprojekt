@@ -33,7 +33,7 @@ public class Udflugt {
 		return this.name;
 	}
 
-	public ArrayList<Ledsager> getLedsager() {
+	public ArrayList<Ledsager> getLedsagere() {
 		return new ArrayList<Ledsager>();
 	}
 
