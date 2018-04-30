@@ -49,10 +49,14 @@ public class Service {
 		return null;
 	}
 
-	public static ArrayList<Deltager> getDeltagere(Konference konference) {
-		ArrayList<Deltager> deltagere = new ArrayList<Deltager>();
+	public static ArrayList<String> getDeltagere(Konference konference) {
+		ArrayList<String> deltagere = new ArrayList<String>();
 		for (Tilmelding tilmelding : konference.getTilmeldinger()) {
-			deltagere.add(tilmelding.getDeltager());
+			if (tilmelding.getLedsager() != null) {
+				deltagere.add(tilmelding.getDeltager().getNavn() + " & " + tilmelding.getLedsager().getNavn());
+			} else {
+				deltagere.add(tilmelding.getDeltager().getNavn());
+			}
 		}
 		return deltagere;
 	}

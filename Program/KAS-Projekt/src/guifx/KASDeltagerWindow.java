@@ -1,6 +1,5 @@
 package guifx;
 
-import application.model.Deltager;
 import application.model.Konference;
 import application.service.Service;
 import javafx.geometry.HPos;
@@ -17,7 +16,7 @@ public class KASDeltagerWindow extends Stage {
 	private Konference konference;
 	private Label lblDeltagere;
 	private ImageView kaskas = new ImageView(GUITools.kasKas());
-	private ListView<Deltager> lvwDeltagere;
+	private ListView<String> lvwDeltagere;
 	private Button btnClose;
 
 	public KASDeltagerWindow(Konference konference) {
@@ -43,7 +42,7 @@ public class KASDeltagerWindow extends Stage {
 		lblDeltagere = new Label("Deltagere");
 		gridPane.add(lblDeltagere, 0, 0);
 
-		lvwDeltagere = new ListView<Deltager>();
+		lvwDeltagere = new ListView<>();
 		lvwDeltagere.getItems().setAll(Service.getDeltagere(konference));
 		gridPane.add(lvwDeltagere, 0, 1);
 
