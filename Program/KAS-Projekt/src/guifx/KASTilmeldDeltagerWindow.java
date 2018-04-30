@@ -126,28 +126,34 @@ public class KASTilmeldDeltagerWindow extends Stage {
     }
 
     private void okAction() {
-        // close();
-        Deltager deltager = deltagerPane.getDeltagerInformation();
-        Konference konference = konferencePane.getKonference();
-        LocalDate ankomstdato = konferencePane.getAnkomstdato();
-        LocalDate afrejsedato = konferencePane.getAfrejsedato();
-        Boolean isForedragsholder = konferencePane.isForedragsholder();
-        Tilmelding tilmelding = Service.createTilmelding(deltager, konference, ankomstdato, afrejsedato,
-                isForedragsholder);
-        Ledsager ledsager;
-        if (ledsagerPane.hasLedsager()) {
-            ledsager = tilmelding.createLedsager(ledsagerPane.getLedsagernavn());
-            for (Udflugt u : ledsagerPane.getUdflugter()) {
-                ledsager.addUdflugt(u);
-            }
-        }
-        if (overnatningPane.hasOvernatning()) {
-            Booking booking = Service.createBooking(tilmelding, overnatningPane.getServices(),
-                    overnatningPane.getBeboelse());
-        }
-
-        KASDeltagerBekraeftelse bekraeftelsesWindow = new KASDeltagerBekraeftelse(tilmelding);
-        bekraeftelsesWindow.showAndWait();
+    	if(deltagerPane.isRequiredFilled()) {
+    		
+	        Deltager deltager = deltagerPane.getDeltagerInformation();
+	        Konference konference = konferencePane.getKonference();
+	        LocalDate ankomstdato = konferencePane.getAnkomstdato();
+	        LocalDate afrejsedato = konferencePane.getAfrejsedato();
+	        Boolean isForedragsholder = konferencePane.isForedragsholder();
+	        Tilmelding tilmelding = Service.createTilmelding(deltager, konference, ankomstdato, afrejsedato,
+	                isForedragsholder);
+	        Ledsager ledsager;
+	        if (ledsagerPane.hasLedsager()) {
+	            ledsager = tilmelding.createLedsager(ledsagerPane.getLedsagernavn());
+	            for (Udflugt u : ledsagerPane.getUdflugter()) {
+	                ledsager.addUdflugt(u);
+	            }
+	        }
+	        if (overnatningPane.hasOvernatning()) {
+	            Booking booking = Service.createBooking(tilmelding, overnatningPane.getServices(),
+	                    overnatningPane.getBeboelse());
+	        }
+	
+	        KASDeltagerBekraeftelse bekraeftelsesWindow = new KASDeltagerBekraeftelse(tilmelding, this);
+	        bekraeftelsesWindow.showAndWait();
+    	} else {
+    		
+    	}
     }
+    
+    
 
 }

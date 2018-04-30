@@ -10,8 +10,15 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class KASDeltagerBekraeftelse extends Stage {
-
-    public KASDeltagerBekraeftelse(Tilmelding tilmelding) {
+		Tilmelding tilmelding;
+	    Label lblTilmeldt, lblDeltagernavn, lblTilKonference, lblKonferenceNavn, lblLedsagerOgOvernatning, lblSamletPris,
+	            lblPrisen;
+	    Button btnBekraeft, btnAnnuller;
+	    KASTilmeldDeltagerWindow mainStage;
+	    
+    public KASDeltagerBekraeftelse(Tilmelding tilmelding, KASTilmeldDeltagerWindow mainStage) {
+    	this.mainStage = mainStage;
+    	
         // Subject to change
         this.tilmelding = tilmelding;
         setTitle("KAS Money");
@@ -22,11 +29,6 @@ public class KASDeltagerBekraeftelse extends Stage {
         setScene(scene);
     }
 
-    Tilmelding tilmelding;
-    Label lblTilmeldt, lblDeltagernavn, lblTilKonference, lblKonferenceNavn, lblLedsagerOgOvernatning, lblSamletPris,
-            lblPrisen;
-    Button btnBekraeft, btnAnnuller;
-
     public void initContent(GridPane gridPane) {
         gridPane.setPadding(new Insets(10));
         gridPane.setHgap(10);
@@ -35,7 +37,6 @@ public class KASDeltagerBekraeftelse extends Stage {
         lblSamletPris = new Label("Samlet Pris:");
         gridPane.add(lblSamletPris, 0, 0);
 
-        // skal hentes fra service klassen
         lblPrisen = new Label("" + Service.beregnSamletPris(tilmelding));
         gridPane.add(lblPrisen, 1, 0);
 
@@ -45,8 +46,6 @@ public class KASDeltagerBekraeftelse extends Stage {
         lblTilKonference = new Label(Service.getKonferenceNavn(tilmelding));
         gridPane.add(lblTilKonference, 1, 1);
 
-        // To implement
-        // lblLedsager og lblOvernatning
         String ledsagerOvernatning = "";
         if (Service.hasLedsager(tilmelding) && Service.hasOvernatning(tilmelding)) {
             ledsagerOvernatning = "Med ledsager og overnatning.";
@@ -68,7 +67,7 @@ public class KASDeltagerBekraeftelse extends Stage {
     }
 
     private void bekraeft() {
-        // TODO luk tilmeldingsvinduet også
+    	mainStage.close();
         close();
     }
 

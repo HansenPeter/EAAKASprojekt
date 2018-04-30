@@ -20,6 +20,10 @@ public class Service {
         Storage.addDeltager(deltager);
         return deltager;
     }
+    
+    public static ArrayList<Deltager> getDeltagere(){
+    	return Storage.getDeltagers();
+    }
 
     public static Deltager createDeltager(String navn, String firmanavn, String adresse, String by, String land,
             String tlfnr, String firmatlfnr) {
@@ -123,9 +127,9 @@ public class Service {
         return konference.getSlutDato();
     }
 
-    public static Beboelse addBeboelseToKonference(Konference konference, String navn, double prisEnkelværelse,
-            double prisDobbeltværelse) {
-        Beboelse beboelse = new Beboelse(navn, prisEnkelværelse, prisDobbeltværelse);
+    public static Beboelse addBeboelseToKonference(Konference konference, String navn, double prisEnkelvaerelse,
+            double prisDobbeltvaerelse) {
+        Beboelse beboelse = new Beboelse(navn, prisEnkelvaerelse, prisDobbeltvaerelse);
         konference.addBeboelse(beboelse);
         Storage.addBeboelse(beboelse);
         return beboelse;

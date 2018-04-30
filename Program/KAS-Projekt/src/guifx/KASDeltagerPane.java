@@ -1,10 +1,14 @@
 package guifx;
 
+import java.util.ArrayList;
+
 import application.model.Deltager;
 import application.service.Service;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -93,23 +97,89 @@ public class KASDeltagerPane extends GridPane {
         vbFirmaTlfnr.getChildren().add(txfFirmaTlfnr);
         add(vbFirmaTlfnr, 1, 3);
 
-        // btnFindTlfnr.setOnAction(event -> printTest());
+        btnFindTlfnr.setOnAction(event -> findNummer());
     }
 
     public Deltager getDeltagerInformation() {
+        
+        String deltagerTlfnr = txfTlfnr.getText().replaceAll(" ", "");
+
+        if(Service.getDeltager(deltagerTlfnr) != null) {
+        	return Service.getDeltager(deltagerTlfnr);
+        }
+        
         String deltagerNavn = txfDeltagernavn.getText();
         String deltagerAdresse = txfAdresse.getText();
         String deltagerBy = txfBy.getText();
         String deltagerLand = txfLand.getText();
-        String deltagerTlfnr = txfTlfnr.getText();
-
+        
         Deltager deltager = Service.createDeltager(deltagerNavn, deltagerAdresse, deltagerBy, deltagerLand,
                 deltagerTlfnr);
         return deltager;
     }
+    
+   public Boolean isRequiredFilled() {
+	   ArrayList<TextField> requiredFields = new ArrayList<>();
+	   requiredFields.add(txfDeltagernavn);
+	   requiredFields.add(txfAdresse);
+	   requiredFields.add(txfBy);
+	   requiredFields.add(txfLand);
+	   requiredFields.add(txfTlfnr);
+	   ArrayList<String> missingFields = new ArrayList<>();
+	   
+	   if(txfDeltagernavn.getText().isEmpty()) {
+		   missingFields.add("Deltagernavn");
+	   }
+	   if(txfAdresse.getText().isEmpty()) {
+		   missingFields.add("Adresse");
+	   }
+	   if(txfBy.getText().isEmpty()) {
+		   missingFields.add("By");
+	   }
+	   if(txfLand.getText().isEmpty()) {
+		   missingFields.add("Land");
+	   }
+	   if(txfTlfnr.getText().isEmpty()) {
+		   missingFields.add("Tlfnr.");
+	   }
+	   
+	   if(missingFields.isEmpty()) {
+		  return true;
+	   }
+	   
+	   String missingFieldString = "";
+	   
+	  
+	   for (String s : missingFields) {
+		   missingFieldString += s + ", ";
+	   }
+	   
+	   missingFieldString = missingFieldString.substring(0, missingFieldString.length()-2);
+	   
+	   Alert alert = new Alert(AlertType.INFORMATION);
+	   alert.setHeaderText("Foelgende felter mangler at blive udfyldt.");
+	   alert.setContentText(missingFieldString);
+	   alert.showAndWait();
+	   return false;
+	   
+   }
 
     public String getTest() {
         return txfDeltagernavn.getText();
+    }
+    
+    private void findNummer() {
+    	String tlfNr = txfTlfnr.getText().replaceAll(" ", "");
+    	Deltager deltager = Service.getDeltager(tlfNr);
+    	if (deltager != null) {
+    		txfDeltagernavn.setText(deltager.getNavn());
+    		txfAdresse.setText(deltager.getAdresse());
+    		txfBy.setText(deltager.getBy());
+    		txfLand.setText(deltager.getLand());
+    	}
+    	
+    	
+    	
     }
 
 }

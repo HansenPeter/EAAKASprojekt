@@ -93,6 +93,10 @@ public class Storage {
 		havOgHimmel.addBeboelse(hoetelPhoenix);
 		application.model.Service svaneWiFi = denHvideSvane.createService("Wi-Fi", "50/10 forbindelse", 50);
 		havOgHimmel.addBeboelse(denHvideSvane);
+		
+		Deltager d1 = Service.createDeltager("Peter", "Baunehoej", "Esbjerg", "Sverige", "888");
+		Deltager d2 = Service.createDeltager("Peter2", "Baunehoej", "Esbjerg", "Sverige", "777");
+		
 
 	}
 }

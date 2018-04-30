@@ -80,10 +80,9 @@ public class Deltager {
 	public void fjernTilmelding(Tilmelding tilmelding) {
 		this.tilmeldinger.remove(tilmelding);
 	}
-
-
 	
-	
-	
+	public String toString() {
+		return navn;
+	}
 	
 }
