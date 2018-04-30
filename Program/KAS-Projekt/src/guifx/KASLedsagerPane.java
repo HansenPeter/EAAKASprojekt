@@ -26,12 +26,12 @@ import javafx.beans.value.ObservableValue;
 public class KASLedsagerPane extends GridPane {
     private Image KASkas = GUITools.kasKas();
     private HBox imgBox;
+    
     private Label lblLedsagernavn, lblUdflugter;
     private TextField txfLedsagernavn;
     private VBox vbLedsagernavn, vbUdflugter;
     private ListView<Udflugt> lvwUdflugter;
-    private ArrayList<Udflugt> alUdflugter;
-    private ArrayList<Udflugt> selectedUdflugter;
+    private ArrayList<Udflugt> alUdflugter, selectedUdflugter;
     private Konference curKonference;
     private KASKonferencePane konferencePane;
     private CheckBox chbLedsager;

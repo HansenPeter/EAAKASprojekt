@@ -22,19 +22,18 @@ import javafx.util.Callback;
 
 public class KASKonferencePane extends GridPane {
 	private Image KASkas = GUITools.kasKas();
-    private Label lblAnkomstdato, lblAfrejsedato;
+	private HBox imgBox;
+
+	private Label lblAnkomstdato, lblAfrejsedato;
     private ComboBox<Konference> cbbKonference;
     private VBox vbAnkomstdato, vbAfrejsedato;
     private CheckBox chbForedragsholder;
-    private HBox imgBox;
     private KASTilmeldDeltagerWindow stage;
     private Konference curKonference;
     private ArrayList<Konference> konferencer;
 
-    private Callback<DatePicker, DateCell> cbAnkomstdato;
-    private Callback<DatePicker, DateCell> cbAfrejsedato;
-    private LocalDate startDato;
-    private LocalDate slutDato;
+    private Callback<DatePicker, DateCell> cbAnkomstdato, cbAfrejsedato;
+    private LocalDate startDato, slutDato;
 
     private DatePicker dpAnkomstdato, dpAfrejsedato;
 
@@ -131,7 +130,7 @@ public class KASKonferencePane extends GridPane {
     }
 
     private void updateControls() {
-    	//opdaterer konferencen i det bagvedliggende vindue, saa den kan hentes til de andre panes
+    	//opdaterer den valgte konference
         this.curKonference = cbbKonference.getSelectionModel().getSelectedItem();
 
         //nye datoer vaelges til datepickers efter den nye konference

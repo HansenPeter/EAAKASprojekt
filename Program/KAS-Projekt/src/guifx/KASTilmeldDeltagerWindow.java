@@ -24,7 +24,6 @@ public class KASTilmeldDeltagerWindow extends Stage {
 
     private ArrayList<Konference> konferencer;
     private ArrayList<Udflugt> udflugter;
-//    private Konference curKonference;
     KASOvernatningPane overnatningPane;
     KASLedsagerPane ledsagerPane;
     KASKonferencePane konferencePane;
@@ -117,14 +116,6 @@ public class KASTilmeldDeltagerWindow extends Stage {
     public ArrayList<Udflugt> getUdflugter() {
         return new ArrayList<>(udflugter);
     }
-
-//    public Konference getCurKonference() {
-//        return curKonference;
-//    }
-
-//    public void setCurKonference(Konference curKonference) {
-//        this.curKonference = curKonference;
-//    }
 
     private void okAction() {
     	//Tjekker om de noedvendige felter er udfylt - viser en alert hvis ikke

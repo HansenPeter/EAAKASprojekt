@@ -107,10 +107,17 @@ public class KASmainApp extends Application {
 	}
 
 	private void addParticipant() {
-
-		KASTilmeldDeltagerWindow window = new KASTilmeldDeltagerWindow();
-		window.showAndWait();
-		lvwKonferences.getItems().setAll(Service.getKonferencer());
+		
+		if(!Service.getKonferencer().isEmpty()) {
+			KASTilmeldDeltagerWindow window = new KASTilmeldDeltagerWindow();
+			window.showAndWait();
+			lvwKonferences.getItems().setAll(Service.getKonferencer());			
+		} else {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setHeaderText("Ingen konferencer fundet");
+			alert.setContentText("Venligst opret mindst en konference foer en deltager tilmeldes.");
+			alert.showAndWait();
+		}
 
 	}
 

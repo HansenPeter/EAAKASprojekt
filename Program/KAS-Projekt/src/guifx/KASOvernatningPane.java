@@ -35,7 +35,9 @@ public class KASOvernatningPane extends GridPane {
     private Konference curKonference;
     private Beboelse curBeboelse;
     private CheckBox chbOvernatning;
-    private ArrayList<application.model.Service> selectedServices;
+    
+    //holder styr paa de services brugeren har valgt i oejeblikket
+    private ArrayList<application.model.Service> selectedServices = new ArrayList<>();
 
     public KASOvernatningPane(KASKonferencePane konferencePane) {
         this.konferencePane = konferencePane;
@@ -52,7 +54,8 @@ public class KASOvernatningPane extends GridPane {
         chbOvernatning = new CheckBox("Book overnatning");
         add(chbOvernatning, 0, 0);
         chbOvernatning.setOnAction(event -> toggleOvernatning(chbOvernatning.isSelected()));
-
+        chbOvernatning.setDisable(true);
+        
         vbBeboelse = new VBox();
 
         lblBeboelse = new Label("Beboelse");
@@ -63,19 +66,16 @@ public class KASOvernatningPane extends GridPane {
 
         cbbBeboelse.setOnAction(event -> updateControls());
         
-
         curKonference = konferencePane.getKonference();
 
         this.alBeboelser = Service.getBeboelser(curKonference);
-
-        if (alBeboelser.isEmpty()) {
-            cbbBeboelse.getItems().setAll();
-
-        } else {
-            cbbBeboelse.getItems().addAll(alBeboelser);
+        
+        //hvis der er nogle tilgaengelige overnatninger, skal knappen vaere enabled.
+        if(!alBeboelser.isEmpty()) {
+        	chbOvernatning.setDisable(false);
         }
         
-
+        cbbBeboelse.getItems().setAll(alBeboelser);
 
         vbBeboelse.getChildren().add(lblBeboelse);
         vbBeboelse.getChildren().add(cbbBeboelse);
@@ -88,9 +88,10 @@ public class KASOvernatningPane extends GridPane {
 
         cbbBeboelse.getSelectionModel().select(0);
         curBeboelse = cbbBeboelse.getSelectionModel().getSelectedItem();
-        // TODO: FIX PLS
+        
+        // hvis der ikke er nogle tilgaengelige beboelser, vises en tom liste
         if (curBeboelse != null) {
-            alServices = Service.getServices(curBeboelse);
+        	alServices = Service.getServices(curBeboelse);
         } else {
             alServices = new ArrayList<>();
         }
@@ -99,14 +100,12 @@ public class KASOvernatningPane extends GridPane {
         vbServices.getChildren().add(lvwServices);
         add(vbServices, 1, 1);
 
-        ArrayList<String> alTest = new ArrayList<>();
-        alTest.add("Test");
-        alTest.add("Test2");
         lvwServices.getItems().addAll(alServices);
-        selectedServices = new ArrayList<>();
+        
+        //Laver saetter en cellfactory med checkboxes i listviewet, hvor checkboxen hhv. tilfoejer eller fjerner
+        //en service fra brugerens valg
         lvwServices.setCellFactory(
                 CheckBoxListCell.forListView(new Callback<application.model.Service, ObservableValue<Boolean>>() {
-
                     @Override
                     public ObservableValue<Boolean> call(application.model.Service service) {
                         BooleanProperty observable = new SimpleBooleanProperty();
@@ -120,35 +119,42 @@ public class KASOvernatningPane extends GridPane {
                         return observable;
                     }
                 }));
-
-        lvwServices.setMinWidth(GUITools.WIDTH*2+20);
         
+        lvwServices.setMinWidth(GUITools.WIDTH*2+20);        
     }
 
     public void updateControls() {
-
-        this.curKonference = konferencePane.getKonference();
-        this.alBeboelser = Service.getBeboelser(curKonference);
+        //Opdaterer overnatningsPane med services alt efter valgt beboelse
         this.curBeboelse = cbbBeboelse.getSelectionModel().getSelectedItem();
         if (curBeboelse != null) {
             this.alServices = Service.getServices(curBeboelse);
         } else {
             this.alServices = new ArrayList<>();
         }
-
+        
+        this.selectedServices.clear();
         this.lvwServices.getItems().setAll(alServices);
 
-        // KASOvernatning.updateControls()
-        // KASLedsager.updateControls()
     }
 
     public void updateBeboelser() {
+    	//Opdaterer overnatningsPane for at afspejle en ny konference. 
+    	//Bliver kaldt naar der vaelges en konference i konferencePane
         this.curKonference = konferencePane.getKonference();
 
         this.alBeboelser = Service.getBeboelser(curKonference);
-
+        if(!alBeboelser.isEmpty()) {
+        	chbOvernatning.setDisable(false);
+        } else {
+        	chbOvernatning.setDisable(true);
+        	chbOvernatning.setSelected(false);
+        	toggleOvernatning(false);
+        }
+        
         cbbBeboelse.getItems().setAll(alBeboelser);
+        cbbBeboelse.getSelectionModel().select(0);
 
+        
         this.lvwServices.getItems().setAll(alServices);
     }
 
@@ -166,7 +172,6 @@ public class KASOvernatningPane extends GridPane {
     }
 
     public ArrayList<application.model.Service> getServices() {
-
         return new ArrayList<>(selectedServices);
     }
 
