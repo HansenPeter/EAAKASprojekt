@@ -84,11 +84,13 @@ public class KASmainApp extends Application {
 		vbBtns.getChildren().add(btnAddConference);
 		vbBtns.getChildren().add(btnAddParticipant);
 		
+
 		gridPane.add(vbBtns, 1, 2);
 
 		btnClose = GUITools.stdButton("Luk Program");
 		GridPane.setValignment(btnClose, VPos.BOTTOM);
 		
+
 		gridPane.add(btnClose, 1, 2);
 
 		btnAddConference.setOnAction(event -> addConference());
@@ -119,10 +121,13 @@ public class KASmainApp extends Application {
 		System.exit(0);
 	}
 	
+
 	private void visDeltagerWindow() {
 		Konference curKonference = lvwKonferences.getSelectionModel().getSelectedItem();
 		if(curKonference != null){
 			KASDeltagerWindow deltagerWindow = new KASDeltagerWindow(curKonference);
+		if (curKonference != null) {
+			KASDeltagerWindow deltagerWindow = new KASDeltagerWindow(curKonference, true);
 			deltagerWindow.showAndWait();
 		} else {
 			Alert alert = new Alert(AlertType.INFORMATION);
@@ -131,5 +136,10 @@ public class KASmainApp extends Application {
 			alert.showAndWait();
 		}
 		
+		System.out.println(curKonference.getTilmeldinger());
+		for (Konference k : Service.getKonferencer()) {
+			System.out.println(k.getTilmeldinger());
+		}
+
 	}
 }
