@@ -9,6 +9,8 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -75,8 +77,10 @@ public class KASmainApp extends Application {
 
 		btnAddConference = GUITools.stdButton("Administrer Konferencer");
 		btnAddParticipant = GUITools.stdButton("Tilmeld Deltager");
+		btnVisDeltagere = GUITools.stdButton("Vis Deltagere");
 		VBox vbBtns = new VBox();
 		vbBtns.setSpacing(10);
+		vbBtns.getChildren().add(btnVisDeltagere);
 		vbBtns.getChildren().add(btnAddConference);
 		vbBtns.getChildren().add(btnAddParticipant);
 		
@@ -84,12 +88,13 @@ public class KASmainApp extends Application {
 
 		btnClose = GUITools.stdButton("Luk Program");
 		GridPane.setValignment(btnClose, VPos.BOTTOM);
+		
 		gridPane.add(btnClose, 1, 2);
 
 		btnAddConference.setOnAction(event -> addConference());
 		btnAddParticipant.setOnAction(event -> addParticipant());
 		btnClose.setOnAction(event -> closeProgram());
-//		btnVisDeltagere.setOnAction(event -> visDeltagerWindow());
+		btnVisDeltagere.setOnAction(event -> visDeltagerWindow());
 
 	}
 
@@ -113,8 +118,17 @@ public class KASmainApp extends Application {
 		System.exit(0);
 	}
 	
-//	private void visDeltagerWindow() {
-//		KASDeltagerWindow deltagerWindow = new KASDeltagerWindow();
-//		deltagerWindow.showAndWait();
-//	}
+	private void visDeltagerWindow() {
+		Konference curKonference = lvwKonferences.getSelectionModel().getSelectedItem();
+		if(curKonference != null){
+			KASDeltagerWindow deltagerWindow = new KASDeltagerWindow(curKonference);
+			deltagerWindow.showAndWait();
+		} else {
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setHeaderText("Ingen konference er valgt");
+			alert.setContentText("Vaelg venligst en konference fra listen");
+			alert.showAndWait();
+		}
+		
+	}
 }
