@@ -70,6 +70,7 @@ public class Service {
 			LocalDate afrejsedato, boolean foredragsholder) {
 		Tilmelding tilmelding = deltager.createTilmelding(konference, ankomstdato, afrejsedato, foredragsholder);
 		deltager.addTilmelding(tilmelding);
+		konference.addTilmelding(tilmelding);
 		return tilmelding;
 	}
 
