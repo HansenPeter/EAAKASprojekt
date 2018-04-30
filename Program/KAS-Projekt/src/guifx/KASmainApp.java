@@ -51,7 +51,7 @@ public class KASmainApp extends Application {
 	Label lblWelcome;
 	ListView<Konference> lvwKonferences;
 	GridPane gridButtons;
-	Button btnAddConference, btnAddParticipant, btnClose;
+	Button btnAddConference, btnAddParticipant, btnClose, btnVisDeltagere;
 	ImageView KASkas;
 
 	private void initGridPane(GridPane gridPane) {
@@ -77,7 +77,7 @@ public class KASmainApp extends Application {
 		gridButtons.setHgap(20);
 		gridButtons.setVgap(10);
 		gridPane.add(gridButtons, 1, 2);
-		btnAddConference = GUITools.stdButton("Tilfoej Konference");
+		btnAddConference = GUITools.stdButton("Administrer Konferencer");
 		gridButtons.add(btnAddConference, 0, 0);
 
 		btnAddParticipant = GUITools.stdButton("Tilmeld Deltager");

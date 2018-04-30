@@ -13,7 +13,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -58,6 +57,9 @@ public class KASKonferencePane extends GridPane {
         konferencer = stage.getKonferencer();
 
         cbbKonference = new ComboBox<>();
+        cbbKonference.setMinWidth(190);
+        
+        
         if (!konferencer.isEmpty()) {
             cbbKonference.getItems().addAll(konferencer);
             cbbKonference.getSelectionModel().select(0);
@@ -77,8 +79,8 @@ public class KASKonferencePane extends GridPane {
 
         startDato = Service.getKonferenceStartdato(curKonference);
         slutDato = Service.getKonferenceSlutdato(curKonference);
-        dpAnkomstdato = new DatePicker(startDato);
-        dpAfrejsedato = new DatePicker(slutDato);
+        dpAnkomstdato = GUITools.stdDatePicker(startDato);
+        dpAfrejsedato = GUITools.stdDatePicker(slutDato);
 
         cfAfrejsedato = new Callback<DatePicker, DateCell>() {
             @Override
@@ -118,8 +120,6 @@ public class KASKonferencePane extends GridPane {
         dpAnkomstdato.setDayCellFactory(cfAnkomstdato);
         dpAfrejsedato.setEditable(false);
         dpAnkomstdato.setEditable(false);
-        dpAnkomstdato.setMaxWidth(150);
-        dpAfrejsedato.setMaxWidth(150);
 
         lblAnkomstdato = new Label("Ankomstdato");
 

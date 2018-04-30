@@ -40,7 +40,7 @@ public class KASOvernatningPane extends GridPane {
     public KASOvernatningPane(KASTilmeldDeltagerWindow stage) {
         this.stage = stage;
 
-        // setGridLinesVisible(true);
+//        setGridLinesVisible(true);
         setPadding(new Insets(20));
         setHgap(20);
         setVgap(10);
@@ -58,9 +58,12 @@ public class KASOvernatningPane extends GridPane {
 
         lblBeboelse = new Label("Beboelse");
         cbbBeboelse = new ComboBox<>();
+        cbbBeboelse.setMinWidth(190);
+        cbbBeboelse.setMaxWidth(190);
         cbbBeboelse.setDisable(true);
 
         cbbBeboelse.setOnAction(event -> updateControls());
+        
 
         curKonference = stage.getCurKonference();
 
@@ -70,10 +73,10 @@ public class KASOvernatningPane extends GridPane {
             cbbBeboelse.getItems().setAll();
 
         } else {
-
             cbbBeboelse.getItems().addAll(alBeboelser);
         }
-        cbbBeboelse.setPrefWidth(150);
+        
+
 
         vbBeboelse.getChildren().add(lblBeboelse);
         vbBeboelse.getChildren().add(cbbBeboelse);
@@ -119,6 +122,8 @@ public class KASOvernatningPane extends GridPane {
                     }
                 }));
 
+        lvwServices.setMinWidth(GUITools.WIDTH*2+20);
+        
     }
 
     public void updateControls() {

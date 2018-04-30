@@ -47,8 +47,6 @@ public class KASOrganisationWindow extends Stage {
 		gridPane.setHgap(10);
 		gridPane.setVgap(10);
 
-		// gridPane.add(kasKassen, 1, 0);
-
 		lblOrganisation = new Label("Organisationer");
 		gridPane.add(lblOrganisation, 0, 0);
 
@@ -72,16 +70,17 @@ public class KASOrganisationWindow extends Stage {
 		});
 
 		VBOrganisation = new VBox();
+		VBOrganisation.setSpacing(10);
 		gridPane.add(VBOrganisation, 1, 2);
 
 		txfOrganisationName = new TextField("Ny Organisation");
 		VBOrganisation.getChildren().add(txfOrganisationName);
 
-		btnAddOrganisation = GUITools.stdButton("Tilføj organisation");
+		btnAddOrganisation = GUITools.stdButton("Tilfoej organisation");
 		btnAddOrganisation.setOnAction(event -> this.addOrganisation());
 		VBOrganisation.getChildren().add(btnAddOrganisation);
 
-		btnPickOrganisation = GUITools.stdButton("Vælg Organisation");
+		btnPickOrganisation = GUITools.stdButton("Vaelg Organisation");
 		btnPickOrganisation.setOnAction(event -> this.addKonference());
 
 		lblkonferencer = new Label("Konferencer");
@@ -102,6 +101,7 @@ public class KASOrganisationWindow extends Stage {
 
 		VBKonference.getChildren().add(btnAddKonference);
 		VBKonference.getChildren().add(btnAdminKonference);
+		VBKonference.setSpacing(10);
 
 		btnOK = GUITools.stdButton("Close");
 		btnOK.setOnAction(event -> this.close());

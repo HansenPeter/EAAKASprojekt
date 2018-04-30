@@ -11,8 +11,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.MultipleSelectionModel;
-import javafx.scene.control.SelectionMode;
+
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.CheckBoxListCell;
 import javafx.scene.image.Image;
@@ -70,6 +69,7 @@ public class KASLedsagerPane extends GridPane {
         vbUdflugter = new VBox();
         lblUdflugter = new Label("Udflugter");
         lvwUdflugter = new ListView<>();
+        lvwUdflugter.setMinWidth(GUITools.WIDTH*2+20);
         lvwUdflugter.setDisable(true);
 
         vbUdflugter.getChildren().add(lblUdflugter);

@@ -56,8 +56,8 @@ public class KasOpretKonference extends Stage {
 		GridPane.setValignment(lblStartDato, VPos.BOTTOM);
 		gridPane.add(lblStartDato, 0, 2);
 
-		dpStartDato = new DatePicker(LocalDate.now());
-		dpStartDato.setMaxWidth(150);
+		dpStartDato = GUITools.stdDatePicker(LocalDate.now());
+		
 		gridPane.add(dpStartDato, 0, 3);
 
 		cbStartDato = new Callback<DatePicker, DateCell>() {
@@ -101,8 +101,8 @@ public class KasOpretKonference extends Stage {
 		GridPane.setValignment(lblSlutDato, VPos.BOTTOM);
 		gridPane.add(lblSlutDato, 1, 2);
 
-		dpSlutDato = new DatePicker(LocalDate.now().plusDays(1));
-		dpSlutDato.setMaxWidth(150);
+		dpSlutDato = GUITools.stdDatePicker(LocalDate.now().plusDays(1));
+		
 		gridPane.add(dpSlutDato, 1, 3);
 
 		cbSlutDato = new Callback<DatePicker, DateCell>() {
