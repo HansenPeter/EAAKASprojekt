@@ -58,7 +58,7 @@ public class KASLedsagerPane extends GridPane {
 
         vbLedsagernavn = new VBox();
 
-        lblLedsagernavn = new Label("Ledsagernavn");
+        lblLedsagernavn = new Label("Ledsagernavn*");
         txfLedsagernavn = GUITools.stdTextField();
         txfLedsagernavn.setDisable(true);
 
@@ -127,7 +127,7 @@ public class KASLedsagerPane extends GridPane {
     }
 
     public Boolean hasLedsager() {
-        return chbLedsager.isSelected();
+        return chbLedsager.isSelected() && !txfLedsagernavn.getText().isEmpty();
     }
 
     public String getLedsagernavn() {

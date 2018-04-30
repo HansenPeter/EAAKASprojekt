@@ -15,6 +15,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import storage.Storage;
 
@@ -72,16 +73,14 @@ public class KASmainApp extends Application {
 		gridPane.add(KASkas, 1, 0, 1, 2);
 		GridPane.setHalignment(KASkas, HPos.RIGHT);
 
-		gridButtons = new GridPane();
-		gridButtons.setAlignment(Pos.CENTER);
-		gridButtons.setHgap(20);
-		gridButtons.setVgap(10);
-		gridPane.add(gridButtons, 1, 2);
 		btnAddConference = GUITools.stdButton("Administrer Konferencer");
-		gridButtons.add(btnAddConference, 0, 0);
-
 		btnAddParticipant = GUITools.stdButton("Tilmeld Deltager");
-		gridButtons.add(btnAddParticipant, 0, 1);
+		VBox vbBtns = new VBox();
+		vbBtns.setSpacing(10);
+		vbBtns.getChildren().add(btnAddConference);
+		vbBtns.getChildren().add(btnAddParticipant);
+		
+		gridPane.add(vbBtns, 1, 2);
 
 		btnClose = GUITools.stdButton("Luk Program");
 		GridPane.setValignment(btnClose, VPos.BOTTOM);
@@ -90,6 +89,7 @@ public class KASmainApp extends Application {
 		btnAddConference.setOnAction(event -> addConference());
 		btnAddParticipant.setOnAction(event -> addParticipant());
 		btnClose.setOnAction(event -> closeProgram());
+//		btnVisDeltagere.setOnAction(event -> visDeltagerWindow());
 
 	}
 
@@ -109,8 +109,12 @@ public class KASmainApp extends Application {
 	}
 
 	private void closeProgram() {
-		// TODO Auto-generated method stub
 		Platform.exit();
 		System.exit(0);
 	}
+	
+//	private void visDeltagerWindow() {
+//		KASDeltagerWindow deltagerWindow = new KASDeltagerWindow();
+//		deltagerWindow.showAndWait();
+//	}
 }

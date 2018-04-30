@@ -126,6 +126,7 @@ public class KASTilmeldDeltagerWindow extends Stage {
     }
 
     private void okAction() {
+    	//Tjekker om de noedvendige felter er udfylt - viser en alert hvis ikke
     	if(deltagerPane.isRequiredFilled()) {
     		
 	        Deltager deltager = deltagerPane.getDeltagerInformation();
@@ -150,7 +151,7 @@ public class KASTilmeldDeltagerWindow extends Stage {
 	        KASDeltagerBekraeftelse bekraeftelsesWindow = new KASDeltagerBekraeftelse(tilmelding, this);
 	        bekraeftelsesWindow.showAndWait();
     	} else {
-    		
+    		//do nothing
     	}
     }
     

@@ -59,14 +59,10 @@ public class KASKonferencePane extends GridPane {
         cbbKonference = new ComboBox<>();
         cbbKonference.setMinWidth(190);
         
+   
+        cbbKonference.getItems().addAll(konferencer);
+        cbbKonference.getSelectionModel().select(0);
         
-        if (!konferencer.isEmpty()) {
-            cbbKonference.getItems().addAll(konferencer);
-            cbbKonference.getSelectionModel().select(0);
-        } else {
-            cbbKonference.getItems().setAll((Konference) null);
-        }
-
         GridPane.setValignment(cbbKonference, VPos.BOTTOM);
         add(cbbKonference, 2, 1);
 

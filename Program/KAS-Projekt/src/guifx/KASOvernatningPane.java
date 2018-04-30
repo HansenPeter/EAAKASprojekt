@@ -40,7 +40,6 @@ public class KASOvernatningPane extends GridPane {
     public KASOvernatningPane(KASTilmeldDeltagerWindow stage) {
         this.stage = stage;
 
-//        setGridLinesVisible(true);
         setPadding(new Insets(20));
         setHgap(20);
         setVgap(10);
